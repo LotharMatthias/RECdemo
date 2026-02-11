@@ -39,12 +39,20 @@ function initCarousel() {
 
         currentIndex = index;
 
-        // Update cards
+        // Calculate prev and next indices
+        const prevIndex = (currentIndex - 1 + totalCards) % totalCards;
+        const nextIndex = (currentIndex + 1) % totalCards;
+
+        // Update cards with prev, active, and next classes
         cards.forEach((card, i) => {
+            card.classList.remove('active', 'prev', 'next');
+
             if (i === currentIndex) {
                 card.classList.add('active');
-            } else {
-                card.classList.remove('active');
+            } else if (i === prevIndex) {
+                card.classList.add('prev');
+            } else if (i === nextIndex) {
+                card.classList.add('next');
             }
         });
 
@@ -74,7 +82,7 @@ function initCarousel() {
 
     // Event Listeners for arrows
     leftArrow.addEventListener('click', prevSlide);
-    rightArrow.addEventListener('click', prevSlide);
+    rightArrow.addEventListener('click', nextSlide);
 
     // Event Listeners for dots
     dots.forEach((dot, index) => {
