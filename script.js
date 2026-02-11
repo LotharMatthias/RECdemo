@@ -325,74 +325,84 @@ if (contactToggle && contactBar) {
 
 /**
  * Testimonials Carousel with Infinite Loop & Auto-Scroll
+ * 2 Testimonials per page, scrolls 1 at a time
  */
 function initTestimonialsCarousel() {
     const leftArrow = document.querySelector('.testimonials-arrow-left');
     const rightArrow = document.querySelector('.testimonials-arrow-right');
     const grid = document.querySelector('.testimonials-grid');
-    const cards = document.querySelectorAll('.testimonial-card');
+    const originalCards = document.querySelectorAll('.testimonial-card');
 
-    if (!leftArrow || !rightArrow || !grid || !cards.length) {
+    if (!leftArrow || !rightArrow || !grid || !originalCards.length) {
         return;
     }
 
+    // Clone all cards for seamless infinite scroll
+    originalCards.forEach(card => {
+        const clone = card.cloneNode(true);
+        grid.appendChild(clone);
+    });
+
+    const allCards = document.querySelectorAll('.testimonial-card');
+    const totalOriginalCards = originalCards.length;
     let currentPosition = 0;
-    const totalCards = cards.length;
-    const cardsPerView = window.innerWidth <= 768 ? 1 : 2;
     let autoScrollInterval;
+    let isTransitioning = false;
+
+    function getCardsPerView() {
+        return window.innerWidth <= 768 ? 1 : 2;
+    }
 
     function updateCarousel(smooth = true) {
-        const cardWidth = cards[0].offsetWidth;
-        const gap = 40;
+        if (isTransitioning) return;
+
+        const cardWidth = allCards[0].offsetWidth;
+        const gap = window.innerWidth <= 768 ? 24 : 40;
         const moveAmount = (cardWidth + gap) * currentPosition;
 
         if (smooth) {
             grid.style.transition = 'transform 0.5s cubic-bezier(0.4, 0, 0.2, 1)';
+            isTransitioning = true;
+            setTimeout(() => {
+                isTransitioning = false;
+            }, 500);
         } else {
             grid.style.transition = 'none';
+            isTransitioning = false;
         }
 
         grid.style.transform = `translateX(-${moveAmount}px)`;
-
-        // Arrows always enabled (infinite loop)
-        leftArrow.style.opacity = '1';
-        leftArrow.style.pointerEvents = 'all';
-        rightArrow.style.opacity = '1';
-        rightArrow.style.pointerEvents = 'all';
     }
 
     function nextSlide() {
+        if (isTransitioning) return;
+
         currentPosition++;
+        updateCarousel(true);
 
-        // Check if we need to loop
-        if (currentPosition >= totalCards) {
-            currentPosition = 0;
-            updateCarousel(false); // Jump instantly to start
-
-            // Force reflow to apply instant transition
+        // When we reach the end of original cards, jump back to start seamlessly
+        if (currentPosition >= totalOriginalCards) {
             setTimeout(() => {
-                currentPosition = 1;
-                updateCarousel(true); // Then smoothly move to next
-            }, 50);
-        } else {
-            updateCarousel(true);
+                currentPosition = 0;
+                updateCarousel(false);
+            }, 500);
         }
     }
 
     function prevSlide() {
-        currentPosition--;
+        if (isTransitioning) return;
 
-        // Check if we need to loop backwards
-        if (currentPosition < 0) {
-            currentPosition = totalCards - 1;
-            updateCarousel(false); // Jump instantly to end
+        // If at start, jump to end seamlessly
+        if (currentPosition === 0) {
+            currentPosition = totalOriginalCards;
+            updateCarousel(false);
 
-            // Force reflow
             setTimeout(() => {
-                currentPosition = totalCards - 2;
-                updateCarousel(true); // Then smoothly move to prev
+                currentPosition--;
+                updateCarousel(true);
             }, 50);
         } else {
+            currentPosition--;
             updateCarousel(true);
         }
     }
