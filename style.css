@@ -105,7 +105,7 @@ button {
 }
 
 .logo img {
-    height: 50px;
+    height: 65px;
     width: auto;
 }
 
@@ -147,36 +147,161 @@ button {
     box-shadow: 0 4px 12px rgba(0,0,0,0.15);
 }
 
+/* New navigation boxes for Unternehmen and Karriere */
+.nav-box-company {
+    background: linear-gradient(135deg, #1a1a1a 0%, #4b5563 100%);
+}
+
+.nav-box-career {
+    background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+}
+
+/* Dropdown Menus */
+.nav-box-dropdown {
+    position: relative;
+}
+
+.dropdown-menu {
+    position: absolute;
+    top: calc(100% + 8px);
+    left: 0;
+    min-width: 280px;
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.15);
+    padding: 12px 0;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: all 0.3s ease;
+    z-index: 1000;
+}
+
+.nav-box-dropdown:hover .dropdown-menu {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.dropdown-item {
+    display: block;
+    padding: 12px 24px;
+    color: #374151;
+    font-size: 14px;
+    font-weight: 500;
+    transition: all 0.2s ease;
+    white-space: nowrap;
+}
+
+.dropdown-item:hover {
+    background: #f3f4f6;
+    color: #1a1a1a;
+    padding-left: 28px;
+}
+
 /* ==========================================
-   Hero Section
+   Hero Banner Section
    ========================================== */
 
-.hero-section {
-    position: relative;
-    width: 100%;
-    height: 500px;
-    overflow: hidden;
+.hero-banner {
+    padding: 80px 0;
+    background: linear-gradient(135deg, #f9fafb 0%, #ffffff 100%);
 }
 
-.hero-image-container {
-    position: relative;
-    width: 100%;
-    height: 100%;
+.hero-content-wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: center;
 }
 
-.hero-image {
+.hero-text-box {
+    padding: 40px;
+    background: #ffffff;
+    border-radius: 24px;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.06);
+}
+
+.hero-title {
+    font-size: 48px;
+    font-weight: 800;
+    color: #1a1a1a;
+    margin-bottom: 16px;
+    line-height: 1.1;
+}
+
+.hero-subtitle {
+    font-size: 32px;
+    font-weight: 700;
+    color: #3b82f6;
+    margin-bottom: 12px;
+    line-height: 1.2;
+}
+
+.hero-tagline {
+    font-size: 20px;
+    font-weight: 600;
+    color: #6b7280;
+    margin-bottom: 24px;
+    font-style: italic;
+}
+
+.hero-description {
+    font-size: 16px;
+    line-height: 1.8;
+    color: #4b5563;
+    margin-bottom: 32px;
+}
+
+.hero-cta-buttons {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+}
+
+.btn-primary, .btn-secondary {
+    padding: 14px 32px;
+    border-radius: 12px;
+    font-weight: 600;
+    font-size: 16px;
+    transition: all 0.3s ease;
+    display: inline-block;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+    color: #ffffff;
+    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(59, 130, 246, 0.4);
+}
+
+.btn-secondary {
+    background: #ffffff;
+    color: #3b82f6;
+    border: 2px solid #3b82f6;
+}
+
+.btn-secondary:hover {
+    background: #3b82f6;
+    color: #ffffff;
+    transform: translateY(-2px);
+}
+
+.hero-image-box {
+    position: relative;
+}
+
+.hero-rounded-image {
     width: 100%;
-    height: 100%;
+    height: auto;
+    border-radius: 24px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.15);
     object-fit: cover;
-}
-
-.hero-gradient {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    height: 50%;
-    background: linear-gradient(to top, rgba(0,0,0,0.4) 0%, transparent 100%);
+    max-height: 600px;
 }
 
 /* ==========================================
@@ -403,9 +528,9 @@ button {
 
 .trust-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 40px;
-    max-width: 1000px;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 32px;
+    max-width: 1200px;
     margin: 0 auto;
 }
 
@@ -444,6 +569,144 @@ button {
     font-size: 16px;
     color: #6b7280;
     line-height: 1.6;
+}
+
+/* ==========================================
+   Testimonials Section
+   ========================================== */
+
+.testimonials-section {
+    padding: 80px 0;
+    background: #f9fafb;
+}
+
+.testimonials-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 32px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.testimonial-card {
+    background: #ffffff;
+    border-radius: 20px;
+    padding: 40px;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.06);
+    transition: all 0.3s ease;
+}
+
+.testimonial-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 40px rgba(0,0,0,0.12);
+}
+
+.testimonial-stars {
+    color: #f59e0b;
+    font-size: 20px;
+    margin-bottom: 20px;
+    letter-spacing: 4px;
+}
+
+.testimonial-text {
+    font-size: 16px;
+    line-height: 1.8;
+    color: #4b5563;
+    margin-bottom: 24px;
+    font-style: italic;
+}
+
+.testimonial-author {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    padding-top: 20px;
+    border-top: 2px solid #e5e7eb;
+}
+
+.testimonial-author strong {
+    font-size: 16px;
+    font-weight: 700;
+    color: #1a1a1a;
+}
+
+.testimonial-author span {
+    font-size: 14px;
+    color: #6b7280;
+}
+
+/* ==========================================
+   Floating Contact Box
+   ========================================== */
+
+.floating-contact-box {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    background: #ffffff;
+    border-radius: 16px;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.15);
+    width: 280px;
+    z-index: 1000;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.floating-contact-box:hover {
+    box-shadow: 0 12px 48px rgba(0,0,0,0.2);
+    transform: translateY(-4px);
+}
+
+.floating-contact-header {
+    background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+    color: #ffffff;
+    padding: 16px 20px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-weight: 700;
+    font-size: 16px;
+}
+
+.floating-contact-content {
+    padding: 20px;
+}
+
+.contact-info-item {
+    margin-bottom: 16px;
+}
+
+.contact-info-item:last-child {
+    margin-bottom: 0;
+}
+
+.contact-info-item strong {
+    display: block;
+    font-size: 12px;
+    font-weight: 700;
+    color: #6b7280;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+    letter-spacing: 0.5px;
+}
+
+.contact-info-item a {
+    color: #3b82f6;
+    font-size: 14px;
+    font-weight: 600;
+    transition: color 0.3s ease;
+}
+
+.contact-info-item a:hover {
+    color: #2563eb;
+    text-decoration: underline;
+}
+
+.contact-info-item p {
+    font-size: 14px;
+    color: #4b5563;
+    line-height: 1.6;
+    margin: 0;
 }
 
 /* ==========================================
@@ -487,6 +750,21 @@ button {
 
 .partner-item {
     flex-shrink: 0;
+}
+
+.partner-logo {
+    height: 60px;
+    width: auto;
+    max-width: 180px;
+    object-fit: contain;
+    filter: brightness(0) invert(1);
+    opacity: 0.8;
+    transition: all 0.3s ease;
+}
+
+.partner-logo:hover {
+    opacity: 1;
+    transform: scale(1.05);
 }
 
 .partner-badge {
@@ -594,12 +872,31 @@ button {
         justify-content: center;
     }
 
+    .hero-content-wrapper {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+
+    .hero-title {
+        font-size: 40px;
+    }
+
+    .hero-subtitle {
+        font-size: 28px;
+    }
+
     .section-headline {
         font-size: 40px;
     }
 
     .carousel-container {
         padding: 0 50px;
+    }
+
+    .floating-contact-box {
+        width: 260px;
+        bottom: 16px;
+        right: 16px;
     }
 }
 
@@ -609,13 +906,50 @@ button {
         font-size: 13px;
     }
 
+    .logo img {
+        height: 55px;
+    }
+
     .nav-box {
         padding: 10px 16px;
         font-size: 13px;
     }
 
-    .hero-section {
-        height: 350px;
+    .dropdown-menu {
+        min-width: 240px;
+    }
+
+    .hero-banner {
+        padding: 60px 0;
+    }
+
+    .hero-text-box {
+        padding: 32px;
+    }
+
+    .hero-title {
+        font-size: 36px;
+    }
+
+    .hero-subtitle {
+        font-size: 24px;
+    }
+
+    .hero-tagline {
+        font-size: 18px;
+    }
+
+    .hero-description {
+        font-size: 15px;
+    }
+
+    .hero-cta-buttons {
+        flex-direction: column;
+    }
+
+    .btn-primary, .btn-secondary {
+        width: 100%;
+        text-align: center;
     }
 
     .section-headline {
@@ -648,6 +982,17 @@ button {
         font-size: 20px;
     }
 
+    .testimonials-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .floating-contact-box {
+        width: calc(100% - 32px);
+        left: 16px;
+        right: 16px;
+        bottom: 16px;
+    }
+
     .footer-grid {
         grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
         gap: 30px;
@@ -670,7 +1015,7 @@ button {
     }
 
     .logo img {
-        height: 40px;
+        height: 45px;
     }
 
     .nav-boxes {
@@ -682,8 +1027,39 @@ button {
         font-size: 12px;
     }
 
-    .hero-section {
-        height: 250px;
+    .dropdown-menu {
+        left: -20px;
+        min-width: calc(100vw - 48px);
+        max-width: 300px;
+    }
+
+    .hero-banner {
+        padding: 40px 0;
+    }
+
+    .hero-text-box {
+        padding: 24px;
+    }
+
+    .hero-title {
+        font-size: 28px;
+    }
+
+    .hero-subtitle {
+        font-size: 20px;
+    }
+
+    .hero-tagline {
+        font-size: 16px;
+    }
+
+    .hero-description {
+        font-size: 14px;
+    }
+
+    .btn-primary, .btn-secondary {
+        padding: 12px 24px;
+        font-size: 14px;
     }
 
     .carousel-section {
@@ -726,14 +1102,35 @@ button {
 
     .trust-grid {
         gap: 24px;
+        grid-template-columns: 1fr;
     }
 
     .trust-card {
         padding: 30px 20px;
     }
 
+    .testimonials-section {
+        padding: 60px 0;
+    }
+
+    .testimonial-card {
+        padding: 28px;
+    }
+
+    .floating-contact-box {
+        width: calc(100% - 24px);
+        left: 12px;
+        right: 12px;
+        bottom: 12px;
+    }
+
     .partner-section {
         padding: 40px 0;
+    }
+
+    .partner-logo {
+        height: 50px;
+        max-width: 150px;
     }
 
     .footer {
