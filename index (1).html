@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Richter ElektroCom - 360-Grad-Technik für Ihr Bauprojekt</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Top Contact Bar -->
+    <div class="top-contact-bar" id="contactBar">
+        <div class="container-wide">
+            <div class="contact-items">
+                <a href="mailto:info@r-ec.de" class="contact-item">
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+                        <path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1H2zm13 2.383-4.758 2.855L15 11.114v-5.73zm-.034 6.878L9.271 8.82 8 9.583 6.728 8.82l-5.694 3.44A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.739zM1 11.114l4.758-2.876L1 5.383v5.73z"/>
+                    </svg>
+                    info@r-ec.de
+                </a>
+                <a href="tel:+495258210800" class="contact-item">
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+                        <path d="M3.654 1.328a.678.678 0 0 0-1.015-.063L1.605 2.3c-.483.484-.661 1.169-.45 1.77a17.568 17.568 0 0 0 4.168 6.608 17.569 17.569 0 0 0 6.608 4.168c.601.211 1.286.033 1.77-.45l1.034-1.034a.678.678 0 0 0-.063-1.015l-2.307-1.794a.678.678 0 0 0-.58-.122l-2.19.547a1.745 1.745 0 0 1-1.657-.459L5.482 8.062a1.745 1.745 0 0 1-.46-1.657l.548-2.19a.678.678 0 0 0-.122-.58L3.654 1.328z"/>
+                    </svg>
+                    05258 21080-0
+                </a>
+                <a href="https://lb3.pcvisit.de/v1/hosted/jumplink?func=download&topic=guestSetup&destname=pcvisit_Kunden-Modul" class="contact-item" target="_blank">
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+                        <path d="M0 1.5A1.5 1.5 0 0 1 1.5 0h13A1.5 1.5 0 0 1 16 1.5v10A1.5 1.5 0 0 1 14.5 13h-13A1.5 1.5 0 0 1 0 11.5v-10zM1.5 1a.5.5 0 0 0-.5.5V2h14v-.5a.5.5 0 0 0-.5-.5h-13zm14 2.5H1v8a.5.5 0 0 0 .5.5h13a.5.5 0 0 0 .5-.5v-8z"/>
+                        <path d="M5 7a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
+                    </svg>
+                    Fernwartung PC / Mac
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Header with Logo & Navigation Boxes -->
+    <header class="main-header">
+        <div class="container-wide">
+            <div class="header-content">
+                <div class="logo">
+                    <img src="https://www.richter-elektrocom.de/wp-content/uploads/2023/02/R-EC_Logo_inv.png" alt="Richter ElektroCom" />
+                </div>
+                <nav class="nav-boxes">
+                    <button id="contactToggle" class="contact-toggle-btn">
+                        <svg width="18" height="18" viewBox="0 0 16 16" fill="currentColor">
+                            <path d="M3.654 1.328a.678.678 0 0 0-1.015-.063L1.605 2.3c-.483.484-.661 1.169-.45 1.77a17.568 17.568 0 0 0 4.168 6.608 17.569 17.569 0 0 0 6.608 4.168c.601.211 1.286.033 1.77-.45l1.034-1.034a.678.678 0 0 0-.063-1.015l-2.307-1.794a.678.678 0 0 0-.58-.122l-2.19.547a1.745 1.745 0 0 1-1.657-.459L5.482 8.062a1.745 1.745 0 0 1-.46-1.657l.548-2.19a.678.678 0 0 0-.122-.58L3.654 1.328z"/>
+                        </svg>
+                        <span>Kontakt</span>
+                    </button>
+                    <div class="nav-box-dropdown">
+                        <a href="#energie" class="nav-box nav-box-energy">
+                            <span class="nav-box-text">Energie</span>
+                        </a>
+                        <div class="dropdown-menu">
+                            <a href="#" class="dropdown-item">E-Mobilität für Unternehmen</a>
+                            <a href="#" class="dropdown-item">Abrechnungssystem E-Dienstwagen</a>
+                            <a href="#" class="dropdown-item">Bezahlsystem Ladestationen</a>
+                            <a href="#" class="dropdown-item">Photovoltaik & Batteriespeicher</a>
+                            <a href="#" class="dropdown-item">Energiemanagement</a>
+                            <a href="#" class="dropdown-item">Förderung Energieeffizienz</a>
+                        </div>
+                    </div>
+                    <div class="nav-box-dropdown">
+                        <a href="#elektrotechnik" class="nav-box nav-box-electric">
+                            <span class="nav-box-text">Elektrotechnik</span>
+                        </a>
+                        <div class="dropdown-menu">
+                            <a href="#" class="dropdown-item">Neu- & Umbauten</a>
+                            <a href="#" class="dropdown-item">Netzanschluss & Trafostationen</a>
+                            <a href="#" class="dropdown-item">Beleuchtung für Unternehmen</a>
+                            <a href="#" class="dropdown-item">Schließanlagen & Alarmsysteme</a>
+                            <a href="#" class="dropdown-item">E-Check für Unternehmen</a>
+                        </div>
+                    </div>
+                    <div class="nav-box-dropdown">
+                        <a href="#heizung" class="nav-box nav-box-heating">
+                            <span class="nav-box-text">Heizung & Sanitär</span>
+                        </a>
+                        <div class="dropdown-menu">
+                            <a href="#" class="dropdown-item">Neu- & Umbauten</a>
+                            <a href="#" class="dropdown-item">Wärmepumpen & Lüftungen</a>
+                            <a href="#" class="dropdown-item">Badsanierung</a>
+                            <a href="#" class="dropdown-item">Enthärtungsanlagen</a>
+                            <a href="#" class="dropdown-item">Heizungstechnik</a>
+                        </div>
+                    </div>
+                    <div class="nav-box-dropdown">
+                        <a href="#it" class="nav-box nav-box-it">
+                            <span class="nav-box-text">IT & Kommunikation</span>
+                        </a>
+                        <div class="dropdown-menu">
+                            <a href="#" class="dropdown-item">Managed Services</a>
+                            <a href="#" class="dropdown-item">IT-Sicherheit</a>
+                            <a href="#" class="dropdown-item">Netzwerktechnik</a>
+                            <a href="#" class="dropdown-item">Cloud-Lösungen & Microsoft 365</a>
+                            <a href="#" class="dropdown-item">Telefonanlagen</a>
+                            <a href="#" class="dropdown-item">Videoüberwachung</a>
+                        </div>
+                    </div>
+                    <a href="#unternehmen" class="nav-box nav-box-company">
+                        <span class="nav-box-text">Unternehmen</span>
+                    </a>
+                    <a href="#karriere" class="nav-box nav-box-career">
+                        <span class="nav-box-text">Jobs / Karriere</span>
+                    </a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section with Content -->
+    <section class="hero-banner">
+        <div class="container-wide">
+            <div class="hero-content-wrapper">
+                <div class="hero-text-box">
+                    <h1 class="hero-title">Richter ElektroCom</h1>
+                    <h2 class="hero-subtitle">Modernste Technik für Ihr Bauprojekt in der Region Hochstift Paderborn</h2>
+                    <p class="hero-tagline">Zukunftsweisend und sicher – Ihre Experten für 360-Grad-Technik</p>
+                    <p class="hero-description">
+                        Profitieren Sie von unserer langjährigen Erfahrung in der Technikbranche für den <strong>Kreis Paderborn</strong> und die umliegenden Orte <strong>Büren, Lippstadt, Bad Driburg, Erwitte, Delbrück, Gütersloh</strong> und viele mehr.
+                        Wir beraten und unterstützen Sie fachübergreifend in den Sparten <strong>Elektrotechnik, Heizung & Sanitär, IT & Kommunikation</strong> und <strong>Energie</strong>.
+                    </p>
+                    <div class="hero-cta-buttons">
+                        <a href="#kontakt" class="btn-primary">Erstgespräch vereinbaren</a>
+                        <a href="#geschaeftsbereiche" class="btn-secondary">Unsere Leistungen</a>
+                    </div>
+                </div>
+                <div class="hero-image-box">
+                    <img src="images/team-photo.jpg"
+                         alt="Richter Electrocom Team und Firmengebäude"
+                         class="hero-rounded-image" />
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Carousel Section -->
+    <section class="carousel-section">
+        <div class="container">
+            <h2 class="section-headline">Unsere Geschäftsbereiche</h2>
+            <div class="carousel-container">
+                <button class="carousel-arrow carousel-arrow-left" aria-label="Vorheriger Bereich">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M15 18l-6-6 6-6"/>
+                    </svg>
+                </button>
+
+                <div class="carousel-track">
+                    <!-- Energie Card -->
+                    <div class="carousel-card active" data-index="0">
+                        <div class="card-inner card-energy">
+                            <div class="card-icon">
+                                <img src="https://www.richter-elektrocom.de/wp-content/uploads/2023/02/R-EC_Logo-Energie.png" alt="Energie" />
+                            </div>
+                            <h3>Energie</h3>
+                            <p>Zukunftsorientierte Energielösungen und E-Mobilitätsinfrastruktur für Unternehmen und öffentliche Einrichtungen</p>
+                            <ul class="card-features">
+                                <li>E-Mobilität mit Abrechnungssystemen</li>
+                                <li>Photovoltaik & Batteriespeicher</li>
+                                <li>Energiemanagement-Systeme</li>
+                                <li>Bezahlsysteme für Ladestationen</li>
+                                <li>Förderung Energieeffizienz</li>
+                            </ul>
+                            <a href="#energie" class="card-cta">Mehr erfahren →</a>
+                        </div>
+                    </div>
+
+                    <!-- Elektrotechnik Card -->
+                    <div class="carousel-card" data-index="1">
+                        <div class="card-inner card-electric">
+                            <div class="card-icon">
+                                <img src="https://www.richter-elektrocom.de/wp-content/uploads/2023/02/R-EC_Logo-Elektro.png" alt="Elektrotechnik" />
+                            </div>
+                            <h3>Elektrotechnik</h3>
+                            <p>Umfassende Elektrodienstleistungen für Gewerbe- und Privatkunden von der Planung bis zur Umsetzung</p>
+                            <ul class="card-features">
+                                <li>Neu- & Umbauten für Gewerbe & Privat</li>
+                                <li>Netzanschlüsse & Trafostationen</li>
+                                <li>Beleuchtungssysteme für Unternehmen</li>
+                                <li>Schließanlagen & Alarmsysteme</li>
+                                <li>E-Check für Unternehmen</li>
+                            </ul>
+                            <a href="#elektrotechnik" class="card-cta">Mehr erfahren →</a>
+                        </div>
+                    </div>
+
+                    <!-- Heizung & Sanitär Card -->
+                    <div class="carousel-card" data-index="2">
+                        <div class="card-inner card-heating">
+                            <div class="card-icon">
+                                <img src="https://www.richter-elektrocom.de/wp-content/uploads/2023/02/R-EC_Logo-Heizung-Sanitaer.png" alt="Heizung & Sanitär" />
+                            </div>
+                            <h3>Heizung & Sanitär</h3>
+                            <p>Moderne Klima- und Sanitärinstallationen für gewerbliche und private Bauprojekte</p>
+                            <ul class="card-features">
+                                <li>Neu- & Umbauten Gewerbe & Privat</li>
+                                <li>Wärmepumpen & Lüftungssysteme</li>
+                                <li>Badsanierung professionell</li>
+                                <li>Enthärtungsanlagen</li>
+                                <li>Moderne Heizungstechnik</li>
+                            </ul>
+                            <a href="#heizung" class="card-cta">Mehr erfahren →</a>
+                        </div>
+                    </div>
+
+                    <!-- IT & Kommunikation Card -->
+                    <div class="carousel-card" data-index="3">
+                        <div class="card-inner card-it">
+                            <div class="card-icon">
+                                <img src="https://www.richter-elektrocom.de/wp-content/uploads/2023/02/R-EC_Logo-IT.png" alt="IT & Kommunikation" />
+                            </div>
+                            <h3>IT & Kommunikation</h3>
+                            <p>Professionelle Technologie- und Kommunikationsinfrastruktur für Unternehmen</p>
+                            <ul class="card-features">
+                                <li>Managed IT Services & Support</li>
+                                <li>IT-Sicherheit & Cybersecurity</li>
+                                <li>Netzwerkinfrastruktur</li>
+                                <li>Cloud-Lösungen & Microsoft 365</li>
+                                <li>Telefonanlagen & Videoüberwachung</li>
+                            </ul>
+                            <a href="#it" class="card-cta">Mehr erfahren →</a>
+                        </div>
+                    </div>
+                </div>
+
+                <button class="carousel-arrow carousel-arrow-right" aria-label="Nächster Bereich">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M9 18l6-6-6-6"/>
+                    </svg>
+                </button>
+            </div>
+
+            <!-- Carousel Dots -->
+            <div class="carousel-dots">
+                <button class="dot active" data-slide="0"></button>
+                <button class="dot" data-slide="1"></button>
+                <button class="dot" data-slide="2"></button>
+                <button class="dot" data-slide="3"></button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Trust Section (Apple Style) -->
+    <section class="trust-section">
+        <div class="container">
+            <h2 class="section-headline">3 gute Gründe für eine Zusammenarbeit mit Richter ElektroCom</h2>
+            <p class="section-subhead">Wir begleiten Sie kompetent und lösungsorientiert bei jeglichen technischen Wünschen zu Ihrem Bauprojekt.</p>
+
+            <div class="trust-grid trust-grid-three">
+                <div class="trust-card">
+                    <div class="trust-number">28</div>
+                    <h3>Engagierte Mitarbeiter</h3>
+                    <p>Unsere motivierten Mitarbeiter beraten Sie jederzeit schnell und zuverlässig zu Ihrem Anliegen.</p>
+                </div>
+                <div class="trust-card">
+                    <div class="trust-number">60</div>
+                    <h3>Jahre Technik-Expertise</h3>
+                    <p>Über sechs Jahrzehnte Erfahrung in der Technikbranche für höchste Qualität und Zuverlässigkeit.</p>
+                </div>
+                <div class="trust-card">
+                    <div class="trust-number">2.500+</div>
+                    <h3>Bauprojekte umgesetzt</h3>
+                    <p>Eine professionelle und saubere Umsetzung Ihres Projekts ist für uns ein entscheidendes Qualitätsmerkmal.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials / Customer Section -->
+    <section class="testimonials-section">
+        <div class="container">
+            <h2 class="section-headline">Das sagen unsere Kunden</h2>
+            <p class="section-subhead">Erfahrungen aus verschiedenen Branchen und Projekten</p>
+
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <div class="testimonial-category">Industriekunde</div>
+                    <div class="testimonial-stars">★★★★★</div>
+                    <p class="testimonial-text">"Die Zusammenarbeit mit Richter ElektroCom war hervorragend. Alle vier Gewerke aus einer Hand – das hat unser Bauvorhaben erheblich vereinfacht."</p>
+                    <div class="testimonial-author">
+                        <strong>Michael Schmidt</strong>
+                        <span>Geschäftsführer, Produktionsbetrieb</span>
+                    </div>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="testimonial-category">Bauunternehmer</div>
+                    <div class="testimonial-stars">★★★★★</div>
+                    <p class="testimonial-text">"Professionelle Beratung und zuverlässige Umsetzung. Besonders die E-Mobilitätslösung hat unsere Erwartungen übertroffen."</p>
+                    <div class="testimonial-author">
+                        <strong>Sabine Weber</strong>
+                        <span>Geschäftsführerin, Bauunternehmen</span>
+                    </div>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="testimonial-category">Gewerbekunde · Dienstleister</div>
+                    <div class="testimonial-stars">★★★★★</div>
+                    <p class="testimonial-text">"Kompetent, schnell und immer erreichbar. Die IT-Betreuung durch das Team läuft seit Jahren reibungslos."</p>
+                    <div class="testimonial-author">
+                        <strong>Dr. Thomas Becker</strong>
+                        <span>Praxisinhaber, Gemeinschaftspraxis</span>
+                    </div>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="testimonial-category">Architekt</div>
+                    <div class="testimonial-stars">★★★★★</div>
+                    <p class="testimonial-text">"Als Architektin schätze ich die fachübergreifende Kompetenz. Ein Ansprechpartner für alle technischen Gewerke spart enorm viel Zeit."</p>
+                    <div class="testimonial-author">
+                        <strong>Julia Hartmann</strong>
+                        <span>Architektin, Architekturbüro Hartmann</span>
+                    </div>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="testimonial-category">Öffentlicher Träger</div>
+                    <div class="testimonial-stars">★★★★★</div>
+                    <p class="testimonial-text">"Zuverlässig, termingerecht und transparent. Die Sanierung unserer kommunalen Gebäude wurde professionell umgesetzt."</p>
+                    <div class="testimonial-author">
+                        <strong>Klaus Müller</strong>
+                        <span>Technischer Leiter, Stadtverwaltung</span>
+                    </div>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="testimonial-category">Privatperson · Heizung erneuert</div>
+                    <div class="testimonial-stars">★★★★★</div>
+                    <p class="testimonial-text">"Positiv: Preis-Leistungs-Verhältnis, Professionalität, Pünktlichkeit. Die neue Wärmepumpe läuft einwandfrei!"</p>
+                    <div class="testimonial-author">
+                        <strong>Familie Schneider</strong>
+                        <span>Hausbesitzer, Paderborn</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Partner Ticker -->
+    <section class="partner-section">
+        <div class="container">
+            <h3 class="partner-headline">Unsere Partner & Zertifizierungen</h3>
+            <div class="partner-ticker">
+                <div class="ticker-track">
+                    <div class="partner-item">
+                        <img src="https://www.smartfox.at/wp-content/uploads/2022/03/smartfox_logo.png" alt="Smartfox Partner" class="partner-logo">
+                    </div>
+                    <div class="partner-item">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/Siemens-logo.svg/320px-Siemens-logo.svg.png" alt="Siemens Partner" class="partner-logo">
+                    </div>
+                    <div class="partner-item">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/44/Microsoft_logo.svg/320px-Microsoft_logo.svg.png" alt="Microsoft Partner" class="partner-logo">
+                    </div>
+                    <div class="partner-item">
+                        <img src="https://www.zveh.de/typo3conf/ext/zveh_layout/Resources/Public/Images/zveh-logo.svg" alt="ZVEH Fachbetrieb" class="partner-logo">
+                    </div>
+                    <div class="partner-item">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e7/Bafa_logo.svg/320px-Bafa_logo.svg.png" alt="BAFA Energieberater" class="partner-logo">
+                    </div>
+                    <!-- Duplicate for seamless loop -->
+                    <div class="partner-item">
+                        <img src="https://www.smartfox.at/wp-content/uploads/2022/03/smartfox_logo.png" alt="Smartfox Partner" class="partner-logo">
+                    </div>
+                    <div class="partner-item">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/Siemens-logo.svg/320px-Siemens-logo.svg.png" alt="Siemens Partner" class="partner-logo">
+                    </div>
+                    <div class="partner-item">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/44/Microsoft_logo.svg/320px-Microsoft_logo.svg.png" alt="Microsoft Partner" class="partner-logo">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h4>Kontakt</h4>
+                    <p>Richter ElektroCom GmbH<br>
+                    An der Burg 10<br>
+                    33154 Salzkotten</p>
+                    <p><a href="tel:+495258210800">05258 21080-0</a><br>
+                    <a href="mailto:info@r-ec.de">info@r-ec.de</a></p>
+                </div>
+                <div class="footer-col">
+                    <h4>Energie</h4>
+                    <a href="#">E-Mobilität</a>
+                    <a href="#">Photovoltaik</a>
+                    <a href="#">Energiemanagement</a>
+                </div>
+                <div class="footer-col">
+                    <h4>Elektrotechnik</h4>
+                    <a href="#">Neu- & Umbauten</a>
+                    <a href="#">Netzanschluss</a>
+                    <a href="#">E-Check</a>
+                </div>
+                <div class="footer-col">
+                    <h4>Heizung & Sanitär</h4>
+                    <a href="#">Wärmepumpen</a>
+                    <a href="#">Badsanierung</a>
+                    <a href="#">Heizungstechnik</a>
+                </div>
+                <div class="footer-col">
+                    <h4>IT & Kommunikation</h4>
+                    <a href="#">Managed Services</a>
+                    <a href="#">IT-Sicherheit</a>
+                    <a href="#">Cloud-Lösungen</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Richter ElektroCom GmbH</p>
+                <div class="footer-links">
+                    <a href="#">Impressum</a>
+                    <a href="#">Datenschutz</a>
+                    <a href="#">AGB</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Floating Contact Box -->
+    <div class="floating-contact-box">
+        <div class="floating-contact-header">
+            <svg width="20" height="20" viewBox="0 0 16 16" fill="currentColor">
+                <path d="M3.654 1.328a.678.678 0 0 0-1.015-.063L1.605 2.3c-.483.484-.661 1.169-.45 1.77a17.568 17.568 0 0 0 4.168 6.608 17.569 17.569 0 0 0 6.608 4.168c.601.211 1.286.033 1.77-.45l1.034-1.034a.678.678 0 0 0-.063-1.015l-2.307-1.794a.678.678 0 0 0-.58-.122l-2.19.547a1.745 1.745 0 0 1-1.657-.459L5.482 8.062a1.745 1.745 0 0 1-.46-1.657l.548-2.19a.678.678 0 0 0-.122-.58L3.654 1.328z"/>
+            </svg>
+            <span>Kontakt</span>
+        </div>
+        <div class="floating-contact-content">
+            <div class="contact-info-item">
+                <strong>Telefon:</strong>
+                <a href="tel:+495258210800">05258 21080-0</a>
+            </div>
+            <div class="contact-info-item">
+                <strong>E-Mail:</strong>
+                <a href="mailto:info@r-ec.de">info@r-ec.de</a>
+            </div>
+            <div class="contact-info-item">
+                <strong>Öffnungszeiten:</strong>
+                <p>Mo-Do: 7:00 - 16:30 Uhr<br>Fr: 7:00 - 13:00 Uhr</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
