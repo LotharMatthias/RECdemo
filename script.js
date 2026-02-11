@@ -338,12 +338,12 @@ function initTestimonialsCarousel() {
 
     let currentPosition = 0;
     const totalCards = cards.length;
-    const cardsPerView = window.innerWidth <= 768 ? 1 : 3;
+    const cardsPerView = window.innerWidth <= 768 ? 1 : 2;
     let autoScrollInterval;
 
     function updateCarousel(smooth = true) {
         const cardWidth = cards[0].offsetWidth;
-        const gap = 24;
+        const gap = 40;
         const moveAmount = (cardWidth + gap) * currentPosition;
 
         if (smooth) {
@@ -400,7 +400,7 @@ function initTestimonialsCarousel() {
     function startAutoScroll() {
         autoScrollInterval = setInterval(() => {
             nextSlide();
-        }, 8000); // 8 seconds
+        }, 5000); // 5 seconds
     }
 
     function stopAutoScroll() {

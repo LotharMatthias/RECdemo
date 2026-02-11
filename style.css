@@ -458,7 +458,8 @@ button {
     width: 120px;
     height: 120px;
     flex-shrink: 0;
-    align-self: flex-start;
+    align-self: center;
+    justify-self: center;
 }
 
 .card-icon img {
@@ -1007,7 +1008,7 @@ button {
 .testimonials-grid {
     display: grid;
     grid-template-columns: repeat(6, 1fr);
-    gap: 24px;
+    gap: 40px;
     transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
     will-change: transform;
 }
@@ -1078,13 +1079,12 @@ button {
 .testimonial-card {
     background: #ffffff;
     border-radius: 20px;
-    padding: 24px;
+    padding: 32px;
     box-shadow: 0 4px 24px rgba(0,0,0,0.06);
     transition: all 0.3s ease;
     display: flex;
     flex-direction: column;
-    height: 100%;
-    min-height: 400px;
+    height: 450px;
 }
 
 .testimonial-card:hover {
@@ -1102,31 +1102,34 @@ button {
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 0.5px;
-    margin-bottom: 10px;
+    margin-bottom: 12px;
     white-space: nowrap;
     height: 28px;
     display: flex;
     align-items: center;
     align-self: flex-start;
+    flex-shrink: 0;
 }
 
 .testimonial-stars {
     color: #fbbf24;
     font-size: 20px;
-    margin-bottom: 14px;
+    margin-bottom: 16px;
     letter-spacing: 4px;
     height: 28px;
     display: flex;
     align-items: center;
+    flex-shrink: 0;
 }
 
 .testimonial-text {
     font-size: 16px;
     line-height: 1.8;
     color: #4b5563;
-    margin-bottom: auto;
     font-style: italic;
     flex-grow: 1;
+    min-height: 200px;
+    margin-bottom: 0;
 }
 
 .testimonial-author {
@@ -1136,6 +1139,8 @@ button {
     padding-top: 20px;
     border-top: 2px solid #e5e7eb;
     margin-top: 20px;
+    flex-shrink: 0;
+    height: 80px;
 }
 
 .testimonial-author strong {
