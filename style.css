@@ -376,7 +376,7 @@ button {
     font-size: 48px;
     font-weight: 800;
     color: #1a1a1a;
-    margin-bottom: 80px;
+    margin-bottom: 100px;
 }
 
 .carousel-container {
@@ -418,7 +418,7 @@ button {
 .carousel-card.active {
     opacity: 1;
     pointer-events: all;
-    transform: translate(-50%, -50%) translateZ(0px) rotateY(0deg) scale(1.15);
+    transform: translate(-50%, -50%) translateZ(0px) rotateY(0deg) scale(1.05);
     z-index: 10;
 }
 
@@ -432,7 +432,7 @@ button {
 .card-inner {
     background: #ffffff;
     border-radius: 20px;
-    padding: 28px 36px;
+    padding: 20px 36px 28px 36px;
     box-shadow: 0 8px 32px rgba(0,0,0,0.12);
     transition: all 0.3s ease;
     height: 100%;
@@ -444,7 +444,7 @@ button {
         "list"
         "cta";
     grid-template-columns: 1fr;
-    gap: 16px;
+    gap: 12px;
     align-items: start;
     transform-style: preserve-3d;
 }
@@ -512,15 +512,15 @@ button {
 }
 
 .card-electric .card-features li::before {
-    color: #3b82f6;
-}
-
-.card-heating .card-features li::before {
     color: #ef4444;
 }
 
+.card-heating .card-features li::before {
+    color: #3b82f6;
+}
+
 .card-it .card-features li::before {
-    color: #8b5cf6;
+    color: #6b7280;
 }
 
 .card-cta {
@@ -530,30 +530,47 @@ button {
     border-radius: 8px;
     font-weight: 600;
     font-size: 15px;
-    color: #ffffff;
+    color: #374151;
+    background: #f9fafb;
     transition: all 0.3s ease;
     justify-self: start;
+    border: none;
 }
 
 .card-energy .card-cta {
-    background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+    box-shadow: 0 0 16px rgba(16, 185, 129, 0.25), 0 4px 10px rgba(16, 185, 129, 0.15);
 }
 
 .card-electric .card-cta {
-    background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+    box-shadow: 0 0 16px rgba(239, 68, 68, 0.25), 0 4px 10px rgba(239, 68, 68, 0.15);
 }
 
 .card-heating .card-cta {
-    background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+    box-shadow: 0 0 16px rgba(59, 130, 246, 0.25), 0 4px 10px rgba(59, 130, 246, 0.15);
 }
 
 .card-it .card-cta {
-    background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%);
+    box-shadow: 0 0 16px rgba(107, 114, 128, 0.25), 0 4px 10px rgba(107, 114, 128, 0.15);
 }
 
 .card-cta:hover {
-    transform: translateX(4px);
-    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    transform: translateY(-2px);
+}
+
+.card-energy .card-cta:hover {
+    box-shadow: 0 0 20px rgba(16, 185, 129, 0.35), 0 6px 14px rgba(16, 185, 129, 0.2);
+}
+
+.card-electric .card-cta:hover {
+    box-shadow: 0 0 20px rgba(239, 68, 68, 0.35), 0 6px 14px rgba(239, 68, 68, 0.2);
+}
+
+.card-heating .card-cta:hover {
+    box-shadow: 0 0 20px rgba(59, 130, 246, 0.35), 0 6px 14px rgba(59, 130, 246, 0.2);
+}
+
+.card-it .card-cta:hover {
+    box-shadow: 0 0 20px rgba(107, 114, 128, 0.35), 0 6px 14px rgba(107, 114, 128, 0.2);
 }
 
 /* Carousel Arrows */
@@ -713,7 +730,7 @@ button {
     height: 2px;
     background: linear-gradient(90deg, #d32f2f 0%, #ef4444 100%);
     align-self: center;
-    margin-top: -120px;
+    margin-top: 0;
     position: relative;
 }
 
@@ -721,7 +738,8 @@ button {
     content: '→';
     position: absolute;
     right: -12px;
-    top: -10px;
+    top: 50%;
+    transform: translateY(-50%);
     font-size: 20px;
     color: #d32f2f;
 }
@@ -866,7 +884,7 @@ button {
    ========================================== */
 
 .testimonials-section {
-    padding: 60px 0;
+    padding: 50px 0;
     background: #f9fafb;
 }
 
@@ -962,6 +980,28 @@ button {
 
 .testimonials-carousel-track {
     overflow: hidden;
+    position: relative;
+}
+
+.testimonials-carousel-track::before,
+.testimonials-carousel-track::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 80px;
+    z-index: 5;
+    pointer-events: none;
+}
+
+.testimonials-carousel-track::before {
+    left: 0;
+    background: linear-gradient(to right, #f9fafb 0%, rgba(249, 250, 251, 0) 100%);
+}
+
+.testimonials-carousel-track::after {
+    right: 0;
+    background: linear-gradient(to left, #f9fafb 0%, rgba(249, 250, 251, 0) 100%);
 }
 
 .testimonials-grid {
@@ -1038,7 +1078,7 @@ button {
 .testimonial-card {
     background: #ffffff;
     border-radius: 20px;
-    padding: 32px;
+    padding: 24px;
     box-shadow: 0 4px 24px rgba(0,0,0,0.06);
     transition: all 0.3s ease;
 }
@@ -1058,13 +1098,13 @@ button {
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 0.5px;
-    margin-bottom: 12px;
+    margin-bottom: 10px;
 }
 
 .testimonial-stars {
-    color: #d32f2f;
+    color: #fbbf24;
     font-size: 20px;
-    margin-bottom: 16px;
+    margin-bottom: 14px;
     letter-spacing: 4px;
 }
 
