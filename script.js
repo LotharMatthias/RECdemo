@@ -324,7 +324,7 @@ if (contactToggle && contactBar) {
 }
 
 /**
- * Testimonials Carousel
+ * Testimonials Carousel with Infinite Loop & Auto-Scroll
  */
 function initTestimonialsCarousel() {
     const leftArrow = document.querySelector('.testimonials-arrow-left');
@@ -339,50 +339,106 @@ function initTestimonialsCarousel() {
     let currentPosition = 0;
     const totalCards = cards.length;
     const cardsPerView = window.innerWidth <= 768 ? 1 : 3;
-    const maxPosition = totalCards - cardsPerView;
+    let autoScrollInterval;
 
-    function updateCarousel() {
+    function updateCarousel(smooth = true) {
         const cardWidth = cards[0].offsetWidth;
         const gap = 24;
         const moveAmount = (cardWidth + gap) * currentPosition;
+
+        if (smooth) {
+            grid.style.transition = 'transform 0.5s cubic-bezier(0.4, 0, 0.2, 1)';
+        } else {
+            grid.style.transition = 'none';
+        }
+
         grid.style.transform = `translateX(-${moveAmount}px)`;
 
-        // Update arrow states
-        leftArrow.style.opacity = currentPosition === 0 ? '0.5' : '1';
-        leftArrow.style.pointerEvents = currentPosition === 0 ? 'none' : 'all';
-
-        rightArrow.style.opacity = currentPosition >= maxPosition ? '0.5' : '1';
-        rightArrow.style.pointerEvents = currentPosition >= maxPosition ? 'none' : 'all';
+        // Arrows always enabled (infinite loop)
+        leftArrow.style.opacity = '1';
+        leftArrow.style.pointerEvents = 'all';
+        rightArrow.style.opacity = '1';
+        rightArrow.style.pointerEvents = 'all';
     }
 
-    leftArrow.addEventListener('click', () => {
-        if (currentPosition > 0) {
-            currentPosition -= cardsPerView;
-            if (currentPosition < 0) currentPosition = 0;
-            updateCarousel();
+    function nextSlide() {
+        currentPosition++;
+
+        // Check if we need to loop
+        if (currentPosition >= totalCards) {
+            currentPosition = 0;
+            updateCarousel(false); // Jump instantly to start
+
+            // Force reflow to apply instant transition
+            setTimeout(() => {
+                currentPosition = 1;
+                updateCarousel(true); // Then smoothly move to next
+            }, 50);
+        } else {
+            updateCarousel(true);
         }
+    }
+
+    function prevSlide() {
+        currentPosition--;
+
+        // Check if we need to loop backwards
+        if (currentPosition < 0) {
+            currentPosition = totalCards - 1;
+            updateCarousel(false); // Jump instantly to end
+
+            // Force reflow
+            setTimeout(() => {
+                currentPosition = totalCards - 2;
+                updateCarousel(true); // Then smoothly move to prev
+            }, 50);
+        } else {
+            updateCarousel(true);
+        }
+    }
+
+    function startAutoScroll() {
+        autoScrollInterval = setInterval(() => {
+            nextSlide();
+        }, 8000); // 8 seconds
+    }
+
+    function stopAutoScroll() {
+        clearInterval(autoScrollInterval);
+    }
+
+    function resetAutoScroll() {
+        stopAutoScroll();
+        startAutoScroll();
+    }
+
+    // Arrow click handlers
+    leftArrow.addEventListener('click', () => {
+        prevSlide();
+        resetAutoScroll();
     });
 
     rightArrow.addEventListener('click', () => {
-        if (currentPosition < maxPosition) {
-            currentPosition += cardsPerView;
-            if (currentPosition > maxPosition) currentPosition = maxPosition;
-            updateCarousel();
-        }
+        nextSlide();
+        resetAutoScroll();
     });
+
+    // Pause on hover
+    grid.addEventListener('mouseenter', stopAutoScroll);
+    grid.addEventListener('mouseleave', startAutoScroll);
 
     // Update on window resize
     let resizeTimeout;
     window.addEventListener('resize', () => {
         clearTimeout(resizeTimeout);
         resizeTimeout = setTimeout(() => {
-            currentPosition = 0;
-            updateCarousel();
+            updateCarousel(false);
         }, 250);
     });
 
     // Initialize
-    updateCarousel();
+    updateCarousel(false);
+    startAutoScroll();
 }
 
 // Initialize testimonials carousel
