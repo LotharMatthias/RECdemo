@@ -60,6 +60,16 @@ button {
     color: #ffffff;
     padding: 8px 0;
     font-size: 13px;
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.top-contact-bar.active {
+    max-height: 100px;
+    opacity: 1;
+    padding: 12px 0;
 }
 
 .contact-items {
@@ -109,15 +119,42 @@ button {
     width: auto;
 }
 
+/* Contact Toggle Button */
+.contact-toggle-btn {
+    padding: 8px 16px;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 13px;
+    color: #ffffff;
+    background: #1a1a1a;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    height: 36px;
+}
+
+.contact-toggle-btn:hover {
+    background: #374151;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+}
+
+.contact-toggle-btn svg {
+    width: 16px;
+    height: 16px;
+}
+
 /* Navigation Boxes */
 .nav-boxes {
     display: flex;
     gap: 12px;
     flex-wrap: wrap;
+    align-items: center;
 }
 
 .nav-box {
-    padding: 10px 24px;
+    padding: 12px 20px;
     border-radius: 8px;
     font-weight: 600;
     font-size: 14px;
@@ -127,6 +164,12 @@ button {
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     white-space: nowrap;
     position: relative;
+    min-width: 140px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 44px;
 }
 
 .nav-box-energy:hover {
@@ -349,16 +392,16 @@ button {
 
 .carousel-container {
     position: relative;
-    max-width: 900px;
+    max-width: 1000px;
     margin: 0 auto;
-    padding: 0 120px;
+    padding: 0 140px;
     perspective: 2000px;
     perspective-origin: center center;
 }
 
 .carousel-track {
     position: relative;
-    height: 500px;
+    height: 520px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -366,7 +409,7 @@ button {
 
 .carousel-card {
     position: absolute;
-    width: 450px;
+    width: 500px;
     left: 50%;
     top: 50%;
     transform-style: preserve-3d;
@@ -377,9 +420,9 @@ button {
 }
 
 .carousel-card.prev {
-    opacity: 0.4;
+    opacity: 0.35;
     pointer-events: none;
-    transform: translate(-150%, -50%) translateZ(-300px) rotateY(45deg) scale(0.75);
+    transform: translate(-140%, -50%) translateZ(-250px) rotateY(25deg) scale(0.8);
     z-index: 1;
 }
 
@@ -391,9 +434,9 @@ button {
 }
 
 .carousel-card.next {
-    opacity: 0.4;
+    opacity: 0.35;
     pointer-events: none;
-    transform: translate(50%, -50%) translateZ(-300px) rotateY(-45deg) scale(0.75);
+    transform: translate(40%, -50%) translateZ(-250px) rotateY(-25deg) scale(0.8);
     z-index: 1;
 }
 
@@ -413,6 +456,7 @@ button {
     grid-template-columns: auto 1fr;
     gap: 20px;
     align-items: start;
+    transform-style: preserve-3d;
 }
 
 .carousel-card.active .card-inner:hover {
@@ -599,6 +643,17 @@ button {
     margin: 0 auto;
 }
 
+.trust-grid-three {
+    grid-template-columns: repeat(3, 1fr);
+    max-width: 1100px;
+}
+
+@media (max-width: 900px) {
+    .trust-grid-three {
+        grid-template-columns: 1fr;
+    }
+}
+
 .trust-card {
     text-align: center;
     padding: 40px;
@@ -664,6 +719,19 @@ button {
 .testimonial-card:hover {
     transform: translateY(-8px);
     box-shadow: 0 12px 40px rgba(0,0,0,0.12);
+}
+
+.testimonial-category {
+    display: inline-block;
+    padding: 6px 14px;
+    background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
+    color: #ffffff;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 16px;
 }
 
 .testimonial-stars {

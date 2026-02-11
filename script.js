@@ -242,3 +242,22 @@ if (tickerTrack) {
         this.style.animationPlayState = 'running';
     });
 }
+
+/**
+ * Toggle contact bar visibility
+ */
+const contactToggle = document.getElementById('contactToggle');
+const contactBar = document.getElementById('contactBar');
+
+if (contactToggle && contactBar) {
+    contactToggle.addEventListener('click', function() {
+        contactBar.classList.toggle('active');
+    });
+
+    // Close contact bar when clicking outside
+    document.addEventListener('click', function(e) {
+        if (!contactToggle.contains(e.target) && !contactBar.contains(e.target)) {
+            contactBar.classList.remove('active');
+        }
+    });
+}
