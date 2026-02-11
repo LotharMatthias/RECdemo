@@ -230,6 +230,67 @@ function initScrollAnimations() {
 initScrollAnimations();
 
 /**
+ * Count-up animation for trust numbers
+ */
+function initCountUpAnimation() {
+    const trustNumbers = document.querySelectorAll('.trust-number');
+    const duration = 1000; // 1 second
+    let hasAnimated = false;
+
+    const observerOptions = {
+        threshold: 0.5,
+        rootMargin: '0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting && !hasAnimated) {
+                hasAnimated = true;
+
+                trustNumbers.forEach(numberElement => {
+                    const targetText = numberElement.textContent.trim();
+                    const targetNumber = parseInt(targetText.replace(/[^0-9]/g, ''));
+                    const suffix = targetText.replace(/[0-9]/g, '').trim(); // Get suffix like "+" or ""
+
+                    let startTime = null;
+
+                    function animate(currentTime) {
+                        if (!startTime) startTime = currentTime;
+                        const elapsed = currentTime - startTime;
+                        const progress = Math.min(elapsed / duration, 1);
+
+                        // Easing function for smooth animation
+                        const easeOutQuart = 1 - Math.pow(1 - progress, 4);
+                        const currentNumber = Math.floor(easeOutQuart * targetNumber);
+
+                        numberElement.textContent = currentNumber + suffix;
+
+                        if (progress < 1) {
+                            requestAnimationFrame(animate);
+                        } else {
+                            numberElement.textContent = targetText; // Ensure final value is exact
+                        }
+                    }
+
+                    requestAnimationFrame(animate);
+                });
+
+                observer.disconnect(); // Only animate once
+            }
+        });
+    }, observerOptions);
+
+    // Observe the trust section
+    const trustSection = document.querySelector('.trust-section');
+    if (trustSection) {
+        observer.observe(trustSection);
+    }
+}
+
+// Initialize count-up animation
+initCountUpAnimation();
+
+/**
  * Pause ticker animation on hover
  */
 const tickerTrack = document.querySelector('.ticker-track');

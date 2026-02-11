@@ -111,24 +111,25 @@ button {
 
 /* Contact Toggle Button */
 .contact-toggle-btn {
-    padding: 8px 16px;
-    border-radius: 8px;
+    padding: 16px 24px;
+    border-radius: 10px;
     font-weight: 600;
-    font-size: 13px;
+    font-size: 15px;
     color: #ffffff;
     background: #1a1a1a;
     transition: all 0.3s ease;
     display: flex;
     align-items: center;
-    gap: 6px;
-    height: 36px;
+    gap: 8px;
+    height: 50px;
     margin-left: auto;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
 }
 
 .contact-toggle-btn:hover {
-    background: #374151;
-    transform: translateY(-1px);
-    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+    background: #2d3748;
+    transform: translateY(-2px);
+    box-shadow: 0 0 20px rgba(107, 114, 128, 0.3), 0 4px 12px rgba(0,0,0,0.15);
 }
 
 .contact-toggle-btn svg {
@@ -145,70 +146,65 @@ button {
 }
 
 .nav-box {
-    padding: 12px 20px;
-    border-radius: 8px;
+    padding: 16px 24px;
+    border-radius: 10px;
     font-weight: 600;
-    font-size: 14px;
+    font-size: 15px;
     color: #374151;
-    background: #f3f4f6;
-    border: 2px solid transparent;
+    background: #f9fafb;
+    border: none;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     white-space: nowrap;
     position: relative;
-    min-width: 140px;
+    min-width: 150px;
     text-align: center;
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 44px;
+    height: 50px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
 }
 
 .nav-box-energy:hover {
     background: #ffffff;
-    border-color: #10b981;
     color: #059669;
-    box-shadow: 0 0 0 4px rgba(16, 185, 129, 0.1), 0 8px 16px rgba(16, 185, 129, 0.15);
+    box-shadow: 0 0 20px rgba(16, 185, 129, 0.35), 0 4px 12px rgba(16, 185, 129, 0.2);
     transform: translateY(-2px);
 }
 
 .nav-box-electric:hover {
     background: #ffffff;
-    border-color: #3b82f6;
-    color: #2563eb;
-    box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.1), 0 8px 16px rgba(59, 130, 246, 0.15);
+    color: #dc2626;
+    box-shadow: 0 0 20px rgba(220, 38, 38, 0.35), 0 4px 12px rgba(220, 38, 38, 0.2);
     transform: translateY(-2px);
 }
 
 .nav-box-heating:hover {
     background: #ffffff;
-    border-color: #ef4444;
-    color: #dc2626;
-    box-shadow: 0 0 0 4px rgba(239, 68, 68, 0.1), 0 8px 16px rgba(239, 68, 68, 0.15);
+    color: #2563eb;
+    box-shadow: 0 0 20px rgba(37, 99, 235, 0.35), 0 4px 12px rgba(37, 99, 235, 0.2);
     transform: translateY(-2px);
 }
 
 .nav-box-it:hover {
     background: #ffffff;
-    border-color: #8b5cf6;
-    color: #7c3aed;
-    box-shadow: 0 0 0 4px rgba(139, 92, 246, 0.1), 0 8px 16px rgba(139, 92, 246, 0.15);
+    color: #6b7280;
+    box-shadow: 0 0 20px rgba(107, 114, 128, 0.35), 0 4px 12px rgba(107, 114, 128, 0.2);
     transform: translateY(-2px);
 }
 
 /* New navigation boxes for Unternehmen and Karriere */
 .nav-box-company:hover {
     background: #ffffff;
-    border-color: #6b7280;
     color: #1f2937;
-    box-shadow: 0 0 0 4px rgba(107, 114, 128, 0.1), 0 8px 16px rgba(107, 114, 128, 0.15);
+    box-shadow: 0 0 20px rgba(107, 114, 128, 0.3), 0 4px 12px rgba(107, 114, 128, 0.15);
     transform: translateY(-2px);
 }
 
 .nav-box-career:hover {
     background: #ffffff;
-    border-color: #f59e0b;
-    color: #d97706;
-    box-shadow: 0 0 0 4px rgba(245, 158, 11, 0.1), 0 8px 16px rgba(245, 158, 11, 0.15);
+    color: #1f2937;
+    box-shadow: 0 0 20px rgba(107, 114, 128, 0.3), 0 4px 12px rgba(107, 114, 128, 0.15);
     transform: translateY(-2px);
 }
 
@@ -289,7 +285,7 @@ button {
     font-size: 48px;
     font-weight: 800;
     color: #1a1a1a;
-    margin-bottom: 16px;
+    margin-bottom: 8px;
     line-height: 1.1;
 }
 
@@ -297,7 +293,7 @@ button {
     font-size: 32px;
     font-weight: 700;
     color: #d32f2f;
-    margin-bottom: 12px;
+    margin-bottom: 24px;
     line-height: 1.2;
 }
 
@@ -305,7 +301,7 @@ button {
     font-size: 20px;
     font-weight: 600;
     color: #6b7280;
-    margin-bottom: 24px;
+    margin-bottom: 20px;
     font-style: italic;
 }
 
@@ -419,23 +415,23 @@ button {
 }
 
 .carousel-card.prev {
-    opacity: 0.35;
+    opacity: 0.3;
     pointer-events: none;
-    transform: translate(-140%, -50%) translateZ(-250px) rotateY(25deg) scale(0.8);
+    transform: translate(-140%, -50%) translateZ(-250px) rotateY(25deg) scale(0.7);
     z-index: 1;
 }
 
 .carousel-card.active {
     opacity: 1;
     pointer-events: all;
-    transform: translate(-50%, -50%) translateZ(0px) rotateY(0deg) scale(1);
+    transform: translate(-50%, -50%) translateZ(0px) rotateY(0deg) scale(1.15);
     z-index: 10;
 }
 
 .carousel-card.next {
-    opacity: 0.35;
+    opacity: 0.3;
     pointer-events: none;
-    transform: translate(40%, -50%) translateZ(-250px) rotateY(-25deg) scale(0.8);
+    transform: translate(40%, -50%) translateZ(-250px) rotateY(-25deg) scale(0.7);
     z-index: 1;
 }
 
@@ -702,6 +698,88 @@ button {
     background: #f9fafb;
 }
 
+/* Industry Overview */
+.industry-overview {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 32px;
+    margin: 60px auto;
+    padding: 40px;
+    max-width: 1100px;
+    background: #ffffff;
+    border-radius: 20px;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.06);
+}
+
+.industry-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    padding: 16px;
+    transition: all 0.3s ease;
+}
+
+.industry-item:hover {
+    transform: translateY(-4px);
+}
+
+.industry-icon {
+    width: 64px;
+    height: 64px;
+    border-radius: 16px;
+    background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #ffffff;
+    transition: all 0.3s ease;
+}
+
+.industry-item:hover .industry-icon {
+    transform: scale(1.1);
+    box-shadow: 0 8px 24px rgba(59, 130, 246, 0.3);
+}
+
+.industry-icon svg {
+    stroke-width: 2;
+}
+
+.industry-item span {
+    font-size: 14px;
+    font-weight: 600;
+    color: #1a1a1a;
+    text-align: center;
+    white-space: nowrap;
+}
+
+@media (max-width: 768px) {
+    .industry-overview {
+        gap: 24px;
+        padding: 32px 20px;
+    }
+
+    .industry-item {
+        padding: 12px;
+    }
+
+    .industry-icon {
+        width: 56px;
+        height: 56px;
+    }
+
+    .industry-icon svg {
+        width: 28px;
+        height: 28px;
+    }
+
+    .industry-item span {
+        font-size: 13px;
+    }
+}
+
 .testimonials-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
@@ -952,9 +1030,10 @@ button {
    ========================================== */
 
 .footer {
-    background: #111827;
+    background: #1a1a1a;
     color: #d1d5db;
     padding: 60px 0 30px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .footer-grid {
@@ -1073,8 +1152,9 @@ button {
     }
 
     .nav-box {
-        padding: 10px 16px;
-        font-size: 13px;
+        padding: 14px 20px;
+        font-size: 14px;
+        height: 46px;
     }
 
     .dropdown-menu {
@@ -1185,8 +1265,9 @@ button {
     }
 
     .nav-box {
-        padding: 8px 12px;
-        font-size: 12px;
+        padding: 12px 16px;
+        font-size: 13px;
+        height: 42px;
     }
 
     .dropdown-menu {
