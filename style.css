@@ -1304,3 +1304,166 @@ button {
         gap: 24px;
     }
 }
+/* ==========================================
+   Symbiose Section Styles
+========================================== */
+   .symbiose-section {
+       padding: 100px 0;
+       background: #ffffff;
+       overflow: hidden;
+   }
+   
+   .symbiose-header {
+       text-align: center;
+       max-width: 800px;
+       margin: 0 auto 80px;
+   }
+   
+   .highlight-text {
+       color: #d32f2f; /* Deine Primärfarbe */
+       white-space: nowrap;
+   }
+   
+   .symbiose-grid {
+       display: grid;
+       grid-template-columns: 1fr 1fr;
+       gap: 60px;
+       align-items: center;
+   }
+   
+   /* --- Die Grafik (Der Reaktor) --- */
+   .symbiose-graphic-wrapper {
+       display: flex;
+       justify-content: center;
+       padding: 20px;
+   }
+   
+   .symbiose-circle {
+       position: relative;
+       width: 500px;
+       height: 500px;
+       display: grid;
+       grid-template-columns: 1fr 1fr;
+       grid-template-rows: 1fr 1fr;
+       gap: 10px; /* Abstand zwischen den Segmenten */
+   }
+   
+   .segment {
+       position: relative;
+       display: flex;
+       flex-direction: column;
+       align-items: center;
+       justify-content: center;
+       padding: 20px;
+       transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+       cursor: default;
+       overflow: hidden;
+   }
+   
+   /* Segment-Formen (Viertelkreise) */
+   .segment-energy { border-radius: 100% 0 0 0; background: linear-gradient(135deg, #ecfdf5 0%, #d1fae5 100%); border-left: 4px solid #10b981; border-top: 4px solid #10b981; }
+   .segment-electric { border-radius: 0 100% 0 0; background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%); border-right: 4px solid #3b82f6; border-top: 4px solid #3b82f6; }
+   .segment-heating { border-radius: 0 0 0 100%; background: linear-gradient(135deg, #fef2f2 0%, #fee2e2 100%); border-left: 4px solid #ef4444; border-bottom: 4px solid #ef4444; }
+   .segment-it { border-radius: 0 0 100% 0; background: linear-gradient(135deg, #f5f3ff 0%, #ede9fe 100%); border-right: 4px solid #8b5cf6; border-bottom: 4px solid #8b5cf6; }
+   
+   /* Inhalte im Segment */
+   .segment-content {
+       text-align: center;
+       z-index: 2;
+       transition: transform 0.3s ease;
+   }
+   
+   .segment .icon { font-size: 32px; display: block; margin-bottom: 8px; }
+   .segment h3 { font-size: 20px; font-weight: 700; color: #1a1a1a; margin-bottom: 4px; }
+   .segment .tag { font-size: 12px; font-weight: 600; text-transform: uppercase; color: #6b7280; letter-spacing: 0.5px; }
+   
+   /* Hover Effekte */
+   .hover-info {
+       position: absolute;
+       top: 0; left: 0; right: 0; bottom: 0;
+       display: flex;
+       flex-direction: column;
+       justify-content: center;
+       align-items: center;
+       padding: 30px;
+       text-align: center;
+       background: rgba(255,255,255,0.95);
+       opacity: 0;
+       transition: opacity 0.3s ease;
+       font-size: 14px;
+       line-height: 1.5;
+       color: #374151;
+   }
+   
+   .segment:hover { transform: scale(1.05); box-shadow: 0 10px 30px rgba(0,0,0,0.1); z-index: 10; }
+   .segment:hover .hover-info { opacity: 1; }
+   
+   /* Farb-Highlights beim Hovern */
+   .segment-energy:hover h3 { color: #10b981; }
+   .segment-electric:hover h3 { color: #3b82f6; }
+   .segment-heating:hover h3 { color: #ef4444; }
+   .segment-it:hover h3 { color: #8b5cf6; }
+   
+   /* Der weiße Kern */
+   .center-core {
+       position: absolute;
+       top: 50%; left: 50%;
+       transform: translate(-50%, -50%);
+       width: 140px; height: 140px;
+       background: #ffffff;
+       border-radius: 50%;
+       box-shadow: 0 0 20px rgba(0,0,0,0.1);
+       display: flex;
+       align-items: center;
+       justify-content: center;
+       z-index: 20;
+       text-align: center;
+   }
+   
+   .core-label {
+       font-weight: 800;
+       font-size: 16px;
+       line-height: 1.2;
+       color: #1a1a1a;
+       text-transform: uppercase;
+   }
+   
+   /* --- Rechte Seite: Text & Liste --- */
+   .benefit-list { list-style: none; margin-top: 30px; }
+   .benefit-list li { margin-bottom: 24px; padding-left: 20px; border-left: 3px solid #e5e7eb; transition: border-color 0.3s; }
+   .benefit-list li:hover { border-left-color: #d32f2f; }
+   .benefit-list strong { display: block; font-size: 18px; color: #1a1a1a; margin-bottom: 6px; }
+   .benefit-list p { font-size: 15px; color: #4b5563; margin: 0; }
+   
+   .example-box {
+       margin-top: 40px;
+       background: #f8fafc;
+       border: 1px solid #e2e8f0;
+       border-radius: 12px;
+       padding: 24px;
+       position: relative;
+   }
+   
+   .example-badge {
+       position: absolute;
+       top: -12px;
+       left: 24px;
+       background: #1a1a1a;
+       color: #fff;
+       padding: 4px 12px;
+       border-radius: 20px;
+       font-size: 12px;
+       font-weight: 700;
+   }
+   .example-box p { font-style: italic; color: #4b5563; font-size: 15px; margin: 0; }
+   
+   /* Mobile Anpassung */
+   @media (max-width: 900px) {
+       .symbiose-grid { grid-template-columns: 1fr; }
+       .symbiose-circle { width: 340px; height: 340px; margin: 0 auto; }
+       .center-core { width: 100px; height: 100px; }
+       .core-label { font-size: 13px; }
+       .segment .icon { font-size: 24px; }
+       .segment h3 { font-size: 16px; }
+       .segment .tag { display: none; } /* Platz sparen auf Mobile */
+}
