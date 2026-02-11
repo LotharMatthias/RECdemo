@@ -322,3 +322,68 @@ if (contactToggle && contactBar) {
         }
     });
 }
+
+/**
+ * Testimonials Carousel
+ */
+function initTestimonialsCarousel() {
+    const leftArrow = document.querySelector('.testimonials-arrow-left');
+    const rightArrow = document.querySelector('.testimonials-arrow-right');
+    const grid = document.querySelector('.testimonials-grid');
+    const cards = document.querySelectorAll('.testimonial-card');
+
+    if (!leftArrow || !rightArrow || !grid || !cards.length) {
+        return;
+    }
+
+    let currentPosition = 0;
+    const totalCards = cards.length;
+    const cardsPerView = window.innerWidth <= 768 ? 1 : 3;
+    const maxPosition = totalCards - cardsPerView;
+
+    function updateCarousel() {
+        const cardWidth = cards[0].offsetWidth;
+        const gap = 24;
+        const moveAmount = (cardWidth + gap) * currentPosition;
+        grid.style.transform = `translateX(-${moveAmount}px)`;
+
+        // Update arrow states
+        leftArrow.style.opacity = currentPosition === 0 ? '0.5' : '1';
+        leftArrow.style.pointerEvents = currentPosition === 0 ? 'none' : 'all';
+
+        rightArrow.style.opacity = currentPosition >= maxPosition ? '0.5' : '1';
+        rightArrow.style.pointerEvents = currentPosition >= maxPosition ? 'none' : 'all';
+    }
+
+    leftArrow.addEventListener('click', () => {
+        if (currentPosition > 0) {
+            currentPosition -= cardsPerView;
+            if (currentPosition < 0) currentPosition = 0;
+            updateCarousel();
+        }
+    });
+
+    rightArrow.addEventListener('click', () => {
+        if (currentPosition < maxPosition) {
+            currentPosition += cardsPerView;
+            if (currentPosition > maxPosition) currentPosition = maxPosition;
+            updateCarousel();
+        }
+    });
+
+    // Update on window resize
+    let resizeTimeout;
+    window.addEventListener('resize', () => {
+        clearTimeout(resizeTimeout);
+        resizeTimeout = setTimeout(() => {
+            currentPosition = 0;
+            updateCarousel();
+        }, 250);
+    });
+
+    // Initialize
+    updateCarousel();
+}
+
+// Initialize testimonials carousel
+initTestimonialsCarousel();
