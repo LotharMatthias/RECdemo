@@ -1177,25 +1177,7 @@ button {
     transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     text-decoration: none;
     cursor: pointer;
-    overflow: hidden;
     position: relative;
-}
-
-.recruiting-cta-banner::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: linear-gradient(135deg, #d32f2f 0%, #b71c1c 100%);
-    opacity: 0;
-    transition: opacity 0.4s ease;
-    z-index: 0;
-}
-
-.recruiting-cta-banner:hover::before {
-    opacity: 1;
 }
 
 .recruiting-cta-banner:hover {
@@ -1205,8 +1187,6 @@ button {
 
 .recruiting-cta-content {
     flex: 1;
-    position: relative;
-    z-index: 1;
 }
 
 .recruiting-cta-title {
@@ -1236,13 +1216,9 @@ button {
     font-weight: 600;
     white-space: nowrap;
     transition: all 0.3s ease;
-    position: relative;
-    z-index: 1;
 }
 
 .recruiting-cta-banner:hover .recruiting-cta-button {
-    background: #ffffff;
-    color: #d32f2f;
     transform: translateX(4px);
 }
 
