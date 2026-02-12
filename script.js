@@ -365,7 +365,68 @@ if (mobileMenuToggle && navBoxes) {
 }
 
 /**
- * Testimonials - Static Grid (No Carousel)
- * All 6 testimonials visible in a 3x2 grid
+ * Testimonials Auto-Scroll Carousel
+ * 2 visible at a time, auto-scroll every 5 seconds
+ * 3 pages total (6 testimonials)
  */
-// Testimonials carousel disabled - using static grid instead
+function initTestimonialsAutoScroll() {
+    const grid = document.querySelector('.testimonials-grid');
+    const cards = document.querySelectorAll('.testimonial-card');
+
+    if (!grid || !cards.length) {
+        return;
+    }
+
+    const totalCards = cards.length; // 6
+    const cardsPerView = window.innerWidth <= 768 ? 1 : 2; // Mobile: 1, Desktop: 2
+    const totalPages = Math.ceil(totalCards / cardsPerView); // 3 pages
+    let currentPage = 0;
+    let autoScrollInterval;
+
+    function updateCarousel() {
+        const cardWidth = cards[0].offsetWidth;
+        const gap = window.innerWidth <= 768 ? 24 : 32;
+        const scrollAmount = (cardWidth + gap) * cardsPerView * currentPage;
+
+        grid.style.transform = `translateX(-${scrollAmount}px)`;
+    }
+
+    function nextPage() {
+        currentPage++;
+
+        // Loop back to start after last page
+        if (currentPage >= totalPages) {
+            currentPage = 0;
+        }
+
+        updateCarousel();
+    }
+
+    function startAutoScroll() {
+        autoScrollInterval = setInterval(nextPage, 5000); // 5 seconds
+    }
+
+    function stopAutoScroll() {
+        clearInterval(autoScrollInterval);
+    }
+
+    // Pause on hover
+    grid.addEventListener('mouseenter', stopAutoScroll);
+    grid.addEventListener('mouseleave', startAutoScroll);
+
+    // Update on window resize
+    let resizeTimeout;
+    window.addEventListener('resize', () => {
+        clearTimeout(resizeTimeout);
+        resizeTimeout = setTimeout(() => {
+            updateCarousel();
+        }, 250);
+    });
+
+    // Initialize
+    updateCarousel();
+    startAutoScroll();
+}
+
+// Initialize testimonials auto-scroll
+initTestimonialsAutoScroll();
