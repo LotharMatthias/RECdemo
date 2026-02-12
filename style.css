@@ -1068,23 +1068,6 @@ button {
         margin-bottom: 24px;
     }
 
-    /* Industry overview mobile improvements */
-    .industry-overview-wrapper {
-        margin: 32px auto;
-        padding: 0 16px;
-    }
-
-    .industry-connection-line {
-        display: none; /* Hide connection line on mobile */
-    }
-
-    .industry-overview {
-        gap: 24px;
-    }
-
-    .industry-item {
-        padding: 16px 12px;
-    }
 }
 
 /* ==========================================
@@ -1179,112 +1162,38 @@ button {
     margin-bottom: 32px;
 }
 
-/* Industry Overview Wrapper with Connection Line */
-.industry-overview-wrapper {
-    position: relative;
-    max-width: 1100px;
-    margin: 40px auto;
-}
-
-/* Connection Line Container */
-.industry-connection-line {
-    position: absolute;
-    top: 50%;
-    left: 0;
-    right: 0;
-    height: 2px;
-    display: flex;
-    align-items: center;
-    z-index: 5;
-    pointer-events: none;
-}
-
-/* The horizontal line */
-.connection-line {
-    flex: 1;
-    height: 2px;
-    background: linear-gradient(to right,
-        rgba(211, 47, 47, 0.15) 0%,
-        rgba(211, 47, 47, 0.3) 50%,
-        rgba(211, 47, 47, 0.15) 100%
-    );
-}
-
-/* Start and End Points */
-.connection-point {
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-    background: #d32f2f;
-    box-shadow: 0 0 0 3px rgba(211, 47, 47, 0.2),
-                0 2px 8px rgba(211, 47, 47, 0.3);
-    z-index: 10;
-}
-
-.connection-start {
-    margin-right: -5px; /* Overlap with line */
-}
-
-.connection-end {
-    margin-left: -5px; /* Overlap with line */
-}
-
-/* Industry Overview */
+/* Industry Overview - Kompakt */
 .industry-overview {
     display: flex;
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;
-    gap: 32px;
-    padding: 32px;
+    gap: 20px;
+    margin: 24px auto;
+    padding: 20px;
+    max-width: 900px;
     background: #ffffff;
-    border-radius: 20px;
-    box-shadow: 0 4px 24px rgba(0,0,0,0.06);
-    position: relative;
-    z-index: 1;
+    border-radius: 16px;
+    box-shadow: 0 2px 16px rgba(0,0,0,0.04);
 }
 
 .industry-item {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 12px;
-    padding: 16px;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    position: relative;
-    cursor: pointer;
-    z-index: 10;
-}
-
-.industry-item::after {
-    content: '';
-    position: absolute;
-    bottom: -20px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 2px;
-    height: 0;
-    background: #d32f2f;
-    transition: height 0.3s ease;
+    gap: 8px;
+    padding: 12px;
+    transition: all 0.3s ease;
 }
 
 .industry-item:hover {
-    transform: translateY(-4px) scale(1.05);
-}
-
-.industry-item:hover::after {
-    height: 20px;
-}
-
-.industry-item:hover .industry-icon {
-    color: #d32f2f;
-    transform: scale(1.1);
+    transform: translateY(-2px);
 }
 
 .industry-icon {
-    width: 64px;
-    height: 64px;
-    border-radius: 16px;
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
     background: linear-gradient(135deg, #d32f2f 0%, #b71c1c 100%);
     display: flex;
     align-items: center;
@@ -1293,45 +1202,47 @@ button {
     transition: all 0.3s ease;
 }
 
-.industry-item:hover .industry-icon {
-    transform: scale(1.1);
-    box-shadow: 0 8px 24px rgba(211, 47, 47, 0.3);
-}
-
 .industry-icon svg {
+    width: 24px;
+    height: 24px;
     stroke-width: 2;
 }
 
+.industry-item:hover .industry-icon {
+    transform: scale(1.05);
+    box-shadow: 0 4px 16px rgba(211, 47, 47, 0.2);
+}
+
 .industry-item span {
-    font-size: 14px;
+    font-size: 13px;
     font-weight: 600;
-    color: #1a1a1a;
+    color: #374151;
     text-align: center;
-    white-space: nowrap;
 }
 
 @media (max-width: 768px) {
     .industry-overview {
-        gap: 24px;
-        padding: 32px 20px;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 16px;
+        padding: 16px;
     }
 
     .industry-item {
-        padding: 12px;
+        padding: 8px;
     }
 
     .industry-icon {
-        width: 56px;
-        height: 56px;
+        width: 44px;
+        height: 44px;
     }
 
     .industry-icon svg {
-        width: 28px;
-        height: 28px;
+        width: 22px;
+        height: 22px;
     }
 
     .industry-item span {
-        font-size: 13px;
+        font-size: 12px;
     }
 }
 
