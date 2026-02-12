@@ -362,6 +362,33 @@ if (mobileMenuToggle && navBoxes) {
             document.body.style.overflow = '';
         }
     });
+
+    // Mobile dropdown toggle
+    const navBoxDropdowns = document.querySelectorAll('.nav-box-dropdown');
+
+    navBoxDropdowns.forEach(dropdown => {
+        const navBox = dropdown.querySelector('.nav-box');
+
+        if (navBox) {
+            navBox.addEventListener('click', function(e) {
+                // On mobile, toggle dropdown instead of navigating
+                if (window.innerWidth <= 768) {
+                    e.preventDefault();
+                    e.stopPropagation();
+
+                    // Close other dropdowns
+                    navBoxDropdowns.forEach(otherDropdown => {
+                        if (otherDropdown !== dropdown) {
+                            otherDropdown.classList.remove('dropdown-open');
+                        }
+                    });
+
+                    // Toggle current dropdown
+                    dropdown.classList.toggle('dropdown-open');
+                }
+            });
+        }
+    });
 }
 
 /**
