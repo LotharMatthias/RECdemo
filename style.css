@@ -8,12 +8,24 @@
     box-sizing: border-box;
 }
 
+html {
+    overflow-x: hidden;
+    max-width: 100vw;
+}
+
 body {
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     line-height: 1.6;
     color: #1a1a1a;
     background: #ffffff;
     overflow-x: hidden;
+    max-width: 100vw;
+    position: relative;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
 }
 
 a {
@@ -800,12 +812,183 @@ button {
         height: 32px;
     }
 
+    /* CRITICAL: Fix carousel card overflow on mobile */
+    .carousel-section {
+        padding: 60px 0;
+        overflow: hidden;
+    }
+
+    .carousel-container {
+        padding: 0 20px;
+        max-width: 100%;
+    }
+
+    .carousel-track {
+        height: auto;
+        min-height: 500px;
+    }
+
+    .carousel-card {
+        width: 90vw !important;
+        max-width: 500px !important;
+        position: absolute;
+    }
+
+    .carousel-card.prev {
+        transform: translate(-120%, -50%) translateZ(-100px) rotateY(15deg) scale(0.85) !important;
+    }
+
+    .carousel-card.active {
+        transform: translate(-50%, -50%) translateZ(0px) rotateY(0deg) scale(1) !important;
+    }
+
+    .carousel-card.next {
+        transform: translate(20%, -50%) translateZ(-100px) rotateY(-15deg) scale(0.85) !important;
+    }
+
+    .carousel-arrow {
+        width: 40px;
+        height: 40px;
+    }
+
+    .carousel-arrow-left {
+        left: 10px;
+    }
+
+    .carousel-arrow-right {
+        right: 10px;
+    }
+
+    /* Fix container overflow */
+    .container, .container-wide {
+        padding: 0 16px;
+        max-width: 100%;
+        overflow-x: hidden;
+    }
+
+    /* Fix hero section */
+    .hero-banner {
+        padding: 60px 0;
+    }
+
+    .hero-text-box {
+        padding: 32px;
+        margin: 0 16px;
+    }
+
+    .hero-title {
+        font-size: 32px;
+        line-height: 1.2;
+    }
+
+    .hero-subtitle {
+        font-size: 22px;
+        line-height: 1.3;
+    }
+
+    .hero-description {
+        font-size: 15px;
+        line-height: 1.6;
+    }
+
     .intro-text {
         margin-bottom: 60px;
     }
 
     .intro-text p {
         font-size: 16px;
+    }
+
+    /* Testimonials mobile fix */
+    .testimonials-section {
+        padding: 60px 0;
+    }
+
+    .testimonials-grid {
+        gap: 24px;
+        padding: 0 16px;
+    }
+
+    .testimonial-card {
+        min-height: auto;
+        padding: 24px;
+    }
+
+    .testimonial-text {
+        font-size: 15px;
+        line-height: 1.5;
+    }
+
+    .testimonial-author {
+        font-size: 14px;
+    }
+
+    /* Trust section mobile fix */
+    .trust-section {
+        padding: 60px 0;
+    }
+
+    .trust-grid {
+        grid-template-columns: 1fr;
+        gap: 24px;
+        padding: 0 16px;
+    }
+
+    .trust-card {
+        padding: 32px 24px;
+    }
+
+    .trust-number {
+        font-size: 48px;
+    }
+
+    /* Industry overview mobile fix */
+    .industry-overview {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 16px;
+        padding: 24px 16px;
+    }
+
+    .industry-item {
+        padding: 16px 12px;
+    }
+
+    .industry-icon {
+        width: 48px;
+        height: 48px;
+    }
+
+    /* Partner section mobile fix */
+    .partner-section {
+        padding: 60px 0;
+    }
+
+    .partner-logos {
+        gap: 32px 24px;
+    }
+
+    .partner-logo {
+        max-width: 140px;
+        height: auto;
+    }
+
+    /* Footer mobile fix */
+    .footer {
+        padding: 60px 0 30px;
+    }
+
+    .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 32px;
+        padding: 0 16px;
+    }
+
+    .footer-column h3 {
+        font-size: 18px;
+    }
+
+    .footer-column p, .footer-column a {
+        font-size: 14px;
     }
 }
 
@@ -1481,78 +1664,147 @@ button {
 
 @media (max-width: 480px) {
     .top-contact-bar {
-        font-size: 12px;
+        font-size: 11px;
+        padding: 8px 0;
     }
 
     .contact-items {
         flex-direction: column;
-        gap: 12px;
+        gap: 8px;
+        align-items: center;
+    }
+
+    .contact-item {
+        font-size: 11px;
     }
 
     .logo img {
-        height: 45px;
+        height: 40px;
     }
 
     .nav-boxes {
-        gap: 8px;
+        gap: 6px;
+        flex-wrap: wrap;
     }
 
     .nav-box {
-        padding: 12px 16px;
-        font-size: 13px;
-        height: 42px;
+        padding: 10px 14px;
+        font-size: 12px;
+        height: 38px;
+        min-width: auto;
     }
 
     .dropdown-menu {
-        left: -20px;
-        min-width: calc(100vw - 48px);
-        max-width: 300px;
+        left: 0;
+        right: 0;
+        width: calc(100vw - 32px);
+        max-width: 100%;
+        margin: 0 16px;
     }
 
     .hero-banner {
-        padding: 40px 0;
+        padding: 30px 0;
     }
 
     .hero-text-box {
-        padding: 24px;
+        padding: 20px;
+        margin: 0 8px;
     }
 
     .hero-title {
-        font-size: 28px;
+        font-size: 24px;
+        line-height: 1.2;
     }
 
     .hero-subtitle {
-        font-size: 20px;
+        font-size: 18px;
+        line-height: 1.3;
     }
 
     .hero-tagline {
-        font-size: 16px;
+        font-size: 14px;
+        line-height: 1.4;
     }
 
     .hero-description {
-        font-size: 14px;
+        font-size: 13px;
+        line-height: 1.5;
     }
 
     .btn-primary, .btn-secondary {
-        padding: 12px 24px;
-        font-size: 14px;
+        padding: 10px 20px;
+        font-size: 13px;
     }
 
     .carousel-section {
-        padding: 60px 0;
+        padding: 40px 0;
     }
 
     .section-headline {
-        font-size: 28px;
-        margin-bottom: 30px;
+        font-size: 24px;
+        margin-bottom: 24px;
+        padding: 0 16px;
     }
 
     .carousel-container {
-        padding: 0 30px;
+        padding: 0 10px;
+    }
+
+    .carousel-card {
+        width: 95vw !important;
+        max-width: 400px !important;
+    }
+
+    .carousel-track {
+        min-height: 550px;
+    }
+
+    .carousel-arrow {
+        width: 36px;
+        height: 36px;
+    }
+
+    .carousel-arrow-left {
+        left: 5px;
+    }
+
+    .carousel-arrow-right {
+        right: 5px;
     }
 
     .card-inner {
         padding: 24px;
+    }
+
+    /* Header mobile fixes */
+    .main-header {
+        padding: 12px 0;
+    }
+
+    .header-content {
+        gap: 16px;
+        flex-wrap: wrap;
+    }
+
+    .nav-boxes {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .nav-box {
+        flex: 1 1 auto;
+        min-width: 80px;
+        text-align: center;
+    }
+
+    /* Top contact bar mobile fix */
+    .top-contact-bar {
+        padding: 8px 0;
+    }
+
+    .contact-items {
+        justify-content: center;
+        text-align: center;
     }
 
     .card-icon {
