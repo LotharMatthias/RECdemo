@@ -324,6 +324,47 @@ if (contactToggle && contactBar) {
 }
 
 /**
+ * Mobile Burger Menu Toggle
+ */
+const mobileMenuToggle = document.getElementById('mobileMenuToggle');
+const navBoxes = document.querySelector('.nav-boxes');
+
+if (mobileMenuToggle && navBoxes) {
+    // Toggle mobile menu
+    mobileMenuToggle.addEventListener('click', function(e) {
+        e.stopPropagation();
+        this.classList.toggle('active');
+        navBoxes.classList.toggle('mobile-menu-open');
+
+        // Prevent body scroll when menu is open
+        if (navBoxes.classList.contains('mobile-menu-open')) {
+            document.body.style.overflow = 'hidden';
+        } else {
+            document.body.style.overflow = '';
+        }
+    });
+
+    // Close menu when clicking outside
+    document.addEventListener('click', function(e) {
+        if (!navBoxes.contains(e.target) && !mobileMenuToggle.contains(e.target)) {
+            mobileMenuToggle.classList.remove('active');
+            navBoxes.classList.remove('mobile-menu-open');
+            document.body.style.overflow = '';
+        }
+    });
+
+    // Close menu when clicking on a nav item (but not dropdown toggles)
+    navBoxes.addEventListener('click', function(e) {
+        if (e.target.classList.contains('nav-box') ||
+            e.target.classList.contains('dropdown-item')) {
+            mobileMenuToggle.classList.remove('active');
+            navBoxes.classList.remove('mobile-menu-open');
+            document.body.style.overflow = '';
+        }
+    });
+}
+
+/**
  * Testimonials - Static Grid (No Carousel)
  * All 6 testimonials visible in a 3x2 grid
  */

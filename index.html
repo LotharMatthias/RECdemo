@@ -44,6 +44,14 @@
                 <div class="logo">
                     <img src="https://www.richter-elektrocom.de/wp-content/uploads/2023/02/R-EC_Logo_inv.png" alt="Richter ElektroCom" />
                 </div>
+
+                <!-- Mobile Burger Menu Toggle -->
+                <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Menü öffnen">
+                    <span class="burger-line"></span>
+                    <span class="burger-line"></span>
+                    <span class="burger-line"></span>
+                </button>
+
                 <nav class="nav-boxes">
                     <button id="contactToggle" class="contact-toggle-btn">
                         <svg width="18" height="18" viewBox="0 0 16 16" fill="currentColor">
@@ -350,7 +358,15 @@
             <p class="section-subhead">Erfahrungen aus verschiedenen Branchen und Projekten</p>
 
             <!-- Industry Overview -->
-            <div class="industry-overview">
+            <div class="industry-overview-wrapper">
+                <!-- Connection Line with Start/End Points -->
+                <div class="industry-connection-line">
+                    <div class="connection-point connection-start"></div>
+                    <div class="connection-line"></div>
+                    <div class="connection-point connection-end"></div>
+                </div>
+
+                <div class="industry-overview">
                 <div class="industry-item">
                     <div class="industry-icon">
                         <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -412,7 +428,8 @@
                     </div>
                     <span>Privatkunden</span>
                 </div>
-            </div>
+            </div> <!-- .industry-overview -->
+            </div> <!-- .industry-overview-wrapper -->
 
             <!-- Testimonials Carousel Container -->
             <div class="testimonials-carousel-wrapper">

@@ -149,6 +149,46 @@ button {
     height: 16px;
 }
 
+/* Mobile Menu Toggle (Burger Icon) */
+.mobile-menu-toggle {
+    display: none; /* Hidden by default, shown on mobile */
+    flex-direction: column;
+    justify-content: space-between;
+    width: 32px;
+    height: 24px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    z-index: 1001;
+    margin-left: auto;
+}
+
+.burger-line {
+    width: 100%;
+    height: 3px;
+    background: #1a1a1a;
+    border-radius: 3px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.mobile-menu-toggle.active .burger-line:nth-child(1) {
+    transform: translateY(10.5px) rotate(45deg);
+}
+
+.mobile-menu-toggle.active .burger-line:nth-child(2) {
+    opacity: 0;
+}
+
+.mobile-menu-toggle.active .burger-line:nth-child(3) {
+    transform: translateY(-10.5px) rotate(-45deg);
+}
+
+/* Mobile Menu Overlay */
+.nav-boxes.mobile-menu-open {
+    display: flex !important;
+}
+
 /* Navigation Boxes */
 .nav-boxes {
     display: flex;
@@ -990,6 +1030,61 @@ button {
     .footer-column p, .footer-column a {
         font-size: 14px;
     }
+
+    /* Section spacing improvements */
+    .carousel-section,
+    .full-service-section,
+    .trust-section,
+    .testimonials-section,
+    .partner-section {
+        padding: 60px 0;
+    }
+
+    /* Better text spacing */
+    h1, h2, h3, h4, h5, h6 {
+        margin-bottom: 16px;
+        line-height: 1.3;
+    }
+
+    p {
+        margin-bottom: 16px;
+        line-height: 1.6;
+    }
+
+    /* Button improvements */
+    .btn-primary,
+    .btn-secondary {
+        padding: 14px 28px;
+        font-size: 15px;
+        min-height: 48px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    /* Card improvements */
+    .testimonial-card,
+    .trust-card {
+        margin-bottom: 24px;
+    }
+
+    /* Industry overview mobile improvements */
+    .industry-overview-wrapper {
+        margin: 32px auto;
+        padding: 0 16px;
+    }
+
+    .industry-connection-line {
+        display: none; /* Hide connection line on mobile */
+    }
+
+    .industry-overview {
+        gap: 24px;
+    }
+
+    .industry-item {
+        padding: 16px 12px;
+    }
 }
 
 /* ==========================================
@@ -1074,6 +1169,56 @@ button {
     background: #f9fafb;
 }
 
+/* Industry Overview Wrapper with Connection Line */
+.industry-overview-wrapper {
+    position: relative;
+    max-width: 1100px;
+    margin: 40px auto;
+}
+
+/* Connection Line Container */
+.industry-connection-line {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    height: 2px;
+    display: flex;
+    align-items: center;
+    z-index: 1;
+    pointer-events: none;
+}
+
+/* The horizontal line */
+.connection-line {
+    flex: 1;
+    height: 2px;
+    background: linear-gradient(to right,
+        rgba(211, 47, 47, 0.15) 0%,
+        rgba(211, 47, 47, 0.3) 50%,
+        rgba(211, 47, 47, 0.15) 100%
+    );
+}
+
+/* Start and End Points */
+.connection-point {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #d32f2f;
+    box-shadow: 0 0 0 3px rgba(211, 47, 47, 0.2),
+                0 2px 8px rgba(211, 47, 47, 0.3);
+    z-index: 2;
+}
+
+.connection-start {
+    margin-right: -5px; /* Overlap with line */
+}
+
+.connection-end {
+    margin-left: -5px; /* Overlap with line */
+}
+
 /* Industry Overview */
 .industry-overview {
     display: flex;
@@ -1081,12 +1226,12 @@ button {
     align-items: center;
     flex-wrap: wrap;
     gap: 32px;
-    margin: 40px auto;
     padding: 32px;
-    max-width: 1100px;
     background: #ffffff;
     border-radius: 20px;
     box-shadow: 0 4px 24px rgba(0,0,0,0.06);
+    position: relative;
+    z-index: 2;
 }
 
 .industry-item {
@@ -1095,11 +1240,34 @@ button {
     align-items: center;
     gap: 12px;
     padding: 16px;
-    transition: all 0.3s ease;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    cursor: pointer;
+}
+
+.industry-item::after {
+    content: '';
+    position: absolute;
+    bottom: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 2px;
+    height: 0;
+    background: #d32f2f;
+    transition: height 0.3s ease;
 }
 
 .industry-item:hover {
-    transform: translateY(-4px);
+    transform: translateY(-4px) scale(1.05);
+}
+
+.industry-item:hover::after {
+    height: 20px;
+}
+
+.industry-item:hover .industry-icon {
+    color: #d32f2f;
+    transform: scale(1.1);
 }
 
 .industry-icon {
@@ -1567,42 +1735,141 @@ button {
         height: 55px;
     }
 
+    /* Show burger menu on mobile */
+    .mobile-menu-toggle {
+        display: flex;
+    }
+
+    /* Hide desktop navigation on mobile */
+    .nav-boxes {
+        position: fixed;
+        top: 0;
+        right: 0;
+        width: 100%;
+        max-width: 400px;
+        height: 100vh;
+        background: #ffffff;
+        flex-direction: column;
+        align-items: stretch;
+        justify-content: flex-start;
+        gap: 0;
+        padding: 80px 24px 24px;
+        box-shadow: -4px 0 24px rgba(0, 0, 0, 0.15);
+        transform: translateX(100%);
+        transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        z-index: 1000;
+        overflow-y: auto;
+        display: flex;
+    }
+
+    .nav-boxes.mobile-menu-open {
+        transform: translateX(0);
+    }
+
+    /* Contact toggle button in mobile menu */
+    .contact-toggle-btn {
+        width: 100%;
+        justify-content: center;
+        margin-left: 0;
+        margin-bottom: 16px;
+    }
+
+    /* Nav boxes in mobile menu */
     .nav-box {
-        padding: 14px 20px;
+        width: 100%;
+        min-width: auto;
+        padding: 16px 20px;
+        font-size: 16px;
+        height: auto;
+        margin-bottom: 8px;
+        justify-content: flex-start;
+    }
+
+    /* Dropdowns in mobile menu */
+    .nav-box-dropdown {
+        width: 100%;
+    }
+
+    .dropdown-menu {
+        position: static;
+        box-shadow: none;
+        border-left: 3px solid #f3f4f6;
+        margin-left: 16px;
+        padding-left: 16px;
+        min-width: auto;
+        background: transparent;
+    }
+
+    .dropdown-item {
+        padding: 12px 16px;
         font-size: 14px;
-        height: 46px;
     }
 
     .dropdown-menu {
         min-width: 240px;
     }
 
+    /* Hero Section - Mobile Stacked & Centered */
     .hero-banner {
         padding: 60px 0;
     }
 
+    .hero-content-wrapper {
+        flex-direction: column;
+        align-items: center;
+        min-height: auto;
+        gap: 32px;
+    }
+
+    /* Image first on mobile */
+    .hero-image-box {
+        order: 1;
+        width: 100%;
+        max-width: 100%;
+        position: static;
+    }
+
+    .hero-rounded-image {
+        width: 100%;
+        height: auto;
+        border-radius: 16px;
+    }
+
+    /* Text second on mobile */
     .hero-text-box {
+        order: 2;
+        max-width: 100%;
+        width: 100%;
         padding: 32px;
+        text-align: center;
+        background: rgba(255, 255, 255, 0.98);
     }
 
     .hero-title {
         font-size: 36px;
+        text-align: center;
     }
 
     .hero-subtitle {
         font-size: 24px;
+        text-align: center;
     }
 
     .hero-tagline {
         font-size: 18px;
+        text-align: center;
     }
 
     .hero-description {
         font-size: 15px;
+        text-align: center;
+        line-height: 1.6;
     }
 
     .hero-cta-buttons {
         flex-direction: column;
+        align-items: center;
+        justify-content: center;
     }
 
     .btn-primary, .btn-secondary {
@@ -1702,28 +1969,37 @@ button {
         margin: 0 16px;
     }
 
+    /* Hero Section - Extra Small Mobile */
     .hero-banner {
         padding: 30px 0;
+    }
+
+    .hero-content-wrapper {
+        gap: 24px;
     }
 
     .hero-text-box {
         padding: 20px;
         margin: 0 8px;
+        text-align: center;
     }
 
     .hero-title {
         font-size: 24px;
         line-height: 1.2;
+        text-align: center;
     }
 
     .hero-subtitle {
         font-size: 18px;
         line-height: 1.3;
+        text-align: center;
     }
 
     .hero-tagline {
         font-size: 14px;
         line-height: 1.4;
+        text-align: center;
     }
 
     .hero-description {
