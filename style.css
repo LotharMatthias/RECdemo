@@ -2010,6 +2010,11 @@ button {
     }
 }
 
+/* Hide mobile menu close button on desktop */
+.mobile-menu-close {
+    display: none;
+}
+
 @media (max-width: 768px) {
     /* Mobile Header kompakter */
     .header {
