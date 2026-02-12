@@ -372,6 +372,7 @@ if (mobileMenuToggle && navBoxes) {
 function initTestimonialsAutoScroll() {
     const grid = document.querySelector('.testimonials-grid');
     const cards = document.querySelectorAll('.testimonial-card');
+    const paginationContainer = document.querySelector('.testimonials-pagination');
 
     if (!grid || !cards.length) {
         return;
@@ -382,6 +383,45 @@ function initTestimonialsAutoScroll() {
     const totalPages = Math.ceil(totalCards / cardsPerView); // 3 pages
     let currentPage = 0;
     let autoScrollInterval;
+    let dots = [];
+
+    // Generate pagination dots
+    function generateDots() {
+        if (!paginationContainer) return;
+
+        paginationContainer.innerHTML = '';
+        dots = [];
+
+        for (let i = 0; i < totalPages; i++) {
+            const dot = document.createElement('div');
+            dot.classList.add('pagination-dot');
+            if (i === 0) dot.classList.add('active');
+
+            dot.addEventListener('click', () => {
+                currentPage = i;
+                updateCarousel();
+                updateDots();
+
+                // Restart auto-scroll after manual interaction
+                stopAutoScroll();
+                startAutoScroll();
+            });
+
+            paginationContainer.appendChild(dot);
+            dots.push(dot);
+        }
+    }
+
+    // Update active dot
+    function updateDots() {
+        dots.forEach((dot, index) => {
+            if (index === currentPage) {
+                dot.classList.add('active');
+            } else {
+                dot.classList.remove('active');
+            }
+        });
+    }
 
     function updateCarousel() {
         const cardWidth = cards[0].offsetWidth;
@@ -389,6 +429,7 @@ function initTestimonialsAutoScroll() {
         const scrollAmount = (cardWidth + gap) * cardsPerView * currentPage;
 
         grid.style.transform = `translateX(-${scrollAmount}px)`;
+        updateDots();
     }
 
     function nextPage() {
@@ -424,9 +465,87 @@ function initTestimonialsAutoScroll() {
     });
 
     // Initialize
+    generateDots();
     updateCarousel();
     startAutoScroll();
 }
 
 // Initialize testimonials auto-scroll
 initTestimonialsAutoScroll();
+
+/**
+ * Contact Form Handler
+ */
+function initContactForm() {
+    const form = document.getElementById('contactForm');
+    const successMessage = document.getElementById('formSuccessMessage');
+
+    if (!form || !successMessage) {
+        return;
+    }
+
+    form.addEventListener('submit', function(e) {
+        e.preventDefault();
+
+        // Get form data
+        const formData = new FormData(form);
+        const data = {};
+        formData.forEach((value, key) => {
+            data[key] = value;
+        });
+
+        // Here you would normally send the data to your server
+        // For now, we'll just show the success message
+        console.log('Form submitted:', data);
+
+        // Simulate sending email (replace with actual backend call)
+        // Example: fetch('/api/contact', { method: 'POST', body: JSON.stringify(data) })
+
+        // Show success message
+        successMessage.classList.add('show');
+
+        // Reset form
+        form.reset();
+
+        // Hide success message after 10 seconds
+        setTimeout(() => {
+            successMessage.classList.remove('show');
+        }, 10000);
+
+        // Scroll to success message
+        successMessage.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    });
+}
+
+// Initialize contact form
+initContactForm();
+
+/**
+ * Smooth Scroll to Contact Form
+ */
+function initScrollToContact() {
+    const scrollButtons = document.querySelectorAll('.scroll-to-contact');
+
+    scrollButtons.forEach(button => {
+        button.addEventListener('click', function(e) {
+            e.preventDefault();
+
+            const targetId = this.getAttribute('href');
+            const targetElement = document.querySelector(targetId);
+
+            if (targetElement) {
+                const headerOffset = 100;
+                const elementPosition = targetElement.getBoundingClientRect().top;
+                const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+                window.scrollTo({
+                    top: offsetPosition,
+                    behavior: 'smooth'
+                });
+            }
+        });
+    });
+}
+
+// Initialize scroll to contact
+initScrollToContact();

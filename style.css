@@ -682,6 +682,19 @@ button {
     border-radius: 6px;
 }
 
+/* Section CTA Button */
+.section-cta {
+    display: flex;
+    justify-content: center;
+    margin-top: 48px;
+}
+
+.section-cta .btn-primary,
+.section-cta .btn-large {
+    padding: 16px 40px;
+    font-size: 17px;
+}
+
 /* ==========================================
    360-Grad Full Service Section
    ========================================== */
@@ -1144,6 +1157,132 @@ button {
 }
 
 /* ==========================================
+   Recruiting CTA Banner
+   ========================================== */
+
+.recruiting-cta-section {
+    padding: 48px 0;
+    background: #f9fafb;
+}
+
+.recruiting-cta-banner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 32px;
+    padding: 40px 48px;
+    background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+    border-radius: 20px;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.15);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    text-decoration: none;
+    cursor: pointer;
+    overflow: hidden;
+    position: relative;
+}
+
+.recruiting-cta-banner::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, #d32f2f 0%, #b71c1c 100%);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    z-index: 0;
+}
+
+.recruiting-cta-banner:hover::before {
+    opacity: 1;
+}
+
+.recruiting-cta-banner:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 16px 48px rgba(0,0,0,0.25);
+}
+
+.recruiting-cta-content {
+    flex: 1;
+    position: relative;
+    z-index: 1;
+}
+
+.recruiting-cta-title {
+    font-size: 24px;
+    font-weight: 700;
+    color: #ffffff;
+    margin: 0 0 12px 0;
+    line-height: 1.3;
+}
+
+.recruiting-cta-text {
+    font-size: 16px;
+    color: rgba(255, 255, 255, 0.85);
+    margin: 0;
+    line-height: 1.6;
+}
+
+.recruiting-cta-button {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 16px 32px;
+    background: #ffffff;
+    color: #1a1a1a;
+    border-radius: 12px;
+    font-size: 16px;
+    font-weight: 600;
+    white-space: nowrap;
+    transition: all 0.3s ease;
+    position: relative;
+    z-index: 1;
+}
+
+.recruiting-cta-banner:hover .recruiting-cta-button {
+    background: #ffffff;
+    color: #d32f2f;
+    transform: translateX(4px);
+}
+
+.recruiting-cta-button svg {
+    transition: transform 0.3s ease;
+}
+
+.recruiting-cta-banner:hover .recruiting-cta-button svg {
+    transform: translateX(4px);
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+    .recruiting-cta-section {
+        padding: 32px 0;
+    }
+
+    .recruiting-cta-banner {
+        flex-direction: column;
+        text-align: center;
+        padding: 32px 24px;
+        gap: 24px;
+    }
+
+    .recruiting-cta-title {
+        font-size: 20px;
+    }
+
+    .recruiting-cta-text {
+        font-size: 15px;
+    }
+
+    .recruiting-cta-button {
+        width: 100%;
+        justify-content: center;
+        padding: 14px 24px;
+    }
+}
+
+/* ==========================================
    Testimonials Section
    ========================================== */
 
@@ -1279,20 +1418,20 @@ button {
 
 .testimonial-card {
     background: #ffffff;
-    border-radius: 20px;
-    padding: 32px;
-    box-shadow: 0 4px 24px rgba(0,0,0,0.06);
+    border-radius: 16px;
+    padding: 24px;
+    box-shadow: 0 2px 16px rgba(0,0,0,0.05);
     transition: all 0.3s ease;
     display: flex;
     flex-direction: column;
-    min-height: 420px;
+    min-height: 340px;
     flex: 0 0 calc(50% - 16px);
     width: calc(50% - 16px);
 }
 
 .testimonial-card:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 12px 40px rgba(0,0,0,0.12);
+    transform: translateY(-4px);
+    box-shadow: 0 8px 32px rgba(0,0,0,0.1);
 }
 
 @media (max-width: 768px) {
@@ -1305,17 +1444,17 @@ button {
 
 .testimonial-category {
     display: inline-block;
-    padding: 6px 14px;
+    padding: 5px 12px;
     background: linear-gradient(135deg, #d32f2f 0%, #b71c1c 100%);
     color: #ffffff;
-    border-radius: 20px;
-    font-size: 12px;
+    border-radius: 16px;
+    font-size: 11px;
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 0.5px;
-    margin-bottom: 12px;
+    margin-bottom: 10px;
     white-space: nowrap;
-    height: 28px;
+    height: 24px;
     display: flex;
     align-items: center;
     align-self: flex-start;
@@ -1324,23 +1463,23 @@ button {
 
 .testimonial-stars {
     color: #fbbf24;
-    font-size: 20px;
-    margin-bottom: 16px;
-    letter-spacing: 4px;
-    height: 28px;
+    font-size: 18px;
+    margin-bottom: 12px;
+    letter-spacing: 3px;
+    height: 24px;
     display: flex;
     align-items: center;
     flex-shrink: 0;
 }
 
 .testimonial-text {
-    font-size: 16px;
-    line-height: 1.8;
+    font-size: 15px;
+    line-height: 1.7;
     color: #4b5563;
     font-style: italic;
     flex-grow: 1;
-    min-height: 180px;
-    margin-bottom: 20px;
+    min-height: 140px;
+    margin-bottom: 16px;
     overflow-wrap: break-word;
     word-wrap: break-word;
 }
@@ -1348,12 +1487,12 @@ button {
 .testimonial-author {
     display: flex;
     flex-direction: column;
-    gap: 6px;
-    padding-top: 20px;
+    gap: 4px;
+    padding-top: 16px;
     border-top: 2px solid #e5e7eb;
     margin-top: auto;
     flex-shrink: 0;
-    min-height: 70px;
+    min-height: 60px;
 }
 
 .testimonial-author strong {
@@ -1365,6 +1504,39 @@ button {
 .testimonial-author span {
     font-size: 14px;
     color: #6b7280;
+}
+
+/* Testimonials Pagination Dots */
+.testimonials-pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin-top: 32px;
+    padding-bottom: 8px;
+}
+
+.pagination-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #d1d5db;
+    border: 2px solid transparent;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.pagination-dot:hover {
+    background: #9ca3af;
+    transform: scale(1.1);
+}
+
+.pagination-dot.active {
+    background: #d32f2f;
+    width: 12px;
+    height: 12px;
+    border-color: rgba(211, 47, 47, 0.2);
+    box-shadow: 0 0 0 4px rgba(211, 47, 47, 0.1);
 }
 
 /* ==========================================
@@ -1542,6 +1714,192 @@ button {
 .partner-badge:hover {
     background: rgba(255, 255, 255, 0.15);
     border-color: rgba(255, 255, 255, 0.3);
+}
+
+/* ==========================================
+   Contact Form Section
+   ========================================== */
+
+.contact-form-section {
+    padding: 80px 0;
+    background: #ffffff;
+}
+
+.contact-form-section .section-headline {
+    text-align: center;
+    margin-bottom: 12px;
+}
+
+.contact-form-section .section-subhead {
+    text-align: center;
+    margin: 0 auto 48px auto;
+    max-width: 700px;
+}
+
+.contact-form {
+    max-width: 800px;
+    margin: 0 auto;
+    background: #f9fafb;
+    padding: 48px;
+    border-radius: 20px;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.06);
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+}
+
+.form-group {
+    margin-bottom: 24px;
+}
+
+.form-group label {
+    display: block;
+    font-size: 14px;
+    font-weight: 600;
+    color: #374151;
+    margin-bottom: 8px;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 14px 16px;
+    border: 2px solid #e5e7eb;
+    border-radius: 12px;
+    font-size: 15px;
+    font-family: 'Inter', sans-serif;
+    transition: all 0.3s ease;
+    background: #ffffff;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: #d32f2f;
+    box-shadow: 0 0 0 4px rgba(211, 47, 47, 0.1);
+}
+
+.form-group textarea {
+    resize: vertical;
+    min-height: 120px;
+}
+
+.form-checkbox {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    margin-bottom: 32px;
+}
+
+.form-checkbox input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+    margin-top: 2px;
+    cursor: pointer;
+    accent-color: #d32f2f;
+}
+
+.form-checkbox label {
+    font-size: 14px;
+    color: #6b7280;
+    line-height: 1.6;
+    flex: 1;
+    cursor: pointer;
+}
+
+.form-checkbox label a {
+    color: #d32f2f;
+    text-decoration: underline;
+}
+
+.form-submit-btn {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    padding: 18px 32px;
+    background: linear-gradient(135deg, #d32f2f 0%, #b71c1c 100%);
+    color: #ffffff;
+    border: none;
+    border-radius: 12px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-family: 'Inter', sans-serif;
+}
+
+.form-submit-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(211, 47, 47, 0.3);
+}
+
+.form-submit-btn svg {
+    transition: transform 0.3s ease;
+}
+
+.form-submit-btn:hover svg {
+    transform: translateX(4px);
+}
+
+.form-success-message {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 32px;
+    background: #ecfdf5;
+    border: 2px solid #10b981;
+    border-radius: 16px;
+    margin-top: 24px;
+}
+
+.form-success-message.show {
+    display: flex;
+}
+
+.form-success-message svg {
+    color: #10b981;
+    margin-bottom: 16px;
+}
+
+.form-success-message strong {
+    font-size: 18px;
+    color: #065f46;
+    margin-bottom: 8px;
+}
+
+.form-success-message p {
+    font-size: 15px;
+    color: #047857;
+    margin: 0;
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+    .contact-form-section {
+        padding: 60px 0;
+    }
+
+    .contact-form {
+        padding: 32px 24px;
+    }
+
+    .form-row {
+        grid-template-columns: 1fr;
+        gap: 0;
+    }
+
+    .form-submit-btn {
+        padding: 16px 24px;
+        font-size: 15px;
+    }
 }
 
 /* ==========================================
