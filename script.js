@@ -377,16 +377,6 @@ if (mobileMenuToggle && navBoxes) {
         }
     });
 
-    // Close menu when clicking on a nav item (but not dropdown toggles)
-    navBoxes.addEventListener('click', function(e) {
-        if (e.target.classList.contains('nav-box') ||
-            e.target.classList.contains('dropdown-item')) {
-            mobileMenuToggle.classList.remove('active');
-            navBoxes.classList.remove('mobile-menu-open');
-            document.body.style.overflow = '';
-        }
-    });
-
     // Mobile dropdown toggle
     const navBoxDropdowns = document.querySelectorAll('.nav-box-dropdown');
 
@@ -411,6 +401,15 @@ if (mobileMenuToggle && navBoxes) {
                     dropdown.classList.toggle('dropdown-open');
                 }
             });
+        }
+    });
+
+    // Close menu when clicking on dropdown item
+    navBoxes.addEventListener('click', function(e) {
+        if (e.target.classList.contains('dropdown-item')) {
+            mobileMenuToggle.classList.remove('active');
+            navBoxes.classList.remove('mobile-menu-open');
+            document.body.style.overflow = '';
         }
     });
 }
