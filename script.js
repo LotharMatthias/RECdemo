@@ -3,8 +3,21 @@
  * Carousel and Interactive Elements
  */
 
+// Scroll to top on page load
+window.addEventListener('load', function() {
+    window.scrollTo(0, 0);
+});
+
+// Scroll to top on navigation
+window.addEventListener('beforeunload', function() {
+    window.scrollTo(0, 0);
+});
+
 // Wait for DOM to be fully loaded
 document.addEventListener('DOMContentLoaded', function() {
+    // Scroll to top immediately
+    window.scrollTo(0, 0);
+
     initCarousel();
 });
 
@@ -327,6 +340,7 @@ if (contactToggle && contactBar) {
  * Mobile Burger Menu Toggle
  */
 const mobileMenuToggle = document.getElementById('mobileMenuToggle');
+const mobileMenuClose = document.getElementById('mobileMenuClose');
 const navBoxes = document.querySelector('.nav-boxes');
 
 if (mobileMenuToggle && navBoxes) {
@@ -343,6 +357,16 @@ if (mobileMenuToggle && navBoxes) {
             document.body.style.overflow = '';
         }
     });
+
+    // Close button
+    if (mobileMenuClose) {
+        mobileMenuClose.addEventListener('click', function(e) {
+            e.stopPropagation();
+            mobileMenuToggle.classList.remove('active');
+            navBoxes.classList.remove('mobile-menu-open');
+            document.body.style.overflow = '';
+        });
+    }
 
     // Close menu when clicking outside
     document.addEventListener('click', function(e) {
