@@ -1,237 +1,324 @@
 /**
- * Richter ElektroCom Website
- * Carousel and Interactive Elements
+ * Richter ElektroCom — Mobile-First JavaScript
+ * All interactions optimised for touch devices first
  */
 
 // Scroll to top on page load
-window.addEventListener('load', function() {
+window.addEventListener('load', function () {
     window.scrollTo(0, 0);
 });
 
-// Scroll to top on navigation
-window.addEventListener('beforeunload', function() {
+document.addEventListener('DOMContentLoaded', function () {
     window.scrollTo(0, 0);
-});
-
-// Wait for DOM to be fully loaded
-document.addEventListener('DOMContentLoaded', function() {
-    // Scroll to top immediately
-    window.scrollTo(0, 0);
-
+    initMobileMenu();
     initCarousel();
+    initTestimonialsCarousel();
+    initScrollAnimations();
+    initCountUp();
+    initTickerPause();
+    initContactToggle();
+    initContactForm();
+    initScrollToContact();
+    initSmoothAnchors();
+    initFloatingContact();
 });
 
-/**
- * Initialize the carousel functionality
- */
-function initCarousel() {
-    const track = document.querySelector('.carousel-track');
-    const cards = document.querySelectorAll('.carousel-card');
-    const leftArrow = document.querySelector('.carousel-arrow-left');
-    const rightArrow = document.querySelector('.carousel-arrow-right');
-    const dots = document.querySelectorAll('.dot');
+/* ========================================
+   MOBILE MENU
+   ======================================== */
+function initMobileMenu() {
+    const toggle = document.getElementById('mobileMenuToggle');
+    const closeBtn = document.getElementById('mobileMenuClose');
+    const overlay = document.getElementById('mobileMenuOverlay');
+    const nav = document.querySelector('.nav-boxes');
+    if (!toggle || !nav) return;
 
-    if (!track || !cards.length || !leftArrow || !rightArrow || !dots.length) {
-        console.warn('Carousel elements not found');
-        return;
+    function openMenu() {
+        toggle.classList.add('active');
+        nav.classList.add('mobile-menu-open');
+        if (overlay) overlay.classList.add('active');
+        document.body.style.overflow = 'hidden';
     }
 
-    let currentIndex = 0;
-    const totalCards = cards.length;
-
-    /**
-     * Update the carousel to show the card at the given index
-     */
-    function updateCarousel(index) {
-        // Ensure index is within bounds
-        if (index < 0) {
-            index = totalCards - 1;
-        } else if (index >= totalCards) {
-            index = 0;
-        }
-
-        currentIndex = index;
-
-        // Calculate prev and next indices
-        const prevIndex = (currentIndex - 1 + totalCards) % totalCards;
-        const nextIndex = (currentIndex + 1) % totalCards;
-
-        // Update cards with prev, active, and next classes
-        cards.forEach((card, i) => {
-            card.classList.remove('active', 'prev', 'next');
-
-            if (i === currentIndex) {
-                card.classList.add('active');
-            } else if (i === prevIndex) {
-                card.classList.add('prev');
-            } else if (i === nextIndex) {
-                card.classList.add('next');
-            }
-        });
-
-        // Update dots
-        dots.forEach((dot, i) => {
-            if (i === currentIndex) {
-                dot.classList.add('active');
-            } else {
-                dot.classList.remove('active');
-            }
+    function closeMenu() {
+        toggle.classList.remove('active');
+        nav.classList.remove('mobile-menu-open');
+        if (overlay) overlay.classList.remove('active');
+        document.body.style.overflow = '';
+        // Close all open dropdowns
+        document.querySelectorAll('.nav-box-dropdown.dropdown-open').forEach(function (d) {
+            d.classList.remove('dropdown-open');
         });
     }
 
-    /**
-     * Move to the next slide
-     */
-    function nextSlide() {
-        updateCarousel(currentIndex + 1);
-    }
-
-    /**
-     * Move to the previous slide
-     */
-    function prevSlide() {
-        updateCarousel(currentIndex - 1);
-    }
-
-    // Event Listeners for arrows
-    leftArrow.addEventListener('click', prevSlide);
-    rightArrow.addEventListener('click', nextSlide);
-
-    // Event Listeners for dots
-    dots.forEach((dot, index) => {
-        dot.addEventListener('click', () => {
-            updateCarousel(index);
-        });
-    });
-
-    // Keyboard navigation
-    document.addEventListener('keydown', (e) => {
-        if (e.key === 'ArrowLeft') {
-            prevSlide();
-        } else if (e.key === 'ArrowRight') {
-            nextSlide();
+    toggle.addEventListener('click', function (e) {
+        e.stopPropagation();
+        if (nav.classList.contains('mobile-menu-open')) {
+            closeMenu();
+        } else {
+            openMenu();
         }
     });
 
-    // Auto-play functionality (optional - uncomment to enable)
-    /*
-    let autoPlayInterval;
-
-    function startAutoPlay() {
-        autoPlayInterval = setInterval(nextSlide, 5000); // Change slide every 5 seconds
+    if (closeBtn) {
+        closeBtn.addEventListener('click', function (e) {
+            e.stopPropagation();
+            closeMenu();
+        });
     }
 
-    function stopAutoPlay() {
-        clearInterval(autoPlayInterval);
+    if (overlay) {
+        overlay.addEventListener('click', closeMenu);
     }
 
-    // Start auto-play
-    startAutoPlay();
-
-    // Pause auto-play on hover
-    track.addEventListener('mouseenter', stopAutoPlay);
-    track.addEventListener('mouseleave', startAutoPlay);
-
-    // Pause auto-play when user interacts
-    leftArrow.addEventListener('click', () => {
-        stopAutoPlay();
-        startAutoPlay();
+    // Close on outside click
+    document.addEventListener('click', function (e) {
+        if (nav.classList.contains('mobile-menu-open') &&
+            !nav.contains(e.target) &&
+            !toggle.contains(e.target)) {
+            closeMenu();
+        }
     });
 
-    rightArrow.addEventListener('click', () => {
-        stopAutoPlay();
-        startAutoPlay();
-    });
+    // Dropdown accordion on mobile
+    var dropdowns = document.querySelectorAll('.nav-box-dropdown');
+    dropdowns.forEach(function (dropdown) {
+        var navBox = dropdown.querySelector('.nav-box');
+        if (!navBox) return;
 
-    dots.forEach(dot => {
-        dot.addEventListener('click', () => {
-            stopAutoPlay();
-            startAutoPlay();
+        navBox.addEventListener('click', function (e) {
+            // Only accordion behaviour below 900px
+            if (window.innerWidth < 900) {
+                e.preventDefault();
+                e.stopPropagation();
+
+                // Close other dropdowns
+                dropdowns.forEach(function (other) {
+                    if (other !== dropdown) other.classList.remove('dropdown-open');
+                });
+
+                dropdown.classList.toggle('dropdown-open');
+            }
         });
     });
-    */
 
-    // Touch/swipe support for mobile
-    let touchStartX = 0;
-    let touchEndX = 0;
-
-    track.addEventListener('touchstart', (e) => {
-        touchStartX = e.changedTouches[0].screenX;
-    });
-
-    track.addEventListener('touchend', (e) => {
-        touchEndX = e.changedTouches[0].screenX;
-        handleSwipe();
-    });
-
-    function handleSwipe() {
-        const swipeThreshold = 50;
-        const diff = touchStartX - touchEndX;
-
-        if (Math.abs(diff) > swipeThreshold) {
-            if (diff > 0) {
-                // Swipe left - next slide
-                nextSlide();
-            } else {
-                // Swipe right - previous slide
-                prevSlide();
-            }
+    // Close menu when a dropdown-item is tapped
+    nav.addEventListener('click', function (e) {
+        if (e.target.classList.contains('dropdown-item')) {
+            closeMenu();
         }
-    }
+    });
 
-    // Initialize carousel at first slide
-    updateCarousel(0);
+    // Close menu when a simple nav-box (non-dropdown) is tapped
+    nav.querySelectorAll('.nav-box').forEach(function (box) {
+        if (!box.closest('.nav-box-dropdown')) {
+            box.addEventListener('click', function () {
+                if (window.innerWidth < 900) closeMenu();
+            });
+        }
+    });
 }
 
-/**
- * Smooth scroll for anchor links
- */
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function(e) {
-        const href = this.getAttribute('href');
+/* ========================================
+   BUSINESS AREAS CAROUSEL
+   ======================================== */
+function initCarousel() {
+    var track = document.querySelector('.carousel-track');
+    var cards = document.querySelectorAll('.carousel-card');
+    var leftArrow = document.querySelector('.carousel-arrow-left');
+    var rightArrow = document.querySelector('.carousel-arrow-right');
+    var dots = document.querySelectorAll('.dot');
+    if (!track || !cards.length) return;
 
-        // Only handle internal anchors (not just "#")
-        if (href && href !== '#') {
-            const target = document.querySelector(href);
+    var current = 0;
+    var total = cards.length;
 
-            if (target) {
-                e.preventDefault();
+    function update(index) {
+        if (index < 0) index = total - 1;
+        if (index >= total) index = 0;
+        current = index;
 
-                const headerOffset = 100;
-                const elementPosition = target.getBoundingClientRect().top;
-                const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+        var prev = (current - 1 + total) % total;
+        var next = (current + 1) % total;
 
-                window.scrollTo({
-                    top: offsetPosition,
-                    behavior: 'smooth'
-                });
-            }
-        }
+        cards.forEach(function (card, i) {
+            card.classList.remove('active', 'prev', 'next');
+            if (i === current) card.classList.add('active');
+            else if (i === prev) card.classList.add('prev');
+            else if (i === next) card.classList.add('next');
+        });
+
+        dots.forEach(function (dot, i) {
+            dot.classList.toggle('active', i === current);
+        });
+    }
+
+    if (leftArrow) leftArrow.addEventListener('click', function () { update(current - 1); });
+    if (rightArrow) rightArrow.addEventListener('click', function () { update(current + 1); });
+
+    dots.forEach(function (dot, i) {
+        dot.addEventListener('click', function () { update(i); });
     });
-});
 
-/**
- * Add scroll-based animations (fade-in on scroll)
- */
+    // Touch / swipe
+    var startX = 0;
+    var startY = 0;
+    var isDragging = false;
+
+    track.addEventListener('touchstart', function (e) {
+        startX = e.changedTouches[0].clientX;
+        startY = e.changedTouches[0].clientY;
+        isDragging = true;
+    }, { passive: true });
+
+    track.addEventListener('touchend', function (e) {
+        if (!isDragging) return;
+        isDragging = false;
+        var dx = startX - e.changedTouches[0].clientX;
+        var dy = startY - e.changedTouches[0].clientY;
+        // Only trigger if horizontal swipe > vertical
+        if (Math.abs(dx) > 40 && Math.abs(dx) > Math.abs(dy)) {
+            if (dx > 0) update(current + 1);
+            else update(current - 1);
+        }
+    }, { passive: true });
+
+    // Keyboard
+    document.addEventListener('keydown', function (e) {
+        if (e.key === 'ArrowLeft') update(current - 1);
+        if (e.key === 'ArrowRight') update(current + 1);
+    });
+
+    update(0);
+}
+
+/* ========================================
+   TESTIMONIALS AUTO-SCROLL CAROUSEL
+   ======================================== */
+function initTestimonialsCarousel() {
+    var grid = document.querySelector('.testimonials-grid');
+    var cards = document.querySelectorAll('.testimonial-card');
+    var pagination = document.querySelector('.testimonials-pagination');
+    if (!grid || !cards.length) return;
+
+    function getCardsPerView() {
+        return window.innerWidth < 600 ? 1 : 2;
+    }
+
+    var cardsPerView = getCardsPerView();
+    var totalPages = Math.ceil(cards.length / cardsPerView);
+    var currentPage = 0;
+    var autoInterval;
+    var dots = [];
+
+    function buildDots() {
+        if (!pagination) return;
+        pagination.innerHTML = '';
+        dots = [];
+        cardsPerView = getCardsPerView();
+        totalPages = Math.ceil(cards.length / cardsPerView);
+        if (currentPage >= totalPages) currentPage = 0;
+
+        for (var i = 0; i < totalPages; i++) {
+            var dot = document.createElement('div');
+            dot.classList.add('pagination-dot');
+            if (i === currentPage) dot.classList.add('active');
+            (function (idx) {
+                dot.addEventListener('click', function () {
+                    currentPage = idx;
+                    slide();
+                    restartAuto();
+                });
+            })(i);
+            pagination.appendChild(dot);
+            dots.push(dot);
+        }
+    }
+
+    function slide() {
+        var cardW = cards[0].offsetWidth;
+        var gap = window.innerWidth < 600 ? 16 : (window.innerWidth < 900 ? 24 : 32);
+        var offset = (cardW + gap) * cardsPerView * currentPage;
+        grid.style.transform = 'translateX(-' + offset + 'px)';
+        dots.forEach(function (d, i) {
+            d.classList.toggle('active', i === currentPage);
+        });
+    }
+
+    function next() {
+        currentPage = (currentPage + 1) % totalPages;
+        slide();
+    }
+
+    function startAuto() {
+        autoInterval = setInterval(next, 5000);
+    }
+    function stopAuto() {
+        clearInterval(autoInterval);
+    }
+    function restartAuto() {
+        stopAuto();
+        startAuto();
+    }
+
+    // Touch swipe on testimonials
+    var tStartX = 0;
+    var tStartY = 0;
+    grid.addEventListener('touchstart', function (e) {
+        tStartX = e.changedTouches[0].clientX;
+        tStartY = e.changedTouches[0].clientY;
+        stopAuto();
+    }, { passive: true });
+
+    grid.addEventListener('touchend', function (e) {
+        var dx = tStartX - e.changedTouches[0].clientX;
+        var dy = tStartY - e.changedTouches[0].clientY;
+        if (Math.abs(dx) > 40 && Math.abs(dx) > Math.abs(dy)) {
+            if (dx > 0) {
+                currentPage = (currentPage + 1) % totalPages;
+            } else {
+                currentPage = (currentPage - 1 + totalPages) % totalPages;
+            }
+            slide();
+        }
+        startAuto();
+    }, { passive: true });
+
+    // Pause on hover (desktop)
+    grid.addEventListener('mouseenter', stopAuto);
+    grid.addEventListener('mouseleave', startAuto);
+
+    // Recalc on resize
+    var resizeTimer;
+    window.addEventListener('resize', function () {
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(function () {
+            buildDots();
+            slide();
+        }, 250);
+    });
+
+    buildDots();
+    slide();
+    startAuto();
+}
+
+/* ========================================
+   SCROLL ANIMATIONS (Intersection Observer)
+   ======================================== */
 function initScrollAnimations() {
-    const observerOptions = {
-        threshold: 0.1,
-        rootMargin: '0px 0px -100px 0px'
-    };
+    if (!('IntersectionObserver' in window)) return;
 
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
+    var observer = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
             if (entry.isIntersecting) {
                 entry.target.style.opacity = '1';
                 entry.target.style.transform = 'translateY(0)';
             }
         });
-    }, observerOptions);
+    }, { threshold: 0.1, rootMargin: '0px 0px -60px 0px' });
 
-    // Observe elements that should animate on scroll
-    const animateElements = document.querySelectorAll('.trust-card, .footer-col');
-
-    animateElements.forEach(el => {
+    document.querySelectorAll('.trust-card, .footer-col').forEach(function (el) {
         el.style.opacity = '0';
         el.style.transform = 'translateY(20px)';
         el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
@@ -239,363 +326,158 @@ function initScrollAnimations() {
     });
 }
 
-// Initialize scroll animations
-initScrollAnimations();
+/* ========================================
+   COUNT-UP ANIMATION
+   ======================================== */
+function initCountUp() {
+    if (!('IntersectionObserver' in window)) return;
 
-/**
- * Count-up animation for trust numbers
- */
-function initCountUpAnimation() {
-    const trustNumbers = document.querySelectorAll('.trust-number');
-    const duration = 1000; // 1 second
-    let hasAnimated = false;
+    var numbers = document.querySelectorAll('.trust-number');
+    if (!numbers.length) return;
 
-    const observerOptions = {
-        threshold: 0.5,
-        rootMargin: '0px'
-    };
+    var done = false;
+    var observer = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+            if (entry.isIntersecting && !done) {
+                done = true;
+                numbers.forEach(function (el) {
+                    var text = el.textContent.trim();
+                    var num = parseInt(text.replace(/[^0-9]/g, ''), 10);
+                    var suffix = text.replace(/[0-9]/g, '').trim();
+                    var start = null;
+                    var duration = 1000;
 
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting && !hasAnimated) {
-                hasAnimated = true;
-
-                trustNumbers.forEach(numberElement => {
-                    const targetText = numberElement.textContent.trim();
-                    const targetNumber = parseInt(targetText.replace(/[^0-9]/g, ''));
-                    const suffix = targetText.replace(/[0-9]/g, '').trim(); // Get suffix like "+" or ""
-
-                    let startTime = null;
-
-                    function animate(currentTime) {
-                        if (!startTime) startTime = currentTime;
-                        const elapsed = currentTime - startTime;
-                        const progress = Math.min(elapsed / duration, 1);
-
-                        // Easing function for smooth animation
-                        const easeOutQuart = 1 - Math.pow(1 - progress, 4);
-                        const currentNumber = Math.floor(easeOutQuart * targetNumber);
-
-                        numberElement.textContent = currentNumber + suffix;
-
-                        if (progress < 1) {
-                            requestAnimationFrame(animate);
-                        } else {
-                            numberElement.textContent = targetText; // Ensure final value is exact
-                        }
+                    function step(ts) {
+                        if (!start) start = ts;
+                        var p = Math.min((ts - start) / duration, 1);
+                        var ease = 1 - Math.pow(1 - p, 4);
+                        el.textContent = Math.floor(ease * num) + suffix;
+                        if (p < 1) requestAnimationFrame(step);
+                        else el.textContent = text;
                     }
-
-                    requestAnimationFrame(animate);
+                    requestAnimationFrame(step);
                 });
-
-                observer.disconnect(); // Only animate once
+                observer.disconnect();
             }
         });
-    }, observerOptions);
+    }, { threshold: 0.5 });
 
-    // Observe the trust section
-    const trustSection = document.querySelector('.trust-section');
-    if (trustSection) {
-        observer.observe(trustSection);
-    }
+    var section = document.querySelector('.trust-section');
+    if (section) observer.observe(section);
 }
 
-// Initialize count-up animation
-initCountUpAnimation();
-
-/**
- * Pause ticker animation on hover
- */
-const tickerTrack = document.querySelector('.ticker-track');
-if (tickerTrack) {
-    tickerTrack.addEventListener('mouseenter', function() {
-        this.style.animationPlayState = 'paused';
+/* ========================================
+   TICKER PAUSE
+   ======================================== */
+function initTickerPause() {
+    var track = document.querySelector('.ticker-track');
+    if (!track) return;
+    track.addEventListener('mouseenter', function () {
+        track.style.animationPlayState = 'paused';
     });
-
-    tickerTrack.addEventListener('mouseleave', function() {
-        this.style.animationPlayState = 'running';
+    track.addEventListener('mouseleave', function () {
+        track.style.animationPlayState = 'running';
     });
 }
 
-/**
- * Toggle contact bar visibility
- */
-const contactToggle = document.getElementById('contactToggle');
-const contactBar = document.getElementById('contactBar');
+/* ========================================
+   CONTACT BAR TOGGLE
+   ======================================== */
+function initContactToggle() {
+    var btn = document.getElementById('contactToggle');
+    var bar = document.getElementById('contactBar');
+    if (!btn || !bar) return;
 
-if (contactToggle && contactBar) {
-    contactToggle.addEventListener('click', function() {
-        contactBar.classList.toggle('active');
+    btn.addEventListener('click', function () {
+        bar.classList.toggle('active');
     });
 
-    // Close contact bar when clicking outside
-    document.addEventListener('click', function(e) {
-        if (!contactToggle.contains(e.target) && !contactBar.contains(e.target)) {
-            contactBar.classList.remove('active');
+    document.addEventListener('click', function (e) {
+        if (!btn.contains(e.target) && !bar.contains(e.target)) {
+            bar.classList.remove('active');
         }
     });
 }
 
-/**
- * Mobile Burger Menu Toggle
- */
-const mobileMenuToggle = document.getElementById('mobileMenuToggle');
-const mobileMenuClose = document.getElementById('mobileMenuClose');
-const navBoxes = document.querySelector('.nav-boxes');
-
-if (mobileMenuToggle && navBoxes) {
-    // Toggle mobile menu
-    mobileMenuToggle.addEventListener('click', function(e) {
-        e.stopPropagation();
-        this.classList.toggle('active');
-        navBoxes.classList.toggle('mobile-menu-open');
-
-        // Prevent body scroll when menu is open
-        if (navBoxes.classList.contains('mobile-menu-open')) {
-            document.body.style.overflow = 'hidden';
-        } else {
-            document.body.style.overflow = '';
-        }
-    });
-
-    // Close button
-    if (mobileMenuClose) {
-        mobileMenuClose.addEventListener('click', function(e) {
-            e.stopPropagation();
-            mobileMenuToggle.classList.remove('active');
-            navBoxes.classList.remove('mobile-menu-open');
-            document.body.style.overflow = '';
-        });
-    }
-
-    // Close menu when clicking outside
-    document.addEventListener('click', function(e) {
-        if (!navBoxes.contains(e.target) && !mobileMenuToggle.contains(e.target)) {
-            mobileMenuToggle.classList.remove('active');
-            navBoxes.classList.remove('mobile-menu-open');
-            document.body.style.overflow = '';
-        }
-    });
-
-    // Mobile dropdown toggle
-    const navBoxDropdowns = document.querySelectorAll('.nav-box-dropdown');
-
-    navBoxDropdowns.forEach(dropdown => {
-        const navBox = dropdown.querySelector('.nav-box');
-
-        if (navBox) {
-            navBox.addEventListener('click', function(e) {
-                // On mobile, toggle dropdown instead of navigating
-                if (window.innerWidth <= 768) {
-                    e.preventDefault();
-                    e.stopPropagation();
-
-                    // Close other dropdowns
-                    navBoxDropdowns.forEach(otherDropdown => {
-                        if (otherDropdown !== dropdown) {
-                            otherDropdown.classList.remove('dropdown-open');
-                        }
-                    });
-
-                    // Toggle current dropdown
-                    dropdown.classList.toggle('dropdown-open');
-                }
-            });
-        }
-    });
-
-    // Close menu when clicking on dropdown item
-    navBoxes.addEventListener('click', function(e) {
-        if (e.target.classList.contains('dropdown-item')) {
-            mobileMenuToggle.classList.remove('active');
-            navBoxes.classList.remove('mobile-menu-open');
-            document.body.style.overflow = '';
-        }
-    });
-}
-
-/**
- * Testimonials Auto-Scroll Carousel
- * 2 visible at a time, auto-scroll every 5 seconds
- * 3 pages total (6 testimonials)
- */
-function initTestimonialsAutoScroll() {
-    const grid = document.querySelector('.testimonials-grid');
-    const cards = document.querySelectorAll('.testimonial-card');
-    const paginationContainer = document.querySelector('.testimonials-pagination');
-
-    if (!grid || !cards.length) {
-        return;
-    }
-
-    const totalCards = cards.length; // 6
-    const cardsPerView = window.innerWidth <= 768 ? 1 : 2; // Mobile: 1, Desktop: 2
-    const totalPages = Math.ceil(totalCards / cardsPerView); // 3 pages
-    let currentPage = 0;
-    let autoScrollInterval;
-    let dots = [];
-
-    // Generate pagination dots
-    function generateDots() {
-        if (!paginationContainer) return;
-
-        paginationContainer.innerHTML = '';
-        dots = [];
-
-        for (let i = 0; i < totalPages; i++) {
-            const dot = document.createElement('div');
-            dot.classList.add('pagination-dot');
-            if (i === 0) dot.classList.add('active');
-
-            dot.addEventListener('click', () => {
-                currentPage = i;
-                updateCarousel();
-                updateDots();
-
-                // Restart auto-scroll after manual interaction
-                stopAutoScroll();
-                startAutoScroll();
-            });
-
-            paginationContainer.appendChild(dot);
-            dots.push(dot);
-        }
-    }
-
-    // Update active dot
-    function updateDots() {
-        dots.forEach((dot, index) => {
-            if (index === currentPage) {
-                dot.classList.add('active');
-            } else {
-                dot.classList.remove('active');
-            }
-        });
-    }
-
-    function updateCarousel() {
-        const cardWidth = cards[0].offsetWidth;
-        const gap = window.innerWidth <= 768 ? 24 : 32;
-        const scrollAmount = (cardWidth + gap) * cardsPerView * currentPage;
-
-        grid.style.transform = `translateX(-${scrollAmount}px)`;
-        updateDots();
-    }
-
-    function nextPage() {
-        currentPage++;
-
-        // Loop back to start after last page
-        if (currentPage >= totalPages) {
-            currentPage = 0;
-        }
-
-        updateCarousel();
-    }
-
-    function startAutoScroll() {
-        autoScrollInterval = setInterval(nextPage, 5000); // 5 seconds
-    }
-
-    function stopAutoScroll() {
-        clearInterval(autoScrollInterval);
-    }
-
-    // Pause on hover
-    grid.addEventListener('mouseenter', stopAutoScroll);
-    grid.addEventListener('mouseleave', startAutoScroll);
-
-    // Update on window resize
-    let resizeTimeout;
-    window.addEventListener('resize', () => {
-        clearTimeout(resizeTimeout);
-        resizeTimeout = setTimeout(() => {
-            updateCarousel();
-        }, 250);
-    });
-
-    // Initialize
-    generateDots();
-    updateCarousel();
-    startAutoScroll();
-}
-
-// Initialize testimonials auto-scroll
-initTestimonialsAutoScroll();
-
-/**
- * Contact Form Handler
- */
+/* ========================================
+   CONTACT FORM
+   ======================================== */
 function initContactForm() {
-    const form = document.getElementById('contactForm');
-    const successMessage = document.getElementById('formSuccessMessage');
+    var form = document.getElementById('contactForm');
+    var msg = document.getElementById('formSuccessMessage');
+    if (!form || !msg) return;
 
-    if (!form || !successMessage) {
-        return;
-    }
-
-    form.addEventListener('submit', function(e) {
+    form.addEventListener('submit', function (e) {
         e.preventDefault();
-
-        // Get form data
-        const formData = new FormData(form);
-        const data = {};
-        formData.forEach((value, key) => {
-            data[key] = value;
-        });
-
-        // Here you would normally send the data to your server
-        // For now, we'll just show the success message
+        var data = {};
+        new FormData(form).forEach(function (v, k) { data[k] = v; });
         console.log('Form submitted:', data);
 
-        // Simulate sending email (replace with actual backend call)
-        // Example: fetch('/api/contact', { method: 'POST', body: JSON.stringify(data) })
-
-        // Show success message
-        successMessage.classList.add('show');
-
-        // Reset form
+        msg.classList.add('show');
         form.reset();
-
-        // Hide success message after 10 seconds
-        setTimeout(() => {
-            successMessage.classList.remove('show');
-        }, 10000);
-
-        // Scroll to success message
-        successMessage.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        setTimeout(function () { msg.classList.remove('show'); }, 10000);
+        msg.scrollIntoView({ behavior: 'smooth', block: 'center' });
     });
 }
 
-// Initialize contact form
-initContactForm();
-
-/**
- * Smooth Scroll to Contact Form
- */
+/* ========================================
+   SCROLL TO CONTACT
+   ======================================== */
 function initScrollToContact() {
-    const scrollButtons = document.querySelectorAll('.scroll-to-contact');
-
-    scrollButtons.forEach(button => {
-        button.addEventListener('click', function(e) {
+    document.querySelectorAll('.scroll-to-contact').forEach(function (btn) {
+        btn.addEventListener('click', function (e) {
             e.preventDefault();
-
-            const targetId = this.getAttribute('href');
-            const targetElement = document.querySelector(targetId);
-
-            if (targetElement) {
-                const headerOffset = 100;
-                const elementPosition = targetElement.getBoundingClientRect().top;
-                const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
-
-                window.scrollTo({
-                    top: offsetPosition,
-                    behavior: 'smooth'
-                });
+            var target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                var offset = 80;
+                var top = target.getBoundingClientRect().top + window.pageYOffset - offset;
+                window.scrollTo({ top: top, behavior: 'smooth' });
             }
         });
     });
 }
 
-// Initialize scroll to contact
-initScrollToContact();
+/* ========================================
+   SMOOTH ANCHOR LINKS
+   ======================================== */
+function initSmoothAnchors() {
+    document.querySelectorAll('a[href^="#"]').forEach(function (a) {
+        a.addEventListener('click', function (e) {
+            var href = this.getAttribute('href');
+            if (!href || href === '#') return;
+            // Skip if handled by scroll-to-contact
+            if (this.classList.contains('scroll-to-contact')) return;
+
+            var target = document.querySelector(href);
+            if (target) {
+                e.preventDefault();
+                var offset = 80;
+                var top = target.getBoundingClientRect().top + window.pageYOffset - offset;
+                window.scrollTo({ top: top, behavior: 'smooth' });
+            }
+        });
+    });
+}
+
+/* ========================================
+   FLOATING CONTACT BOX (tap to expand on mobile)
+   ======================================== */
+function initFloatingContact() {
+    var box = document.querySelector('.floating-contact-box');
+    if (!box) return;
+
+    box.addEventListener('click', function (e) {
+        // Only toggle on mobile/tablet
+        if (window.innerWidth < 900) {
+            e.stopPropagation();
+            box.classList.toggle('expanded');
+        }
+    });
+
+    // Close when tapping outside
+    document.addEventListener('click', function (e) {
+        if (!box.contains(e.target)) {
+            box.classList.remove('expanded');
+        }
+    });
+}
