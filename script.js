@@ -345,12 +345,13 @@ function initCountUp() {
                     var num = parseInt(text.replace(/[^0-9]/g, ''), 10);
                     var suffix = text.replace(/[0-9]/g, '').trim();
                     var start = null;
-                    var duration = 1000;
+                    var duration = 2500;
 
                     function step(ts) {
                         if (!start) start = ts;
                         var p = Math.min((ts - start) / duration, 1);
-                        var ease = 1 - Math.pow(1 - p, 4);
+                        // Cubic ease-in-out: slow start, fast middle, slow end
+                        var ease = p < 0.5 ? 4 * p * p * p : 1 - Math.pow(-2 * p + 2, 3) / 2;
                         el.textContent = Math.floor(ease * num) + suffix;
                         if (p < 1) requestAnimationFrame(step);
                         else el.textContent = text;
