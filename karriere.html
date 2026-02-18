@@ -1,0 +1,756 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Karriere – Richter ElektroCom</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* ===== Subpage: Karriere ===== */
+
+        /* Hero */
+        .subpage-hero {
+            padding: 48px 0 40px;
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 60%, #3a1515 100%);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .subpage-hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(211,47,47,0.15) 0%, transparent 70%);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+        .subpage-hero-title {
+            font-size: 28px;
+            font-weight: 800;
+            color: #fff;
+            margin-bottom: 12px;
+            line-height: 1.15;
+            position: relative;
+            z-index: 1;
+        }
+        .subpage-hero-tagline {
+            font-size: 16px;
+            color: rgba(255,255,255,0.8);
+            max-width: 700px;
+            margin: 0 auto 24px;
+            line-height: 1.6;
+            position: relative;
+            z-index: 1;
+        }
+        .subpage-hero .btn-primary {
+            position: relative;
+            z-index: 1;
+        }
+        @media (min-width: 600px) {
+            .subpage-hero { padding: 72px 0 56px; }
+            .subpage-hero-title { font-size: 40px; }
+            .subpage-hero-tagline { font-size: 18px; }
+        }
+        @media (min-width: 900px) {
+            .subpage-hero { padding: 100px 0 80px; }
+            .subpage-hero-title { font-size: 52px; }
+            .subpage-hero-tagline { font-size: 20px; max-width: 800px; }
+            .subpage-hero::before { width: 800px; height: 800px; }
+        }
+
+        /* Benefits Section */
+        .subpage-benefits {
+            padding: 48px 0;
+            background: var(--color-bg-alt);
+        }
+        .subpage-benefits-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 16px;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+        .subpage-benefit-card {
+            background: var(--color-bg);
+            border-radius: var(--radius-lg);
+            padding: 28px 24px;
+            text-align: center;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+        }
+        .subpage-benefit-icon {
+            width: 64px;
+            height: 64px;
+            margin: 0 auto 16px;
+            border-radius: var(--radius-md);
+            background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            box-shadow: 0 6px 20px rgba(211,47,47,0.25);
+        }
+        .subpage-benefit-icon svg {
+            width: 28px;
+            height: 28px;
+        }
+        .subpage-benefit-card h3 {
+            font-size: 17px;
+            font-weight: 700;
+            color: var(--color-text);
+            margin-bottom: 8px;
+        }
+        .subpage-benefit-card p {
+            font-size: 14px;
+            color: var(--color-text-muted);
+            line-height: 1.6;
+            margin: 0;
+        }
+        @media (min-width: 600px) {
+            .subpage-benefits { padding: 64px 0; }
+            .subpage-benefits-grid { grid-template-columns: repeat(2, 1fr); gap: 20px; }
+            .subpage-benefit-card h3 { font-size: 18px; }
+        }
+        @media (min-width: 900px) {
+            .subpage-benefits { padding: 80px 0; }
+            .subpage-benefits-grid { grid-template-columns: repeat(3, 1fr); gap: 24px; }
+            .subpage-benefit-card { padding: 36px 28px; }
+            .subpage-benefit-card:hover {
+                transform: translateY(-6px);
+                box-shadow: 0 12px 40px rgba(0,0,0,0.1);
+            }
+            .subpage-benefit-icon { width: 72px; height: 72px; }
+            .subpage-benefit-icon svg { width: 32px; height: 32px; }
+            .subpage-benefit-card h3 { font-size: 20px; }
+            .subpage-benefit-card p { font-size: 15px; }
+        }
+
+        /* Jobs Section */
+        .subpage-jobs {
+            padding: 48px 0;
+            background: var(--color-bg);
+        }
+        .subpage-jobs-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 16px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        .subpage-job-card {
+            background: var(--color-bg-alt);
+            border-radius: var(--radius-lg);
+            padding: 24px;
+            border-left: 4px solid var(--color-primary);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .subpage-job-header {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            margin-bottom: 12px;
+        }
+        .subpage-job-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--color-text);
+            margin: 0;
+            line-height: 1.3;
+        }
+        .subpage-job-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            align-items: center;
+        }
+        .subpage-job-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            padding: 4px 10px;
+            background: var(--color-bg);
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--color-text-muted);
+        }
+        .subpage-job-tag svg {
+            width: 12px;
+            height: 12px;
+            flex-shrink: 0;
+        }
+        .subpage-job-description {
+            font-size: 14px;
+            line-height: 1.65;
+            color: var(--color-text-light);
+            margin-bottom: 16px;
+        }
+        .subpage-job-card .btn-primary {
+            padding: 10px 20px;
+            font-size: 14px;
+            min-height: 40px;
+        }
+        @media (min-width: 600px) {
+            .subpage-jobs { padding: 64px 0; }
+            .subpage-jobs-grid { gap: 20px; }
+            .subpage-job-header { flex-direction: row; align-items: center; justify-content: space-between; }
+            .subpage-job-title { font-size: 19px; }
+        }
+        @media (min-width: 900px) {
+            .subpage-jobs { padding: 80px 0; }
+            .subpage-jobs-grid { gap: 24px; }
+            .subpage-job-card { padding: 32px; }
+            .subpage-job-card:hover {
+                transform: translateX(8px);
+                box-shadow: 0 8px 32px rgba(0,0,0,0.08);
+            }
+            .subpage-job-title { font-size: 20px; }
+            .subpage-job-description { font-size: 15px; }
+            .subpage-job-card .btn-primary { padding: 12px 24px; font-size: 15px; }
+        }
+
+        /* Application Process */
+        .subpage-process {
+            padding: 48px 0;
+            background: var(--color-bg-alt);
+        }
+        .subpage-process-steps {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 24px;
+            max-width: 900px;
+            margin: 0 auto;
+            counter-reset: step-counter;
+        }
+        .subpage-process-step {
+            display: flex;
+            gap: 20px;
+            align-items: flex-start;
+            counter-increment: step-counter;
+        }
+        .subpage-step-number {
+            flex-shrink: 0;
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            font-weight: 800;
+            box-shadow: 0 4px 16px rgba(211,47,47,0.3);
+        }
+        .subpage-step-content h3 {
+            font-size: 17px;
+            font-weight: 700;
+            color: var(--color-text);
+            margin-bottom: 4px;
+            line-height: 1.3;
+        }
+        .subpage-step-content p {
+            font-size: 14px;
+            color: var(--color-text-muted);
+            line-height: 1.6;
+            margin: 0;
+        }
+        @media (min-width: 600px) {
+            .subpage-process { padding: 64px 0; }
+            .subpage-process-steps { gap: 28px; }
+            .subpage-step-number { width: 56px; height: 56px; font-size: 22px; }
+            .subpage-step-content h3 { font-size: 18px; }
+            .subpage-step-content p { font-size: 15px; }
+        }
+        @media (min-width: 900px) {
+            .subpage-process { padding: 80px 0; }
+            .subpage-process-steps { grid-template-columns: repeat(4, 1fr); gap: 32px; text-align: center; }
+            .subpage-process-step { flex-direction: column; align-items: center; }
+            .subpage-step-number { width: 64px; height: 64px; font-size: 24px; }
+            .subpage-step-content h3 { font-size: 19px; margin-bottom: 8px; }
+            .subpage-step-content p { font-size: 15px; }
+        }
+
+        /* CTA Initiativbewerbung */
+        .subpage-cta-section {
+            padding: 48px 0;
+            background: var(--color-bg);
+        }
+        .subpage-cta-box {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+            padding: 36px 24px;
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+            border-radius: var(--radius-xl);
+            box-shadow: 0 8px 32px rgba(0,0,0,0.15);
+        }
+        .subpage-cta-box h2 {
+            font-size: 22px;
+            font-weight: 800;
+            color: #fff;
+            margin-bottom: 12px;
+            line-height: 1.3;
+        }
+        .subpage-cta-box p {
+            font-size: 15px;
+            color: rgba(255,255,255,0.8);
+            line-height: 1.6;
+            margin-bottom: 24px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .subpage-cta-box .btn-primary {
+            background: #fff;
+            color: var(--color-text);
+            box-shadow: 0 4px 16px rgba(255,255,255,0.2);
+        }
+        .subpage-cta-box .btn-primary:hover {
+            background: #f3f4f6;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(255,255,255,0.3);
+        }
+        @media (min-width: 600px) {
+            .subpage-cta-section { padding: 64px 0; }
+            .subpage-cta-box { padding: 48px 36px; }
+            .subpage-cta-box h2 { font-size: 28px; }
+            .subpage-cta-box p { font-size: 16px; }
+        }
+        @media (min-width: 900px) {
+            .subpage-cta-section { padding: 80px 0; }
+            .subpage-cta-box { padding: 64px 48px; }
+            .subpage-cta-box h2 { font-size: 34px; }
+            .subpage-cta-box p { font-size: 18px; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Top Contact Bar -->
+    <div class="top-contact-bar" id="contactBar">
+        <div class="container-wide">
+            <div class="contact-items">
+                <a href="mailto:info@r-ec.de" class="contact-item">
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1H2zm13 2.383-4.758 2.855L15 11.114v-5.73zm-.034 6.878L9.271 8.82 8 9.583 6.728 8.82l-5.694 3.44A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.739zM1 11.114l4.758-2.876L1 5.383v5.73z"/></svg>
+                    info@r-ec.de
+                </a>
+                <a href="tel:+495258210800" class="contact-item">
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path d="M3.654 1.328a.678.678 0 0 0-1.015-.063L1.605 2.3c-.483.484-.661 1.169-.45 1.77a17.568 17.568 0 0 0 4.168 6.608 17.569 17.569 0 0 0 6.608 4.168c.601.211 1.286.033 1.77-.45l1.034-1.034a.678.678 0 0 0-.063-1.015l-2.307-1.794a.678.678 0 0 0-.58-.122l-2.19.547a1.745 1.745 0 0 1-1.657-.459L5.482 8.062a1.745 1.745 0 0 1-.46-1.657l.548-2.19a.678.678 0 0 0-.122-.58L3.654 1.328z"/></svg>
+                    05258 21080-0
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <header class="main-header">
+        <div class="container-wide">
+            <div class="header-content">
+                <div class="logo"><a href="index.html"><img src="https://www.richter-elektrocom.de/wp-content/uploads/2023/02/R-EC_Logo_inv.png" alt="Richter ElektroCom" /></a></div>
+                <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Menü öffnen">
+                    <span class="burger-line"></span><span class="burger-line"></span><span class="burger-line"></span>
+                </button>
+                <div class="mobile-menu-overlay" id="mobileMenuOverlay"></div>
+                <nav class="nav-boxes">
+                    <button class="mobile-menu-close" id="mobileMenuClose" aria-label="Menü schließen">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                        <span>Menü schließen</span>
+                    </button>
+                    <a href="index.html#contact-form" class="contact-toggle-btn">
+                        <svg width="18" height="18" viewBox="0 0 16 16" fill="currentColor"><path d="M3.654 1.328a.678.678 0 0 0-1.015-.063L1.605 2.3c-.483.484-.661 1.169-.45 1.77a17.568 17.568 0 0 0 4.168 6.608 17.569 17.569 0 0 0 6.608 4.168c.601.211 1.286.033 1.77-.45l1.034-1.034a.678.678 0 0 0-.063-1.015l-2.307-1.794a.678.678 0 0 0-.58-.122l-2.19.547a1.745 1.745 0 0 1-1.657-.459L5.482 8.062a1.745 1.745 0 0 1-.46-1.657l.548-2.19a.678.678 0 0 0-.122-.58L3.654 1.328z"/></svg>
+                        <span>Kontakt</span>
+                    </a>
+                    <div class="nav-box-dropdown dropdown-energy">
+                        <a href="energie.html" class="nav-box nav-box-energy"><span class="nav-box-text">Energie</span></a>
+                        <div class="dropdown-menu">
+                            <a href="energie.html#e-mobilitaet" class="dropdown-item">E-Mobilität für Unternehmen</a>
+                            <a href="energie.html#abrechnungssystem" class="dropdown-item">Abrechnungssystem E-Dienstwagen</a>
+                            <a href="energie.html#bezahlsystem" class="dropdown-item">Bezahlsystem Ladestationen</a>
+                            <a href="energie.html#photovoltaik" class="dropdown-item">Photovoltaik & Batteriespeicher</a>
+                            <a href="energie.html#energiemanagement" class="dropdown-item">Energiemanagement</a>
+                            <a href="energie.html#foerderung" class="dropdown-item">Förderung Energieeffizienz</a>
+                        </div>
+                    </div>
+                    <div class="nav-box-dropdown dropdown-electric">
+                        <a href="elektrotechnik.html" class="nav-box nav-box-electric"><span class="nav-box-text">Elektrotechnik</span></a>
+                        <div class="dropdown-menu">
+                            <a href="elektrotechnik.html#neu-umbauten" class="dropdown-item">Neu- & Umbauten</a>
+                            <a href="elektrotechnik.html#netzanschluss" class="dropdown-item">Netzanschluss & Trafostationen</a>
+                            <a href="elektrotechnik.html#beleuchtung" class="dropdown-item">Beleuchtung für Unternehmen</a>
+                            <a href="elektrotechnik.html#sicherheit" class="dropdown-item">Schließanlagen & Alarmsysteme</a>
+                            <a href="elektrotechnik.html#e-check" class="dropdown-item">E-Check für Unternehmen</a>
+                        </div>
+                    </div>
+                    <div class="nav-box-dropdown dropdown-heating">
+                        <a href="heizung-sanitaer.html" class="nav-box nav-box-heating"><span class="nav-box-text">Heizung & Sanitär</span></a>
+                        <div class="dropdown-menu">
+                            <a href="heizung-sanitaer.html#neu-umbauten" class="dropdown-item">Neu- & Umbauten</a>
+                            <a href="heizung-sanitaer.html#waermepumpen" class="dropdown-item">Wärmepumpen & Lüftungen</a>
+                            <a href="heizung-sanitaer.html#badsanierung" class="dropdown-item">Badsanierung</a>
+                            <a href="heizung-sanitaer.html#enthaertung" class="dropdown-item">Enthärtungsanlagen</a>
+                            <a href="heizung-sanitaer.html#heizungstechnik" class="dropdown-item">Heizungstechnik</a>
+                        </div>
+                    </div>
+                    <div class="nav-box-dropdown dropdown-it">
+                        <a href="it-kommunikation.html" class="nav-box nav-box-it"><span class="nav-box-text">IT & Kommunikation</span></a>
+                        <div class="dropdown-menu">
+                            <a href="it-kommunikation.html#managed-services" class="dropdown-item">Managed Services</a>
+                            <a href="it-kommunikation.html#it-sicherheit" class="dropdown-item">IT-Sicherheit</a>
+                            <a href="it-kommunikation.html#netzwerk" class="dropdown-item">Netzwerktechnik</a>
+                            <a href="it-kommunikation.html#cloud" class="dropdown-item">Cloud-Lösungen & Microsoft 365</a>
+                            <a href="it-kommunikation.html#telefonanlagen" class="dropdown-item">Telefonanlagen</a>
+                            <a href="it-kommunikation.html#videoueberwachung" class="dropdown-item">Videoüberwachung</a>
+                        </div>
+                    </div>
+                    <a href="unternehmen.html" class="nav-box nav-box-company"><span class="nav-box-text">Unternehmen</span></a>
+                    <a href="karriere.html" class="nav-box nav-box-career"><span class="nav-box-text">Jobs / Karriere</span></a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- ============================================================
+         KARRIERE PAGE CONTENT
+         ============================================================ -->
+
+    <!-- 1. Hero Section -->
+    <section class="subpage-hero">
+        <div class="container">
+            <h1 class="subpage-hero-title">Gestalte die Technik von morgen</h1>
+            <p class="subpage-hero-tagline">
+                Werde Teil eines Teams, das Elektrotechnik, IT, Energie und Heizung & Sanitär unter einem Dach vereint.
+                Bei Richter ElektroCom arbeitest du an echten Projekten, mit modernster Technik und starkem Zusammenhalt.
+            </p>
+            <a href="#offene-stellen" class="btn-primary">Offene Stellen ansehen</a>
+        </div>
+    </section>
+
+    <!-- 2. Benefits Section -->
+    <section class="subpage-benefits">
+        <div class="container">
+            <h2 class="section-headline">Warum Richter ElektroCom?</h2>
+            <p class="section-subhead">Sechs gute Gründe, Teil unseres Teams zu werden</p>
+
+            <div class="subpage-benefits-grid">
+                <!-- Moderne Technik -->
+                <div class="subpage-benefit-card">
+                    <div class="subpage-benefit-icon">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+                        </svg>
+                    </div>
+                    <h3>Moderne Technik</h3>
+                    <p>Du arbeitest mit aktuellen Werkzeugen, Systemen und Technologien. Vom E-Mobilitäts-Ladepark bis zur Netzwerktechnik — hier ist nichts von gestern.</p>
+                </div>
+
+                <!-- Starkes Team -->
+                <div class="subpage-benefit-card">
+                    <div class="subpage-benefit-icon">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                            <circle cx="9" cy="7" r="4"></circle>
+                            <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                            <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                        </svg>
+                    </div>
+                    <h3>Starkes Team</h3>
+                    <p>28 engagierte Kolleginnen und Kollegen, die sich gegenseitig unterstützen. Flache Hierarchien und ein respektvolles Miteinander prägen unseren Alltag.</p>
+                </div>
+
+                <!-- Weiterbildung -->
+                <div class="subpage-benefit-card">
+                    <div class="subpage-benefit-icon">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path>
+                            <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path>
+                        </svg>
+                    </div>
+                    <h3>Weiterbildung</h3>
+                    <p>Wir investieren gezielt in deine fachliche und persönliche Entwicklung — durch Schulungen, Zertifizierungen und Herstellertrainings.</p>
+                </div>
+
+                <!-- Eigenverantwortung -->
+                <div class="subpage-benefit-card">
+                    <div class="subpage-benefit-icon">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                            <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                        </svg>
+                    </div>
+                    <h3>Eigenverantwortung</h3>
+                    <p>Bei uns übernimmst du von Anfang an Verantwortung für eigene Projekte. Deine Ideen und dein Engagement zählen — nicht nur auf dem Papier.</p>
+                </div>
+
+                <!-- Sichere Zukunft -->
+                <div class="subpage-benefit-card">
+                    <div class="subpage-benefit-icon">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                        </svg>
+                    </div>
+                    <h3>Sichere Zukunft</h3>
+                    <p>Über 60 Jahre Unternehmensgeschichte, volle Auftragsbücher und eine zukunftssichere Branche bieten dir langfristige Perspektiven.</p>
+                </div>
+
+                <!-- Work-Life-Balance -->
+                <div class="subpage-benefit-card">
+                    <div class="subpage-benefit-icon">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <polyline points="12 6 12 12 16 14"></polyline>
+                        </svg>
+                    </div>
+                    <h3>Work-Life-Balance</h3>
+                    <p>Geregelte Arbeitszeiten, 30 Tage Urlaub und kurze Entscheidungswege sorgen dafür, dass Arbeit und Privatleben im Gleichgewicht bleiben.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. Offene Stellen -->
+    <section id="offene-stellen" class="subpage-jobs">
+        <div class="container">
+            <h2 class="section-headline">Offene Stellen</h2>
+            <p class="section-subhead">Finde die Position, die zu dir passt — wir freuen uns auf deine Bewerbung</p>
+
+            <div class="subpage-jobs-grid">
+                <!-- Elektroniker -->
+                <div class="subpage-job-card">
+                    <div class="subpage-job-header">
+                        <h3 class="subpage-job-title">Elektroniker (m/w/d) — Energie- und Gebäudetechnik</h3>
+                        <div class="subpage-job-meta">
+                            <span class="subpage-job-tag">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                                Salzkotten
+                            </span>
+                            <span class="subpage-job-tag">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                                Vollzeit
+                            </span>
+                        </div>
+                    </div>
+                    <p class="subpage-job-description">
+                        Du installierst, wartest und reparierst elektrische Anlagen in gewerblichen und privaten Gebäuden. Von der Verteilung über Beleuchtungssysteme bis zur Gebäudeautomation — du bringst Projekte vom Plan in die Realität.
+                    </p>
+                    <a href="mailto:bewerbung@r-ec.de?subject=Bewerbung%20Elektroniker" class="btn-primary">Jetzt bewerben</a>
+                </div>
+
+                <!-- IT-Systemadministrator -->
+                <div class="subpage-job-card">
+                    <div class="subpage-job-header">
+                        <h3 class="subpage-job-title">IT-Systemadministrator (m/w/d)</h3>
+                        <div class="subpage-job-meta">
+                            <span class="subpage-job-tag">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                                Salzkotten
+                            </span>
+                            <span class="subpage-job-tag">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                                Vollzeit
+                            </span>
+                        </div>
+                    </div>
+                    <p class="subpage-job-description">
+                        Du betreust die IT-Infrastruktur unserer Kunden — von Netzwerken über Cloud-Dienste bis hin zu IT-Sicherheit. Du löst Probleme, bevor sie entstehen, und sorgst für reibungslose Abläufe in Unternehmen der Region.
+                    </p>
+                    <a href="mailto:bewerbung@r-ec.de?subject=Bewerbung%20IT-Systemadministrator" class="btn-primary">Jetzt bewerben</a>
+                </div>
+
+                <!-- Anlagenmechaniker -->
+                <div class="subpage-job-card">
+                    <div class="subpage-job-header">
+                        <h3 class="subpage-job-title">Anlagenmechaniker (m/w/d) — Sanitär-, Heizungs- und Klimatechnik</h3>
+                        <div class="subpage-job-meta">
+                            <span class="subpage-job-tag">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                                Salzkotten
+                            </span>
+                            <span class="subpage-job-tag">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                                Vollzeit
+                            </span>
+                        </div>
+                    </div>
+                    <p class="subpage-job-description">
+                        Du planst und installierst moderne Heizungs-, Sanitär- und Lüftungsanlagen. Ob Wärmepumpe, Badsanierung oder Enthärtungsanlage — du setzt anspruchsvolle Projekte um und bringst dein Handwerk auf den Punkt.
+                    </p>
+                    <a href="mailto:bewerbung@r-ec.de?subject=Bewerbung%20Anlagenmechaniker" class="btn-primary">Jetzt bewerben</a>
+                </div>
+
+                <!-- Projektleiter -->
+                <div class="subpage-job-card">
+                    <div class="subpage-job-header">
+                        <h3 class="subpage-job-title">Projektleiter Elektrotechnik (m/w/d)</h3>
+                        <div class="subpage-job-meta">
+                            <span class="subpage-job-tag">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                                Salzkotten
+                            </span>
+                            <span class="subpage-job-tag">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                                Vollzeit
+                            </span>
+                        </div>
+                    </div>
+                    <p class="subpage-job-description">
+                        Du steuerst elektrotechnische Bauprojekte von der Angebotsphase bis zur Abnahme. Du koordinierst Teams, hältst Termine und Budgets im Blick und bist der zentrale Ansprechpartner für Kunden und Nachunternehmer.
+                    </p>
+                    <a href="mailto:bewerbung@r-ec.de?subject=Bewerbung%20Projektleiter%20Elektrotechnik" class="btn-primary">Jetzt bewerben</a>
+                </div>
+
+                <!-- Auszubildende -->
+                <div class="subpage-job-card">
+                    <div class="subpage-job-header">
+                        <h3 class="subpage-job-title">Auszubildende/r (m/w/d) — Elektroniker oder Anlagenmechaniker</h3>
+                        <div class="subpage-job-meta">
+                            <span class="subpage-job-tag">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                                Salzkotten
+                            </span>
+                            <span class="subpage-job-tag">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                                Ausbildung
+                            </span>
+                        </div>
+                    </div>
+                    <p class="subpage-job-description">
+                        Starte deine berufliche Zukunft bei uns! Du lernst von erfahrenen Fachkräften, arbeitest an echten Projekten und wirst Schritt für Schritt zum Profi in deinem Handwerk. Gute Übernahmechancen inklusive.
+                    </p>
+                    <a href="mailto:bewerbung@r-ec.de?subject=Bewerbung%20Ausbildung" class="btn-primary">Jetzt bewerben</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. Bewerbungsprozess -->
+    <section class="subpage-process">
+        <div class="container">
+            <h2 class="section-headline">Dein Weg zu uns</h2>
+            <p class="section-subhead">In vier einfachen Schritten zu deinem neuen Job</p>
+
+            <div class="subpage-process-steps">
+                <div class="subpage-process-step">
+                    <div class="subpage-step-number">1</div>
+                    <div class="subpage-step-content">
+                        <h3>Bewerbung senden</h3>
+                        <p>Schicke uns deine Unterlagen per E-Mail oder über das Kontaktformular — ein kurzes Anschreiben und dein Lebenslauf genügen.</p>
+                    </div>
+                </div>
+
+                <div class="subpage-process-step">
+                    <div class="subpage-step-number">2</div>
+                    <div class="subpage-step-content">
+                        <h3>Persönliches Gespräch</h3>
+                        <p>Wir laden dich zeitnah zu einem Kennenlerngespräch ein — locker und auf Augenhöhe. Lerne das Team und unsere Projekte kennen.</p>
+                    </div>
+                </div>
+
+                <div class="subpage-process-step">
+                    <div class="subpage-step-number">3</div>
+                    <div class="subpage-step-content">
+                        <h3>Schnuppertag</h3>
+                        <p>Erlebe einen Tag bei uns im Betrieb. Schau dir Baustellen, Werkstatt und Büro an und lerne dein zukünftiges Team persönlich kennen.</p>
+                    </div>
+                </div>
+
+                <div class="subpage-process-step">
+                    <div class="subpage-step-number">4</div>
+                    <div class="subpage-step-content">
+                        <h3>Willkommen im Team</h3>
+                        <p>Du erhältst dein Vertragsangebot und startest mit einem strukturierten Onboarding in deine neue Rolle bei Richter ElektroCom.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. CTA: Initiativbewerbung -->
+    <section class="subpage-cta-section">
+        <div class="container">
+            <div class="subpage-cta-box">
+                <h2>Keine passende Stelle dabei?</h2>
+                <p>Wir sind immer auf der Suche nach motivierten Menschen, die etwas bewegen wollen. Schick uns deine Initiativbewerbung — wir freuen uns, von dir zu hören.</p>
+                <a href="mailto:bewerbung@r-ec.de?subject=Initiativbewerbung" class="btn-primary btn-large">Initiativbewerbung senden</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+         END KARRIERE PAGE CONTENT
+         ============================================================ -->
+
+    <!-- Floating Contact Box -->
+    <div class="floating-contact-box">
+        <div class="floating-contact-header">
+            <svg width="20" height="20" viewBox="0 0 16 16" fill="currentColor">
+                <path d="M3.654 1.328a.678.678 0 0 0-1.015-.063L1.605 2.3c-.483.484-.661 1.169-.45 1.77a17.568 17.568 0 0 0 4.168 6.608 17.569 17.569 0 0 0 6.608 4.168c.601.211 1.286.033 1.77-.45l1.034-1.034a.678.678 0 0 0-.063-1.015l-2.307-1.794a.678.678 0 0 0-.58-.122l-2.19.547a1.745 1.745 0 0 1-1.657-.459L5.482 8.062a1.745 1.745 0 0 1-.46-1.657l.548-2.19a.678.678 0 0 0-.122-.58L3.654 1.328z"/>
+            </svg>
+            <span>Kontakt</span>
+        </div>
+        <div class="floating-contact-content">
+            <div class="contact-info-item">
+                <strong>Telefon:</strong>
+                <a href="tel:+495258210800">05258 21080-0</a>
+            </div>
+            <div class="contact-info-item">
+                <strong>E-Mail:</strong>
+                <a href="mailto:info@r-ec.de">info@r-ec.de</a>
+            </div>
+            <div class="contact-info-item">
+                <strong>Öffnungszeiten:</strong>
+                <p>Mo-Do: 7:00 - 16:30 Uhr<br>Fr: 7:00 - 13:00 Uhr</p>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h4>Kontakt</h4>
+                    <p>Richter ElektroCom GmbH<br>An der Burg 10<br>33154 Salzkotten</p>
+                    <p><a href="tel:+495258210800">05258 21080-0</a><br><a href="mailto:info@r-ec.de">info@r-ec.de</a></p>
+                </div>
+                <div class="footer-col">
+                    <h4>Energie</h4>
+                    <a href="energie.html#e-mobilitaet">E-Mobilität</a>
+                    <a href="energie.html#photovoltaik">Photovoltaik</a>
+                    <a href="energie.html#energiemanagement">Energiemanagement</a>
+                </div>
+                <div class="footer-col">
+                    <h4>Elektrotechnik</h4>
+                    <a href="elektrotechnik.html#neu-umbauten">Neu- & Umbauten</a>
+                    <a href="elektrotechnik.html#netzanschluss">Netzanschluss</a>
+                    <a href="elektrotechnik.html#e-check">E-Check</a>
+                </div>
+                <div class="footer-col">
+                    <h4>Heizung & Sanitär</h4>
+                    <a href="heizung-sanitaer.html#waermepumpen">Wärmepumpen</a>
+                    <a href="heizung-sanitaer.html#badsanierung">Badsanierung</a>
+                    <a href="heizung-sanitaer.html#heizungstechnik">Heizungstechnik</a>
+                </div>
+                <div class="footer-col">
+                    <h4>IT & Kommunikation</h4>
+                    <a href="it-kommunikation.html#managed-services">Managed Services</a>
+                    <a href="it-kommunikation.html#it-sicherheit">IT-Sicherheit</a>
+                    <a href="it-kommunikation.html#cloud">Cloud-Lösungen</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Richter ElektroCom GmbH</p>
+                <div class="footer-links">
+                    <a href="#">Impressum</a>
+                    <a href="#">Datenschutz</a>
+                    <a href="#">AGB</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <script src="script.js"></script>
+</body>
+</html>
