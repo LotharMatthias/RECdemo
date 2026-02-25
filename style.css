@@ -109,31 +109,57 @@ button {
     width: auto;
 }
 
-/* Contact Toggle Button */
-.contact-toggle-btn {
-    padding: 8px 16px;
-    border-radius: 8px;
-    font-weight: 600;
-    font-size: 13px;
-    color: #ffffff;
-    background: #1a1a1a;
-    transition: all 0.3s ease;
-    display: flex;
+/* Mobile Hamburger Toggle */
+.mobile-menu-toggle {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
     align-items: center;
-    gap: 6px;
-    height: 36px;
-    margin-left: auto;
+    gap: 5px;
+    width: 44px;
+    height: 44px;
+    border-radius: 10px;
+    background: #1a1a1a;
+    cursor: pointer;
+    flex-shrink: 0;
+    transition: background 0.2s ease;
 }
 
-.contact-toggle-btn:hover {
+.mobile-menu-toggle:hover {
     background: #374151;
-    transform: translateY(-1px);
-    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
 }
 
-.contact-toggle-btn svg {
-    width: 16px;
-    height: 16px;
+.mobile-menu-toggle span {
+    display: block;
+    width: 22px;
+    height: 2px;
+    background: #ffffff;
+    border-radius: 2px;
+    transition: all 0.3s ease;
+}
+
+/* Mobile Close Button – single X, shown only in mobile menu */
+.mobile-menu-close {
+    display: none;
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: #f3f4f6;
+    align-items: center;
+    justify-content: center;
+    color: #1a1a1a;
+    cursor: pointer;
+    transition: background 0.2s ease, transform 0.2s ease;
+    flex-shrink: 0;
+    z-index: 10;
+}
+
+.mobile-menu-close:hover {
+    background: #e5e7eb;
+    transform: rotate(90deg);
 }
 
 /* Navigation Boxes */
@@ -142,6 +168,69 @@ button {
     gap: 12px;
     flex-wrap: wrap;
     align-items: center;
+}
+
+/* ==========================================
+   Mobile Contact Quicklinks (bottom of mobile menu)
+   ========================================== */
+
+.mobile-contact-quicklinks {
+    display: none;
+    width: 100%;
+    border-top: 1px solid #e5e7eb;
+    padding-top: 20px;
+    margin-top: 8px;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.quicklink-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 12px 16px;
+    border-radius: 10px;
+    color: #374151;
+    font-size: 14px;
+    font-weight: 500;
+    text-decoration: none;
+    transition: background 0.2s ease, color 0.2s ease;
+    line-height: 1.5;
+}
+
+.quicklink-item svg {
+    flex-shrink: 0;
+    margin-top: 2px;
+    color: #6b7280;
+}
+
+.quicklink-item:hover {
+    background: #f3f4f6;
+    color: #1a1a1a;
+}
+
+.quicklink-item.quicklink-scroll {
+    background: #1a1a1a;
+    color: #ffffff;
+    font-weight: 600;
+}
+
+.quicklink-item.quicklink-scroll svg {
+    color: #ffffff;
+}
+
+.quicklink-item.quicklink-scroll:hover {
+    background: #374151;
+    color: #ffffff;
+}
+
+.quicklink-hours {
+    cursor: default;
+}
+
+.quicklink-hours:hover {
+    background: transparent;
+    color: #374151;
 }
 
 .nav-box {
@@ -332,9 +421,9 @@ button {
 }
 
 .btn-primary {
-    background: linear-gradient(135deg, #d32f2f 0%, #b71c1c 100%);
+    background: #d32f2f;
     color: #ffffff;
-    box-shadow: 0 4px 12px rgba(211, 47, 47, 0.3);
+    box-shadow: 0 4px 12px rgba(211, 47, 47, 0.25);
 }
 
 .btn-primary:hover {
@@ -545,24 +634,26 @@ button {
     justify-self: start;
 }
 
+/* Flat solid colors – no gradients */
 .card-energy .card-cta {
-    background: #10b981;
+    background: #059669;
 }
 
 .card-electric .card-cta {
-    background: #3b82f6;
+    background: #2563eb;
 }
 
 .card-heating .card-cta {
-    background: #ef4444;
+    background: #dc2626;
 }
 
 .card-it .card-cta {
-    background: #8b5cf6;
+    background: #7c3aed;
 }
 
 .card-cta:hover {
     transform: translateX(4px);
+    opacity: 0.9;
     box-shadow: 0 4px 12px rgba(0,0,0,0.15);
 }
 
@@ -673,10 +764,7 @@ button {
 .trust-number {
     font-size: 64px;
     font-weight: 800;
-    background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+    color: #d32f2f;
     margin-bottom: 16px;
 }
 
@@ -785,10 +873,11 @@ button {
     height: 60px;
     z-index: 1000;
     overflow: hidden;
-    transition: width 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
-                height 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
-                box-shadow 0.4s ease-in-out,
-                transform 0.3s ease-in-out;
+    /* Smooth ease-in-out for all properties */
+    transition: width 0.45s ease-in-out,
+                height 0.45s ease-in-out,
+                box-shadow 0.35s ease-in-out,
+                border-radius 0.35s ease-in-out;
     cursor: pointer;
     transform: scale(1);
 }
@@ -796,22 +885,18 @@ button {
 .floating-contact-box:hover {
     width: 280px;
     height: auto;
-    box-shadow: 0 12px 48px rgba(0,0,0,0.25);
-    transform: scale(1);
+    box-shadow: 0 12px 48px rgba(0,0,0,0.22);
 }
 
-.floating-contact-box:not(:hover) {
-    transform: scale(0.95);
-    opacity: 0.92;
-    transition: width 0.35s ease-in-out,
-                height 0.35s ease-in-out,
-                box-shadow 0.35s ease-in-out,
-                transform 0.35s ease-in-out,
-                opacity 0.35s ease-in-out;
+/* Mobile: stays closed until tapped */
+.floating-contact-box.mobile-open {
+    width: 280px;
+    height: auto;
+    box-shadow: 0 12px 48px rgba(0,0,0,0.22);
 }
 
 .floating-contact-header {
-    background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+    background: #1a1a1a;
     color: #ffffff;
     padding: 16px 20px;
     display: flex;
@@ -828,29 +913,42 @@ button {
     flex-shrink: 0;
 }
 
-.floating-contact-box:not(:hover) .floating-contact-header {
+.floating-contact-box:not(:hover):not(.mobile-open) .floating-contact-header {
     justify-content: center;
     padding: 18px;
 }
 
-.floating-contact-box:not(:hover) .floating-contact-header span {
-    display: none;
+.floating-contact-box:not(:hover):not(.mobile-open) .floating-contact-header span {
+    opacity: 0;
+    width: 0;
+    overflow: hidden;
+    display: inline-block;
+    transition: opacity 0.3s ease, width 0.3s ease;
+}
+
+.floating-contact-box:hover .floating-contact-header span,
+.floating-contact-box.mobile-open .floating-contact-header span {
+    opacity: 1;
+    width: auto;
+    transition: opacity 0.3s ease 0.1s, width 0.3s ease;
 }
 
 .floating-contact-content {
     padding: 20px;
     opacity: 0;
     max-height: 0;
-    transform: translateY(-8px) scale(0.98);
-    transition: opacity 0.35s ease-in-out 0.1s,
+    transform: scale(0.97);
+    transition: opacity 0.3s ease 0.1s,
                 max-height 0.4s ease-in-out,
-                transform 0.35s ease-in-out 0.1s;
+                transform 0.3s ease;
+    overflow: hidden;
 }
 
-.floating-contact-box:hover .floating-contact-content {
+.floating-contact-box:hover .floating-contact-content,
+.floating-contact-box.mobile-open .floating-contact-content {
     opacity: 1;
     max-height: 500px;
-    transform: translateY(0) scale(1);
+    transform: scale(1);
 }
 
 .contact-info-item {
@@ -967,6 +1065,87 @@ button {
 }
 
 /* ==========================================
+   Jobs & Karriere Section
+   ========================================== */
+
+.karriere-section {
+    padding: 0;
+}
+
+.karriere-hero {
+    background: #2d2d2d;
+    padding: 80px 0;
+    text-align: center;
+}
+
+.karriere-hero h2 {
+    font-size: 42px;
+    font-weight: 800;
+    color: #ffffff;
+    margin-bottom: 20px;
+    line-height: 1.2;
+}
+
+.karriere-hero p {
+    font-size: 18px;
+    color: #d1d5db;
+    max-width: 620px;
+    margin: 0 auto 36px;
+    line-height: 1.7;
+}
+
+.btn-karriere {
+    display: inline-block;
+    padding: 14px 36px;
+    background: #ffffff;
+    color: #2d2d2d;
+    font-weight: 700;
+    font-size: 16px;
+    border-radius: 10px;
+    transition: background 0.25s ease, color 0.25s ease, transform 0.25s ease;
+}
+
+.btn-karriere:hover {
+    background: #f3f4f6;
+    transform: translateY(-2px);
+}
+
+/* ==========================================
+   Logo Badge
+   ========================================== */
+
+.logo-badge-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px 0;
+    background: #1a1a1a;
+}
+
+.logo-badge-image {
+    width: 96px;
+    height: 96px;
+    border-radius: 50%;
+    object-fit: contain;
+    background: #2d2d2d;
+    padding: 12px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.35);
+}
+
+@media (max-width: 768px) {
+    .logo-badge-image {
+        width: 76px;
+        height: 76px;
+    }
+    .karriere-hero h2 {
+        font-size: 30px;
+    }
+    .karriere-hero p {
+        font-size: 16px;
+    }
+}
+
+/* ==========================================
    Footer
    ========================================== */
 
@@ -1008,6 +1187,45 @@ button {
     color: #00d4ff;
 }
 
+/* Footer contact column – aligned with icons */
+.footer-col-contact .footer-address {
+    color: #9ca3af;
+    font-size: 14px;
+    line-height: 1.8;
+    margin-bottom: 16px;
+}
+
+.footer-contact-links {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.footer-contact-link {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+    line-height: 1.5;
+    color: #d1d5db;
+    margin-bottom: 0;
+    transition: color 0.25s ease;
+}
+
+.footer-contact-link svg {
+    flex-shrink: 0;
+    color: #6b7280;
+    transition: color 0.25s ease;
+}
+
+.footer-contact-link:hover {
+    color: #ffffff;
+}
+
+.footer-contact-link:hover svg {
+    color: #ffffff;
+}
+
 .footer-bottom {
     border-top: 1px solid rgba(255, 255, 255, 0.1);
     padding-top: 30px;
@@ -1043,14 +1261,73 @@ button {
    ========================================== */
 
 @media (max-width: 1024px) {
-    .header-content {
-        flex-direction: column;
-        gap: 20px;
+    /* Show hamburger, hide desktop nav */
+    .mobile-menu-toggle {
+        display: flex;
     }
 
+    .header-content {
+        flex-direction: row;
+        gap: 16px;
+        flex-wrap: nowrap;
+    }
+
+    /* Nav becomes full-screen overlay on mobile */
     .nav-boxes {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: #ffffff;
+        z-index: 999;
+        flex-direction: column;
+        align-items: flex-start;
+        overflow-y: auto;
+        padding: 72px 20px 32px;
+        gap: 6px;
+        transform: translateX(100%);
+        transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+                    opacity 0.35s ease;
+        opacity: 0;
+        pointer-events: none;
         width: 100%;
-        justify-content: center;
+    }
+
+    .nav-boxes.mobile-open {
+        transform: translateX(0);
+        opacity: 1;
+        pointer-events: all;
+    }
+
+    /* Show close button inside overlay */
+    .mobile-menu-close {
+        display: flex;
+    }
+
+    /* Nav box full width in overlay */
+    .nav-boxes .nav-box {
+        width: 100%;
+        text-align: left;
+        justify-content: flex-start;
+        min-width: unset;
+    }
+
+    .nav-boxes .nav-box-dropdown {
+        width: 100%;
+    }
+
+    /* Show contact quicklinks in mobile */
+    .mobile-contact-quicklinks {
+        display: flex;
+        width: 100%;
+    }
+
+    /* Disable hover dropdowns on mobile */
+    .nav-box-dropdown:hover .dropdown-menu {
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
     }
 
     .hero-content-wrapper {

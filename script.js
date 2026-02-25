@@ -244,80 +244,74 @@ if (tickerTrack) {
 }
 
 /**
- * Toggle contact bar visibility
+ * Mobile hamburger menu – single close button only
  */
-const contactToggle = document.getElementById('contactToggle');
-const contactBar = document.getElementById('contactBar');
+const mobileMenuToggle = document.getElementById('mobileMenuToggle');
+const mobileMenuClose  = document.getElementById('mobileMenuClose');
+const mainNav          = document.getElementById('mainNav');
 
-if (contactToggle && contactBar) {
-    contactToggle.addEventListener('click', function() {
-        contactBar.classList.toggle('active');
+function openMobileMenu() {
+    mainNav.classList.add('mobile-open');
+    document.body.style.overflow = 'hidden';
+    mobileMenuToggle.setAttribute('aria-expanded', 'true');
+}
+
+function closeMobileMenu() {
+    mainNav.classList.remove('mobile-open');
+    document.body.style.overflow = '';
+    mobileMenuToggle.setAttribute('aria-expanded', 'false');
+}
+
+if (mobileMenuToggle && mobileMenuClose && mainNav) {
+    mobileMenuToggle.addEventListener('click', openMobileMenu);
+    mobileMenuClose.addEventListener('click', closeMobileMenu);
+
+    // Close on any nav-box or quicklink tap
+    mainNav.querySelectorAll('.nav-box, .quicklink-item').forEach(function(el) {
+        el.addEventListener('click', function() {
+            if (mainNav.classList.contains('mobile-open')) {
+                closeMobileMenu();
+            }
+        });
     });
 
-    // Close contact bar when clicking outside
+    // Close on overlay backdrop tap (outside nav content)
     document.addEventListener('click', function(e) {
-        if (!contactToggle.contains(e.target) && !contactBar.contains(e.target)) {
-            contactBar.classList.remove('active');
+        if (mainNav.classList.contains('mobile-open') &&
+            !mainNav.contains(e.target) &&
+            !mobileMenuToggle.contains(e.target)) {
+            closeMobileMenu();
         }
     });
 }
 
 /**
- * Mobile Menu Toggle
+ * Floating contact box – tap to toggle on mobile
  */
-const hamburgerBtn = document.getElementById('hamburgerBtn');
-const mobileMenu = document.getElementById('mobileMenu');
-const mobileMenuClose = document.getElementById('mobileMenuClose');
-
-if (hamburgerBtn && mobileMenu && mobileMenuClose) {
-    function openMobileMenu() {
-        mobileMenu.classList.add('active');
-        document.body.style.overflow = 'hidden';
-    }
-
-    function closeMobileMenu() {
-        mobileMenu.classList.remove('active');
-        document.body.style.overflow = '';
-    }
-
-    hamburgerBtn.addEventListener('click', openMobileMenu);
-    mobileMenuClose.addEventListener('click', closeMobileMenu);
-
-    // Close when clicking overlay background
-    mobileMenu.addEventListener('click', function(e) {
-        if (e.target === mobileMenu) {
-            closeMobileMenu();
-        }
-    });
-
-    // Close on nav link click and scroll to section
-    const mobileNavItems = mobileMenu.querySelectorAll('.mobile-nav-item, .mobile-quicklink-scroll');
-    mobileNavItems.forEach(function(item) {
-        item.addEventListener('click', function(e) {
-            closeMobileMenu();
-            const href = this.getAttribute('href');
-            if (href && href.startsWith('#')) {
-                const target = document.querySelector(href);
-                if (target) {
-                    e.preventDefault();
-                    setTimeout(function() {
-                        const headerOffset = 80;
-                        const elementPosition = target.getBoundingClientRect().top;
-                        const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
-                        window.scrollTo({
-                            top: offsetPosition,
-                            behavior: 'smooth'
-                        });
-                    }, 350);
-                }
-            }
-        });
-    });
-
-    // Close on Escape key
-    document.addEventListener('keydown', function(e) {
-        if (e.key === 'Escape' && mobileMenu.classList.contains('active')) {
-            closeMobileMenu();
+const floatingBox = document.querySelector('.floating-contact-box');
+if (floatingBox) {
+    floatingBox.addEventListener('click', function() {
+        // Only use JS toggle on touch devices (hover works on desktop)
+        if (window.matchMedia('(hover: none)').matches) {
+            floatingBox.classList.toggle('mobile-open');
         }
     });
 }
+
+/**
+ * "E-Mail schreiben" quicklink – scroll to contact form
+ */
+document.querySelectorAll('.quicklink-scroll').forEach(function(el) {
+    el.addEventListener('click', function(e) {
+        const target = document.querySelector('#kontakt');
+        if (target) {
+            e.preventDefault();
+            closeMobileMenu();
+            setTimeout(function() {
+                const offset = 100;
+                const pos = target.getBoundingClientRect().top + window.pageYOffset - offset;
+                window.scrollTo({ top: pos, behavior: 'smooth' });
+            }, 350);
+        }
+    });
+});
