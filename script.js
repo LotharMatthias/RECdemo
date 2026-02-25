@@ -261,3 +261,63 @@ if (contactToggle && contactBar) {
         }
     });
 }
+
+/**
+ * Mobile Menu Toggle
+ */
+const hamburgerBtn = document.getElementById('hamburgerBtn');
+const mobileMenu = document.getElementById('mobileMenu');
+const mobileMenuClose = document.getElementById('mobileMenuClose');
+
+if (hamburgerBtn && mobileMenu && mobileMenuClose) {
+    function openMobileMenu() {
+        mobileMenu.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeMobileMenu() {
+        mobileMenu.classList.remove('active');
+        document.body.style.overflow = '';
+    }
+
+    hamburgerBtn.addEventListener('click', openMobileMenu);
+    mobileMenuClose.addEventListener('click', closeMobileMenu);
+
+    // Close when clicking overlay background
+    mobileMenu.addEventListener('click', function(e) {
+        if (e.target === mobileMenu) {
+            closeMobileMenu();
+        }
+    });
+
+    // Close on nav link click and scroll to section
+    const mobileNavItems = mobileMenu.querySelectorAll('.mobile-nav-item, .mobile-quicklink-scroll');
+    mobileNavItems.forEach(function(item) {
+        item.addEventListener('click', function(e) {
+            closeMobileMenu();
+            const href = this.getAttribute('href');
+            if (href && href.startsWith('#')) {
+                const target = document.querySelector(href);
+                if (target) {
+                    e.preventDefault();
+                    setTimeout(function() {
+                        const headerOffset = 80;
+                        const elementPosition = target.getBoundingClientRect().top;
+                        const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+                        window.scrollTo({
+                            top: offsetPosition,
+                            behavior: 'smooth'
+                        });
+                    }, 350);
+                }
+            }
+        });
+    });
+
+    // Close on Escape key
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && mobileMenu.classList.contains('active')) {
+            closeMobileMenu();
+        }
+    });
+}
