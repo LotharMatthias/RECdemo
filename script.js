@@ -5,6 +5,8 @@
 
 // Wait for DOM to be fully loaded
 document.addEventListener('DOMContentLoaded', function() {
+    // Always scroll to top when page loads
+    window.scrollTo(0, 0);
     initCarousel();
 });
 

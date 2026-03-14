@@ -1,4 +1,18 @@
 /* ==========================================
+   Anniversary Banner
+   ========================================== */
+
+.anniversary-banner {
+    background: linear-gradient(90deg, #d4af37, #f0d060, #d4af37);
+    color: #1a1a1a;
+    text-align: center;
+    padding: 8px 16px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+}
+
+/* ==========================================
    CSS Reset & Base Styles
    ========================================== */
 
