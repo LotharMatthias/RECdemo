@@ -3,13 +3,33 @@
    ========================================== */
 
 .anniversary-banner {
-    background: linear-gradient(90deg, #d4af37, #f0d060, #d4af37);
-    color: #1a1a1a;
+    background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 50%, #1a1a1a 100%);
+    color: #f0d060;
     text-align: center;
-    padding: 8px 16px;
-    font-size: 0.9rem;
+    padding: 10px 16px;
+    font-size: 0.85rem;
     font-weight: 600;
-    letter-spacing: 0.5px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    border-bottom: 2px solid #d4af37;
+    position: relative;
+    overflow: hidden;
+}
+
+.anniversary-banner::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 200%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.1), transparent);
+    animation: banner-shimmer 3s ease-in-out infinite;
+}
+
+@keyframes banner-shimmer {
+    0% { transform: translateX(-50%); }
+    100% { transform: translateX(50%); }
 }
 
 /* ==========================================
@@ -2248,6 +2268,210 @@ button {
 
     .subpage-cta h2 {
         font-size: 26px;
+    }
+}
+
+/* ==========================================
+   Energie Page – Hero Split Layout
+   ========================================== */
+
+.subpage-breadcrumb-inline {
+    display: block;
+    font-size: 12px;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.55);
+    margin-bottom: 16px;
+    letter-spacing: 0.3px;
+}
+
+.hero-split {
+    display: flex;
+    align-items: center;
+    gap: 48px;
+}
+
+.hero-split-text {
+    flex: 1;
+}
+
+.hero-split-image {
+    flex: 0 0 45%;
+    max-width: 45%;
+}
+
+.hero-split-image img {
+    border-radius: 16px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+}
+
+.btn-hero-energy {
+    margin-top: 24px;
+    background: #ffffff;
+    color: #059669;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.btn-hero-energy:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+    background: #f0fdf4;
+}
+
+/* ==========================================
+   Energie Page – Content Sections
+   ========================================== */
+
+.energie-section {
+    padding: 64px 0;
+    background: #ffffff;
+}
+
+.energie-section-alt {
+    background: #f0fdf4;
+    border-top: 3px solid #10b981;
+}
+
+.energie-row {
+    display: flex;
+    align-items: center;
+    gap: 48px;
+}
+
+.energie-row.img-left {
+    flex-direction: row;
+}
+
+.energie-row.img-right {
+    flex-direction: row;
+}
+
+.energie-img {
+    flex: 0 0 40%;
+    max-width: 40%;
+}
+
+.energie-img img {
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+}
+
+.energie-text {
+    flex: 1;
+}
+
+.energie-text h2 {
+    font-size: 28px;
+    font-weight: 800;
+    color: #1a1a1a;
+    margin-bottom: 12px;
+}
+
+.energie-text p {
+    font-size: 16px;
+    color: #4b5563;
+    line-height: 1.7;
+    margin-bottom: 20px;
+}
+
+.energie-checklist {
+    list-style: none;
+    padding: 0;
+}
+
+.energie-checklist li {
+    position: relative;
+    padding-left: 28px;
+    margin-bottom: 10px;
+    font-size: 15px;
+    color: #374151;
+    line-height: 1.5;
+}
+
+.energie-checklist li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    color: #10b981;
+    font-weight: 700;
+    font-size: 16px;
+}
+
+/* ==========================================
+   Energie Page – CTA Button Enhanced
+   ========================================== */
+
+.subpage-cta-energy {
+    background: linear-gradient(135deg, #059669, #10b981);
+    padding: 80px 0;
+}
+
+.subpage-cta-energy h2 {
+    color: #ffffff;
+}
+
+.subpage-cta-energy p {
+    color: rgba(255, 255, 255, 0.85);
+}
+
+.btn-cta-energy {
+    display: inline-flex;
+    align-items: center;
+    padding: 16px 36px;
+    border-radius: 12px;
+    font-weight: 700;
+    font-size: 17px;
+    background: #ffffff;
+    color: #059669;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    transition: all 0.2s ease;
+}
+
+.btn-cta-energy:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
+}
+
+/* ==========================================
+   Energie Page – Responsive
+   ========================================== */
+
+@media (max-width: 768px) {
+    .hero-split {
+        flex-direction: column;
+        gap: 32px;
+    }
+
+    .hero-split-image {
+        flex: none;
+        max-width: 100%;
+        width: 100%;
+    }
+
+    .energie-row {
+        flex-direction: column !important;
+        gap: 24px;
+    }
+
+    .energie-img {
+        flex: none;
+        max-width: 100%;
+        width: 100%;
+        order: -1;
+    }
+
+    .energie-text h2 {
+        font-size: 24px;
+    }
+
+    .btn-cta-energy {
+        font-size: 15px;
+        padding: 14px 28px;
     }
 }
 
