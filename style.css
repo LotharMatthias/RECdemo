@@ -4,6 +4,20 @@
    Breakpoints: 600px (tablet), 900px (desktop), 1200px (wide)
    ========================================== */
 
+/* ---------- Demo Disclaimer Banner ---------- */
+.demo-disclaimer-banner {
+    background-color: #dc2626;
+    color: #ffffff;
+    text-align: center;
+    padding: 10px 16px;
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    position: relative;
+    z-index: 10000;
+}
+
 /* ---------- CSS Custom Properties ---------- */
 :root {
     --color-primary: #1e40af;
