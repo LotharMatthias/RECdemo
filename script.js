@@ -1,13 +1,3 @@
-/**
- * Richter ElektroCom — Mobile-First JavaScript
- * All interactions optimised for touch devices first
- */
-
-// Scroll to top on page load
-window.addEventListener('load', function () {
-    window.scrollTo(0, 0);
-});
-
 document.addEventListener('DOMContentLoaded', function () {
     window.scrollTo(0, 0);
     initMobileMenu();
@@ -18,7 +8,6 @@ document.addEventListener('DOMContentLoaded', function () {
     initTickerPause();
     initContactToggle();
     initContactForm();
-    initScrollToContact();
     initSmoothAnchors();
     initFloatingContact();
 });
@@ -163,17 +152,13 @@ function initCarousel() {
     // Touch / swipe
     var startX = 0;
     var startY = 0;
-    var isDragging = false;
 
     track.addEventListener('touchstart', function (e) {
         startX = e.changedTouches[0].clientX;
         startY = e.changedTouches[0].clientY;
-        isDragging = true;
     }, { passive: true });
 
     track.addEventListener('touchend', function (e) {
-        if (!isDragging) return;
-        isDragging = false;
         var dx = startX - e.changedTouches[0].clientX;
         var dy = startY - e.changedTouches[0].clientY;
         // Only trigger if horizontal swipe > vertical
@@ -422,23 +407,6 @@ function initContactForm() {
 }
 
 /* ========================================
-   SCROLL TO CONTACT
-   ======================================== */
-function initScrollToContact() {
-    document.querySelectorAll('.scroll-to-contact').forEach(function (btn) {
-        btn.addEventListener('click', function (e) {
-            e.preventDefault();
-            var target = document.querySelector(this.getAttribute('href'));
-            if (target) {
-                var offset = 80;
-                var top = target.getBoundingClientRect().top + window.pageYOffset - offset;
-                window.scrollTo({ top: top, behavior: 'smooth' });
-            }
-        });
-    });
-}
-
-/* ========================================
    SMOOTH ANCHOR LINKS
    ======================================== */
 function initSmoothAnchors() {
@@ -446,14 +414,10 @@ function initSmoothAnchors() {
         a.addEventListener('click', function (e) {
             var href = this.getAttribute('href');
             if (!href || href === '#') return;
-            // Skip if handled by scroll-to-contact
-            if (this.classList.contains('scroll-to-contact')) return;
-
             var target = document.querySelector(href);
             if (target) {
                 e.preventDefault();
-                var offset = 80;
-                var top = target.getBoundingClientRect().top + window.pageYOffset - offset;
+                var top = target.getBoundingClientRect().top + window.pageYOffset - 80;
                 window.scrollTo({ top: top, behavior: 'smooth' });
             }
         });

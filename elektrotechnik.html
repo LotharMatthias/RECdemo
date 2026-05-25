@@ -9,150 +9,17 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <style>
-        /* Elektrotechnik page specific styles */
         .elektro-hero {
             padding: 48px 0 56px;
             background: linear-gradient(135deg, #fef2f2 0%, #fff5f5 40%, var(--color-bg) 100%);
         }
-        .elektro-hero .breadcrumb {
-            font-size: 12px;
-            color: #6b7280;
-            margin-bottom: 24px;
-        }
-        .elektro-hero .breadcrumb a {
-            color: #6b7280;
-            text-decoration: underline;
-        }
-        .elektro-hero .breadcrumb span.sep {
-            margin: 0 6px;
-        }
-        .elektro-hero .breadcrumb span.current {
-            color: var(--color-text);
-            font-weight: 600;
-        }
-        .elektro-hero-inner {
-            display: flex;
-            align-items: center;
-            gap: 40px;
-        }
-        .elektro-hero-text {
-            flex: 1;
-        }
-        .elektro-hero-image {
-            flex: 0 0 45%;
-            max-width: 45%;
-        }
-        .elektro-hero-image img {
-            width: 100%;
-            height: auto;
-            border-radius: 16px;
-            box-shadow: 0 8px 32px rgba(0,0,0,0.12);
-            object-fit: cover;
-        }
-        .elektro-hero-text .btn-cta {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            margin-top: 20px;
-            padding: 14px 28px;
+        .btn-cta {
             background: linear-gradient(135deg, #dc2626 0%, #991b1b 100%);
-            color: #fff;
-            border-radius: var(--radius-md);
-            font-size: 15px;
-            font-weight: 600;
-            text-decoration: none;
             box-shadow: 0 4px 12px rgba(220,38,38,0.3);
-            transition: all 0.2s ease;
         }
-        .elektro-hero-text .btn-cta:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(220,38,38,0.4);
-        }
-
-        /* Section layouts */
-        .elektro-section-inner {
-            display: flex;
-            align-items: flex-start;
-            gap: 40px;
-            max-width: 1100px;
-            margin: 0 auto;
-        }
-        .elektro-section-inner .section-text {
-            flex: 1;
-        }
-        .elektro-section-inner .section-image {
-            flex: 0 0 40%;
-            max-width: 40%;
-        }
-        .elektro-section-inner .section-image img {
-            width: 100%;
-            height: 280px;
-            object-fit: cover;
-            border-radius: 12px;
-            box-shadow: 0 4px 16px rgba(0,0,0,0.1);
-        }
-        /* Reverse layout: image left, text right */
-        .elektro-section-inner.layout-img-left {
-            flex-direction: row-reverse;
-        }
-
-        /* Alt section styling */
-        .elektro-section-alt {
-            background: #fef2f2 !important;
-            border-top: 3px solid #dc2626;
-        }
-
-        /* Bottom CTA button enhancements */
-        .elektro-cta-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            background: #fff;
-            color: #991b1b;
-            box-shadow: 0 8px 32px rgba(0,0,0,0.3);
-            font-size: 17px;
-            font-weight: 700;
-            padding: 16px 36px;
-            border-radius: var(--radius-md);
-            text-decoration: none;
-            transition: all 0.2s ease;
-        }
-        .elektro-cta-btn:hover {
-            box-shadow: 0 12px 40px rgba(0,0,0,0.4);
-            transform: translateY(-2px);
-        }
-        .elektro-cta-btn svg {
-            transition: transform 0.2s ease;
-        }
-        .elektro-cta-btn:hover svg {
-            transform: translateX(4px);
-        }
-
-        /* Mobile responsive */
-        @media (max-width: 768px) {
-            .elektro-hero-inner {
-                flex-direction: column;
-                text-align: center;
-            }
-            .elektro-hero-image {
-                flex: none;
-                max-width: 100%;
-                width: 100%;
-            }
-            .elektro-section-inner,
-            .elektro-section-inner.layout-img-left {
-                flex-direction: column;
-            }
-            .elektro-section-inner .section-image {
-                flex: none;
-                max-width: 100%;
-                width: 100%;
-                order: -1;
-            }
-            .elektro-section-inner .section-image img {
-                height: 200px;
-            }
-        }
+        .btn-cta:hover { box-shadow: 0 6px 20px rgba(220,38,38,0.4); }
+        .elektro-section-alt { background: #fef2f2 !important; border-top: 3px solid #dc2626; }
+        .subpage-cta-btn { color: #991b1b; }
     </style>
 </head>
 <body>
@@ -194,14 +61,14 @@
                 <span class="current">Elektrotechnik</span>
             </nav>
 
-            <div class="elektro-hero-inner">
-                <div class="elektro-hero-text">
+            <div class="subpage-hero-inner">
+                <div class="subpage-hero-text">
                     <img src="https://www.richter-elektrocom.de/wp-content/uploads/2023/02/R-EC_Logo-Elektro.png" alt="Richter ElektroCom Elektrotechnik" style="width: 120px; height: 120px; object-fit: contain; margin-bottom: 16px;" />
                     <h1 style="font-size: 32px; font-weight: 800; color: var(--color-text); margin-bottom: 12px; line-height: 1.2;">Elektrotechnik</h1>
                     <p style="font-size: 18px; color: var(--color-text-light); max-width: 700px; line-height: 1.6;">Umfassende Elektrodienstleistungen f&uuml;r Gewerbe- und Privatkunden &ndash; von der Planung &uuml;ber die Installation bis zur regelm&auml;&szlig;igen Pr&uuml;fung. Sicher, normgerecht und zukunftssicher.</p>
                     <a href="index.html#contact-form" class="btn-cta">Jetzt beraten lassen <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
                 </div>
-                <div class="elektro-hero-image">
+                <div class="subpage-hero-image">
                     <img src="https://images.unsplash.com/photo-1621905251189-08b45d6a269e?w=600&q=80" alt="Elektroinstallation" />
                 </div>
             </div>
@@ -224,7 +91,7 @@
     <!-- Section 1: Neu- & Umbauten (Image left, Text right) -->
     <section id="neu-umbauten" style="scroll-margin-top: 140px; padding: 64px 0; background: var(--color-bg);">
         <div class="container">
-            <div class="elektro-section-inner layout-img-left">
+            <div class="subpage-section-inner layout-img-left">
                 <div class="section-text">
                     <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 20px;">
                         <div style="width: 48px; height: 48px; background: #dc2626; border-radius: 12px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
@@ -251,7 +118,7 @@
     <!-- Section 2: Netzanschluss & Trafostationen (Text left, Image right) -->
     <section id="netzanschluss" class="elektro-section-alt" style="scroll-margin-top: 140px; padding: 64px 0;">
         <div class="container">
-            <div class="elektro-section-inner">
+            <div class="subpage-section-inner">
                 <div class="section-text">
                     <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 20px;">
                         <div style="width: 48px; height: 48px; background: #dc2626; border-radius: 12px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
@@ -278,7 +145,7 @@
     <!-- Section 3: Beleuchtung für Unternehmen (Image left, Text right) -->
     <section id="beleuchtung" style="scroll-margin-top: 140px; padding: 64px 0; background: var(--color-bg);">
         <div class="container">
-            <div class="elektro-section-inner layout-img-left">
+            <div class="subpage-section-inner layout-img-left">
                 <div class="section-text">
                     <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 20px;">
                         <div style="width: 48px; height: 48px; background: #dc2626; border-radius: 12px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
@@ -305,7 +172,7 @@
     <!-- Section 4: Schließanlagen & Alarmsysteme (Text left, Image right) -->
     <section id="sicherheit" class="elektro-section-alt" style="scroll-margin-top: 140px; padding: 64px 0;">
         <div class="container">
-            <div class="elektro-section-inner">
+            <div class="subpage-section-inner">
                 <div class="section-text">
                     <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 20px;">
                         <div style="width: 48px; height: 48px; background: #dc2626; border-radius: 12px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
@@ -332,7 +199,7 @@
     <!-- Section 5: E-Check (Image left, Text right) -->
     <section id="e-check" style="scroll-margin-top: 140px; padding: 64px 0; background: var(--color-bg);">
         <div class="container">
-            <div class="elektro-section-inner layout-img-left">
+            <div class="subpage-section-inner layout-img-left">
                 <div class="section-text">
                     <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 20px;">
                         <div style="width: 48px; height: 48px; background: #dc2626; border-radius: 12px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
@@ -362,7 +229,7 @@
             <div style="text-align: center; max-width: 700px; margin: 0 auto;">
                 <h2 style="font-size: 32px; font-weight: 800; color: #fff; margin-bottom: 16px; line-height: 1.2;">Jetzt beraten lassen</h2>
                 <p style="font-size: 17px; color: rgba(255,255,255,0.9); margin-bottom: 32px; line-height: 1.6;">Sprechen Sie mit unseren Elektrotechnik-Experten &uuml;ber Ihr Projekt. Die Erstberatung ist kostenfrei und unverbindlich.</p>
-                <a href="index.html#contact-form" class="elektro-cta-btn">
+                <a href="index.html#contact-form" class="subpage-cta-btn">
                     Kostenfreie Erstberatung vereinbaren
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
                 </a>
